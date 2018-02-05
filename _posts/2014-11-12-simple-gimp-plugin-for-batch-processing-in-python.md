@@ -32,7 +32,7 @@ Other parameters of _register_ function set actual parameters of you plugin main
 
 Sample call to register (you can find tons of them on the internet):
 
-<pre><code class="language-clike">register(
+```register(
     "python_fu_resize_max",
     "Scales the image to fit minimal size in megapixels",
     "Help here",

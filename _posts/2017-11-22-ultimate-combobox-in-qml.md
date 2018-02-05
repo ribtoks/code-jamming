@@ -17,7 +17,7 @@ tags:
 ---
 Everybody who wanted to customize UI of `ComboBox` in QML knows that it is only possible though crutches and hacks. Usually that's not a problem and people start implementing their own custom ComboBoxes that are docked to somewhere. You can see an example of such implementation below (the code is simplified). These sort of implementations have few big problems which I will cover afterwards.
 
-<pre><code class="language-clike">Item {
+```Item {
     id: comboBox
     property alias model: dropDownItems.model
 
@@ -79,7 +79,7 @@ Everybody who wanted to customize UI of `ComboBox` in QML knows that it is only 
         }
     }
 }
-</code></pre>
+```
 
 This approach has 2 big flaws.
 
@@ -93,7 +93,7 @@ So is there anything better?
 
 But finally, I managed to get a satisfying solution. What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the <ComboBox> functionality. It's code is pretty simple (file _ComboBoxHeader.qml_):
 
-<pre><code class="language-clike">Item {
+```Item {
     id: comboBox
 
     property var globalParent
@@ -119,11 +119,11 @@ But finally, I managed to get a satisfying solution. What I did is that I create
         }
     }
 }
-</code></pre>
+```
 
 The important part there is `property var globalParent`. You should set this to some top-most `Item`-derived component which will serve as the _invisible background_. The dropdown is instantiated in relative to this root component with the following code:
 
-<pre><code class="language-clike">function openPopup() {
+```function openPopup() {
     var marginPoint = comboBox.mapToItem(globalParent, 0, comboBox.height)
 
     var options = {
@@ -137,11 +137,11 @@ The important part there is `property var globalParent`. You should set this to 
      var instance = component.createObject(globalParent, options)        
      instance.comboItemSelected.connect(comboBox.comboItemSelected)
 }
-</code></pre>
+```
 
 And the other control (in file _ComboBoxDropdown.qml_) is a dropdown control with an `Item` root element (`globalParent`) filling everything on background. This root element intercepts all the mouse activity outside and correctly closes the popup if clicked.
 
-<pre><code class="language-clike">Item {
+```Item {
     id: dropdownComponent
     anchors.fill: parent
 
@@ -207,11 +207,11 @@ And the other control (in file _ComboBoxDropdown.qml_) is a dropdown control wit
             }
         }
     }
-}</code></pre>
+}```
 
 Now to use it you just go
 
-<pre><code class="language-clike">ComboBoxHeader {
+```ComboBoxHeader {
     globalParent: someTopMostItem
     model: ["Some", "data", "for", "the", "test", "here"]
     height: 20
@@ -219,6 +219,6 @@ Now to use it you just go
 
     onComboItemSelected: { console.log(index) }
 }
-</code></pre>
+```
 
 With this you can guarantee natural behavior of `ComboBox` and it is absolutely custom: you can style it as you want. So far this is the best option of customizable `ComboBox` I've seen anywhere.

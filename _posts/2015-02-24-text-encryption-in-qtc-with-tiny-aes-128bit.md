@@ -28,7 +28,7 @@ Tiny-AES is not super-strong, it implements AES, it's build for ARMs.. but it wo
 
 Key for AES-128 should be 128 bit length, so I used MD5 hashing to get exactly 128 bit buffer for AES key. Cypher-text should be 16 bit aligned, so I use my own inlined alignment function (which could be macro etc.). Also I used _utf8()_ method of QString to get pointer to underlying _ushort*_ buffer and to encode directly it.
 
-<pre><code class="language-clike">#ifndef AESQT_H
+```#ifndef AESQT_H
 #define AESQT_H
 
 # tons of other includes
@@ -94,6 +94,6 @@ namespace Encryption {
     }
 }
 
-#endif // AESQT_H</code></pre>
+#endif // AESQT_H```
 
 I wrote <a href="https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-tests/encryption_tests.cpp" target="_blank" rel="noopener" class="broken_link">a bunch of tests</a> against that functions so the solution is proven to be working. So if you're looking for really tiny encryption or AES implementation, use <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES-128</a>!

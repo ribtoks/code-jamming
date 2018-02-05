@@ -24,7 +24,7 @@ Have you ever heard about this simple problem? Generating spiral matrices. The o
 
 After a hour of trying different approaches (except one which consists of 4 loops for filling up & down row and left & right) I've written a working ruby snippet (just for fun):
 
-<pre><code class="language-clike">def spiral(n)
+```def spiral(n)
     arr = Array.new(n){Array.new(n){0}}
     diff = [[0, 1], [1, 0], [0, -1], [-1, 0]]
     i, j = 0, 0
@@ -57,6 +57,6 @@ After a hour of trying different approaches (except one which consists of 4 loop
 end
 
 arr = spiral(10)
-puts arr.map{|ia| ia.join(' ')}.join("\n")</code></pre>
+puts arr.map{|ia| ia.join(' ')}.join("\n")```
 
 You can find code about on <a href="https://gist.github.com/Ribtoks/8712591" target="_blank">Gist</a>.

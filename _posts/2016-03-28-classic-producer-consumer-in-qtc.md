@@ -24,9 +24,9 @@ For the synchronization in Producer-Consumer it's useful to use Mutex and some k
 
 Let's suppose we have following data structures:
 
-<pre><code class="language-clike">        QWaitCondition m_WaitAnyItem;
+```        QWaitCondition m_WaitAnyItem;
         QMutex m_QueueMutex;
-        QVector<T*> m_Queue;</code></pre>
+        QVector<T*> m_Queue;```
 
 where T is type of messages we're producing/consuming. So we have queue of elements being processed, mutex to secure access to the queue and wait condition to wait if the queue is empty.
 
@@ -36,7 +36,7 @@ For Producer-Consumer usually we need methods `produce()` and `consume()`. Let's
 
 For consuming we will run a loop where we would check if queue has any item available and if yes - we will process it. Also NULL item will stop processing.
 
-<pre><code class="language-clike">        // consuming is an infinite loop
+```        // consuming is an infinite loop
          void consume() {
             for (;;) {
                 m_QueueMutex.lock();
@@ -54,13 +54,13 @@ For consuming we will run a loop where we would check if queue has any item avai
                 
                 processOneItem(item);
             }
-        }</code></pre>
+        }```
 
 If queue is not empty then first item is extracted and processed using `processOneItem()` method. If queue is empty then we're waiting for any item to be added to the queue using `WaitCondition`. Waiting itself is put into the while loop because of "spurious wakeups". It's the situation when kernel object responsible for wait condition was signaled after timeout (quite big one) in order not to block calling thread forever.
 
 To add an item for processing, we call `produce()` method:
 
-<pre><code class="language-clike">        // producer is another thread
+```        // producer is another thread
         void produce(T *item) {
             m_QueueMutex.lock();
             {
@@ -73,7 +73,7 @@ To add an item for processing, we call `produce()` method:
             }
             m_QueueMutex.unlock();
         }
-</code></pre>
+```
 
 This method acquires the mutex, adds an element into the queue and signals a WaitCondition if the queue was empty before.
 

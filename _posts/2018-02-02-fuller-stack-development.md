@@ -39,13 +39,14 @@ Apparently it was hard to come up with an idea of what exactly to do. Of course,
 
 First part to implement was transmitter-receiver with Arduino-RaspberryPi respectively. After reading manuals to 433MHz module I brought in the local shop, this simple prototype has been assembled with Raspberry Pi:<figure id="attachment_1493" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
-[<img class="wp-image-1493 size-large" src="http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125214-1024x683.jpg" alt="" width="697" height="465" srcset="http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125214-1024x683.jpg 1024w, http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125214-300x200.jpg 300w, http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125214-768x512.jpg 768w, http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125214-330x220.jpg 330w" sizes="(max-width: 697px) 100vw, 697px" />](http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125214.jpg)<figcaption class="caption wp-caption-text">Yes, you have to solder antenna on your own</figcaption></figure> 
+Yes, you have to solder antenna on your own
+![Raspberry Pi setup]({{ "/assets/img/20180122_125214.jpg)" | absolute_url }})
 
 In order to check if radio channel is working at all we chose [433_Utils](https://github.com/ninjablocks/433Utils). They provide an app which just prints everything it receives via 433MHz receiver to `stdout`. Please keep in mind that you only need to connect input pin to Raspberry Pi's Pin 21 on model B (27 on newer models) since _433MHz receiver only generates interrupts, not GPIO inputs_.
 
 As for the Arduino - connecting transmitter was a lot easier and there're many examples with [RC-switch](https://github.com/sui77/rc-switch) library to do that.
 
-<pre><code class="language-clike">// just send "42" each 5 seconds
+```// just send "42" each 5 seconds
 // and blink with LED when we send
 #include "RCSwitch.h"
 
@@ -69,17 +70,19 @@ void loop() {
 
   delay(5000);
 }
-</code></pre>
+```
 
 &nbsp;
   
-<figure id="attachment_1494" class="thumbnail wp-caption aligncenter" style="width: 707px">[<img class="size-large wp-image-1494" src="http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125103-1024x683.jpg" alt="" width="697" height="465" srcset="http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125103-1024x683.jpg 1024w, http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125103-300x200.jpg 300w, http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125103-768x512.jpg 768w, http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125103-330x220.jpg 330w" sizes="(max-width: 697px) 100vw, 697px" />](http://code.jamming.com.ua/wp-content/uploads/2018/01/20180122_125103.jpg)<figcaption class="caption wp-caption-text">Yes, and you have to solder another antenna to transmitter as well</figcaption></figure>
+Yes, and you have to solder another antenna to transmitter as well
+![Arduino setup]({{ "/assets/img/20180122_125103.jpg)" | absolute_url }})
 
 #### Protocol
 
 After verifying that messaging over 433MHz works, now it's time to send useful information. To get temperature reading we will use sensor DHT22, which is very easy to add to the Arduino. You have also to include DHT library of version `1.2.3` since `1.3.0` is broken for some reason. Now the time has come to come up with some sort of protocol to transmit temperatures to Raspberry Pi. We needed to know ID of the sensor and temperature it reports. We operate on 32-bit integers for sending so I came up with the following simple protocol:
 
-[<img class="aligncenter size-full wp-image-1498" src="http://code.jamming.com.ua/wp-content/uploads/2018/02/temperature-protocol.png" alt="" width="689" height="207" srcset="http://code.jamming.com.ua/wp-content/uploads/2018/02/temperature-protocol.png 689w, http://code.jamming.com.ua/wp-content/uploads/2018/02/temperature-protocol-300x90.png 300w" sizes="(max-width: 689px) 100vw, 689px" />](http://code.jamming.com.ua/wp-content/uploads/2018/02/temperature-protocol.png)
+
+![Temperature protocol]({{ "/assets/img/temperature-protocol.png)" | absolute_url }})
 
 So we will be sending 6-bit header, specifying that it's our protocol, 6-bit sensor ID (having maximum 64 sensors in our apartment) 14-bit temperature and 6-bit checksum to verify everything arrived correctly. To encode temperature we can use only integer values. We know that sensor operates from -40 to 80 degrees so we can do fixed-point encoding where data that we send will be just number of steps from `TEMP_MIN + TEMP_STEP * value`. Using such encoding we could send temperature readings with quite decent resolution of `0.0073852539` degree.
 
@@ -91,7 +94,7 @@ Next thing to work on was our own server on Raspberry Pi which will save those t
 
 `main()` was only about reading data from RCswitch library and trying to parse integers out of it:
 
-<pre><code class="language-clike">const int IO_PIN = 2;
+```const int IO_PIN = 2;
 tempSwitch = RCSwitch();
 tempSwitch.enableReceive(IO_PIN);
 log("Listening on pin %d...", IO_PIN);
@@ -118,7 +121,7 @@ while (1) {
         handleReading(db, insertStatement, (unsigned int)value);
     }
 }
-</code></pre>
+```
 
 where `handleReading()` is parsing the message and saving temperature to the database.
 
@@ -130,7 +133,7 @@ The webserver was supposed to do 2 main functions: to produce json replies for R
 
 The former requirement was implemented using custom type with prepared SQLite statement which implemented `http.Handler` interface. The latter requirement - just with default `http.FileServer` call. Main function looked like this:
 
-<pre><code class="language-clike">handler := &TempHandler{}
+```handler := &TempHandler{}
 err = handler.initDatabase()
 if err != nil { return }
 
@@ -138,13 +141,13 @@ http.Handle("/", http.FileServer(http.Dir("./www")))
 http.Handle("/temps", handler) 
 
 err = http.ListenAndServe(":8080", nil)
-</code></pre>
+```
 
 #### Front End
 
 Directory `www` contained 2 files: `index.html` and `homeinsights.js`. Html page only had a bare skeleton with one `div` element with an ID for charts. We chose **D3.js** for plotting and javascript file only requested json with reading from Go webserver and rendered them on a chart.
 
-<pre><code class="language-clike">window.onload = function () {
+```window.onload = function () {
     var url = document.URL + 'temps?lastn=150';
 
     d3.json(url, function(data) {
@@ -166,11 +169,12 @@ Directory `www` contained 2 files: `index.html` and `homeinsights.js`. Html page
         }
     });
 };
-</code></pre>
+```
 
 &nbsp;
-  
-<figure id="attachment_1502" class="thumbnail wp-caption aligncenter" style="width: 707px">[<img class="wp-image-1502 size-large" src="http://code.jamming.com.ua/wp-content/uploads/2018/02/temps-website-1024x658.png" alt="" width="697" height="448" srcset="http://code.jamming.com.ua/wp-content/uploads/2018/02/temps-website-1024x658.png 1024w, http://code.jamming.com.ua/wp-content/uploads/2018/02/temps-website-300x193.png 300w, http://code.jamming.com.ua/wp-content/uploads/2018/02/temps-website-768x493.png 768w" sizes="(max-width: 697px) 100vw, 697px" />](http://code.jamming.com.ua/wp-content/uploads/2018/02/temps-website.png)<figcaption class="caption wp-caption-text">Screenshot of the website</figcaption></figure>
+
+
+![Screenshot of the website]({{ "/assets/img/temps-website.png)" | absolute_url }})
 
 #### "Production" prototype
 
@@ -178,7 +182,8 @@ Now, when everything was sort of working, the time has come to create a first "p
 
 The other thing to consider is that if you have few prototypes, you will need to change `SENSOR_ID` in the firmware each time you flush in order to distinguish the sensors you put in different rooms/floors/etc.<figure id="attachment_1503" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
-[<img class="size-large wp-image-1503" src="http://code.jamming.com.ua/wp-content/uploads/2018/02/arduino-mini-dht-433-1024x576.jpg" alt="" width="697" height="392" srcset="http://code.jamming.com.ua/wp-content/uploads/2018/02/arduino-mini-dht-433-1024x576.jpg 1024w, http://code.jamming.com.ua/wp-content/uploads/2018/02/arduino-mini-dht-433-300x169.jpg 300w, http://code.jamming.com.ua/wp-content/uploads/2018/02/arduino-mini-dht-433-768x432.jpg 768w" sizes="(max-width: 697px) 100vw, 697px" />](http://code.jamming.com.ua/wp-content/uploads/2018/02/arduino-mini-dht-433.jpg)<figcaption class="caption wp-caption-text">First prototype ready to be connected to the power source</figcaption></figure> 
+First prototype ready to be connected to the power source
+![Screenshot of the website]({{ "/assets/img/arduino-mini-dht-433.jpg)" | absolute_url }})
 
 #### The end
 

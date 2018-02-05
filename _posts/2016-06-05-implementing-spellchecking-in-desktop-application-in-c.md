@@ -26,11 +26,11 @@ First of all, you should download Hunspell source code and try to build it for y
 
 After you're done, let's include C++ Hunspell API to your header and add following variable to your class
 
-<pre><code class="language-clike">Hunspell *m_Hunspell;</code></pre>
+```Hunspell *m_Hunspell;```
 
 Constructor of Hunspell class takes paths to DIC and AFF files (wordlist and affix files). If you're building cross-platform solution, it will be useful to know, that to handle utf-8 paths in Windows, you need to prefix paths to DIC and AFF files with "\\?\". Loading code in my Qt project looks like this:
 
-<pre><code class="language-clike">#ifdef Q_OS_WIN
+```#ifdef Q_OS_WIN
 // specific Hunspell handling of UTF-8 encoded pathes
 affPath = "\\\\?\\" + QDir::toNativeSeparators(affPath);
 dicPath = "\\\\?\\" + QDir::toNativeSeparators(dicPath);
@@ -46,13 +46,13 @@ try {
 catch(...) {
     LOG_DEBUG << "Error in Hunspell with AFF" << affPath << "and DIC" << dicPath;
     m_Hunspell = NULL;
-}</code></pre>
+}```
 
 In this code except of instantiating Hunspell class we also get right Codec to query the dictionary. Now you can use API's of <code class="language-clike">Hunspell</code> class to access spellchecking API. To get real AFF and DIC files, you can check out a number of open source projects which use spellchecking and hunspell - e.g. OpenOffice.
 
 The most common operation is, of course, to check if particular word is spelled OK or not:
 
-<pre><code class="language-clike">bool isSpellingCorrect(const QString &word) const {
+```bool isSpellingCorrect(const QString &word) const {
     bool isOk = false;
     try {
         isOk = m_Hunspell->spell(m_Codec->fromUnicode(word).constData()) != 0;
@@ -62,13 +62,13 @@ The most common operation is, of course, to check if particular word is spelled 
     }
     return isOk;
 }
-</code></pre>
+```
 
 This demonstrates also usage of <code class="language-clike">Codec</code> retrieved before.
 
 Besides of checking spelling, it's useful to provide user with corrections for the particular word. <code class="language-clike">Hunspell</code> class has API for this and it can be used like this:
 
-<pre><code class="language-clike">QStringList suggestCorrections(const QString &word) {
+```QStringList suggestCorrections(const QString &word) {
     QStringList suggestions;
     char **suggestWordList = NULL;
 
@@ -88,7 +88,7 @@ Besides of checking spelling, it's useful to provide user with corrections for t
     }
 
     return suggestions;
-}</code></pre>
+}```
 
 This code demonstrates usage of <code class="language-clike">suggest()</code> API of Hunspell object. Also useful tip would be to check case of the suggestion, since Hunspell can correct you word like "europe" with "Europe" and stuff like that.
 

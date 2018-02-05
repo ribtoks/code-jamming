@@ -29,13 +29,13 @@ First of all you will need a Drop Area somewhere in your application, which will
       console.log(filesCount + ' files added via drag&drop')
     }
  }
-}</code></pre>
+}```
 
 Where _yourCppModel_ is a model exposed to Qml in main.cpp or wherever like this:
 
-<pre><code class="language-clike">QQmlContext *rootContext = engine.rootContext();
+```QQmlContext *rootContext = engine.rootContext();
 rootContext->setContextProperty("yourCppModel", &myCppModel);
-</code></pre>
+```
 
 and <code class="language-clike">int dropFiles(const QList<QUrl> &urls)</code> is just an ordinary method exposed to QML via _`Q_INVOKABLE`_ attribute.
 
@@ -45,7 +45,7 @@ You will sure notice everything works fine unless you're working under OS X. In 
 
 I've added a `osxnshelper.h` and `osxnshelper.mm` source file with helper method to my project:
 
-<pre><code class="language-clike">#include <Foundation/Foundation.h>
+```#include <Foundation/Foundation.h>
 #include <QUrl>
 
 QUrl fromNSUrl(const QUrl &url) {
@@ -55,22 +55,22 @@ QUrl fromNSUrl(const QUrl &url) {
     QString qtString = QString::fromNSString(path);
     return QUrl::fromLocalFile(qtString);
 }
-</code></pre>
+```
 
 and added it into the .pro file with conditional define:
 
-<pre><code class="language-clike">macx {
+```macx {
 OBJECTIVE_SOURCES += \
     osxnsurlhelper.mm
 
 LIBS += -framework Foundation
 HEADERS += osxnsurlhelper.h
 }
-</code></pre>
+```
 
 Now I'm able to use this helper in my actual `dropFiles()` method:
 
-<pre><code class="language-clike">int MySuperCppModel::dropFiles(const QList<QString> &urls)
+```int MySuperCppModel::dropFiles(const QList<QString> &urls)
 {
     QList<QString> localUrls;
 
@@ -84,6 +84,6 @@ Now I'm able to use this helper in my actual `dropFiles()` method:
 #endif
     // ......
 }
-</code></pre>
+```
 
 That's it. Now it works perfectly.

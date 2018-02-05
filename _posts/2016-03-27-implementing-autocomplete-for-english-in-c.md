@@ -31,10 +31,10 @@ Here comes my fork: <a href="https://github.com/Ribtoks/cpp-libface" target="_bl
 
 As for the interface of libface, I have left only two methods:
 
-<pre><code class="language-clike">public:
+```public:
     bool import(const char *ac_file);
     vp_t prompt(std::string prefix, uint_t n = 16);
-</code></pre>
+```
 
 one of which allows you to import a file and another - generate completion suggestions.
 
@@ -56,6 +56,6 @@ end
 
 tsv_file.close
 
-puts "Done"</code></pre>
+puts "Done"```
 
 Now everything is ready and you can easily integrate library FACE into your C++ solution and fed it with tsv dicts.

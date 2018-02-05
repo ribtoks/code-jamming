@@ -25,7 +25,7 @@ Details below..
 
 I can show two Map methods for the reference here:
 
-<pre><code class="language-clike">private static string MapStringBySwitch(string line)
+```private static string MapStringBySwitch(string line)
         {
             switch (line)
             {
@@ -42,11 +42,11 @@ I can show two Map methods for the reference here:
                 default:
                     return "default value here";
             }
-        }</code></pre>
+        }```
 
 Dictionary method is here:
 
-<pre><code class="language-clike">private static readonly IDictionary<String, String> BoobsTypeNameMap =
+```private static readonly IDictionary<String, String> BoobsTypeNameMap =
             new Dictionary<String, String>
             {
                 {"MultipleType", "MultipleType"},
@@ -68,7 +68,7 @@ Dictionary method is here:
             }
 
             return result;
-        }</code></pre>
+        }```
 
 Null comparison should be in the original, so I preserved it. Null-check added about 100 milliseconds to Dictionary Map on my machine.
 

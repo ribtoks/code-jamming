@@ -20,7 +20,7 @@ For those of us ever writing cross-platform application there has always been en
 
 Another level of quests is using third-party libraries which were not designed for cross-platform usage. For example if you wanted to use ffmpeg / libav libraries in Windows, you have to deal with lack of support of `std::wstring` parameters in the API. One way to deal with it - arrange a custom IO using `AVFormatContext` and handle file paths by yourself. I have found a wonderful article and code example of how to do it in the [blog of Marika Wei](https://mw.gl/posts/ffmpeg_custom_io/). Slightly adapted, the solution will handle all Windows paths
 
-<pre><code class="language-clike">
+```
 struct {
 #ifdef _WIN32
     std::wstring m_FilePath;
@@ -48,6 +48,6 @@ m_IOContext = avio_alloc_context(
     IOSeekFunc
 );
 
-</code></pre>
+```
 
 Check out the [full code at GitHub](https://github.com/Ribtoks/libavthumbnailer/blob/master/src/libavthumbnailer/genericiocontext.cpp){.broken_link}.

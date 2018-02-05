@@ -92,7 +92,7 @@ password postgres
     To start TeamCity as a service in CentOS, you'll have to register it with <em>chkconfig</em> and to do so, let's create startup script in the <em>/etc/init.d/</em> directory and save it with any name (e.g. teamcity-script):
   </div>
   
-  <pre><code class="language-clike">#!/bin/bash
+  ```#!/bin/bash
 #
 # chkconfig: 235 10 90
 # description: TeamCity startup script
@@ -119,7 +119,7 @@ stop)
     ;;
 esac
 
-exit 0</code></pre>
+exit 0```
   
   <div>
     Note the <em>TEAMCITY_DATA_PATH</em> system variable which is used to overwrite default <em>~/.BuildServer</em> path for the teamcity data. First commented lines exist for <em>chkconfig</em> compatability. Now you're able to register it:
@@ -222,7 +222,7 @@ $ cp database.postgresql.properties.dist database.properties</pre>
     <div>
       <pre><code>connectionUrl=jdbc:postgresql:</code><code>//</code><code><host>/<database name>
 connectionProperties.user=<user>
-connectionProperties.password=<password></code></pre>
+connectionProperties.password=<password>```
     </div>
   </div>
   

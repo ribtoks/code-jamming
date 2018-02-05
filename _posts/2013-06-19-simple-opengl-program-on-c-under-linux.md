@@ -101,6 +101,6 @@ namespace OpenGLStart
 		}
 	}
 }
-</code></pre>
+```
 
 Code is quite self-explanatory. We use code in _OnRenderFrame_ to draw main picture and some helpful stuff like _OnResize_ to handle window resizing well. _Main()_ method just creates the window and runs it. Now you can run it and get window with colored triangle.
