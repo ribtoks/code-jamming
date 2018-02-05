@@ -40,7 +40,7 @@ Apparently it was hard to come up with an idea of what exactly to do. Of course,
 First part to implement was transmitter-receiver with Arduino-RaspberryPi respectively. After reading manuals to 433MHz module I brought in the local shop, this simple prototype has been assembled with Raspberry Pi:<figure id="attachment_1493" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
 Yes, you have to solder antenna on your own
-![Raspberry Pi setup]({{ "/assets/img/20180122_125214.jpg)" | absolute_url }})
+![Raspberry Pi setup]({{ "/assets/img/20180122_125214.jpg" | absolute_url }})
 
 In order to check if radio channel is working at all we chose [433_Utils](https://github.com/ninjablocks/433Utils). They provide an app which just prints everything it receives via 433MHz receiver to `stdout`. Please keep in mind that you only need to connect input pin to Raspberry Pi's Pin 21 on model B (27 on newer models) since _433MHz receiver only generates interrupts, not GPIO inputs_.
 
@@ -76,14 +76,14 @@ void loop() {
 &nbsp;
   
 Yes, and you have to solder another antenna to transmitter as well
-![Arduino setup]({{ "/assets/img/20180122_125103.jpg)" | absolute_url }})
+![Arduino setup]({{ "/assets/img/20180122_125103.jpg" | absolute_url }})
 
 #### Protocol
 
 After verifying that messaging over 433MHz works, now it's time to send useful information. To get temperature reading we will use sensor DHT22, which is very easy to add to the Arduino. You have also to include DHT library of version `1.2.3` since `1.3.0` is broken for some reason. Now the time has come to come up with some sort of protocol to transmit temperatures to Raspberry Pi. We needed to know ID of the sensor and temperature it reports. We operate on 32-bit integers for sending so I came up with the following simple protocol:
 
 
-![Temperature protocol]({{ "/assets/img/temperature-protocol.png)" | absolute_url }})
+![Temperature protocol]({{ "/assets/img/temperature-protocol.png" | absolute_url }})
 
 So we will be sending 6-bit header, specifying that it's our protocol, 6-bit sensor ID (having maximum 64 sensors in our apartment) 14-bit temperature and 6-bit checksum to verify everything arrived correctly. To encode temperature we can use only integer values. We know that sensor operates from -40 to 80 degrees so we can do fixed-point encoding where data that we send will be just number of steps from `TEMP_MIN + TEMP_STEP * value`. Using such encoding we could send temperature readings with quite decent resolution of `0.0073852539` degree.
 
@@ -178,7 +178,7 @@ window.onload = function () {
 &nbsp;
 
 
-![Screenshot of the website]({{ "/assets/img/temps-website.png)" | absolute_url }})
+![Screenshot of the website]({{ "/assets/img/temps-website.png" | absolute_url }})
 
 #### "Production" prototype
 
@@ -187,7 +187,7 @@ Now, when everything was sort of working, the time has come to create a first "p
 The other thing to consider is that if you have few prototypes, you will need to change `SENSOR_ID` in the firmware each time you flush in order to distinguish the sensors you put in different rooms/floors/etc.<figure id="attachment_1503" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
 First prototype ready to be connected to the power source
-![Screenshot of the website]({{ "/assets/img/arduino-mini-dht-433.jpg)" | absolute_url }})
+![Screenshot of the website]({{ "/assets/img/arduino-mini-dht-433.jpg" | absolute_url }})
 
 #### The end
 
