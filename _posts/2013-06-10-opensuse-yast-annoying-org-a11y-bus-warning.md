@@ -21,6 +21,6 @@ tags:
 ---
 Has anybody ever received this warning message when using YaST Gui?
 
-&#8220;The name org.a11y.Bus was not provided by any .service files&#8221;
+"The name org.a11y.Bus was not provided by any .service files"
 
 It appears with almost any GTK program and to solve it, you have to install _at-spi2-core_ package, which provides such name.

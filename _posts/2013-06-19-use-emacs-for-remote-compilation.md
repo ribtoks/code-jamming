@@ -19,7 +19,7 @@ tags:
   - remote
   - ssh
 ---
-Just a small tip. I have souced and makefile on remote  machine and I&#8217;m trying to compile it on my local machine, but I don&#8217;t have the compiler and environment. So when I run &#8220;_M-x compile_&#8220;, I use a _build_remote.sh_ script with following contents
+Just a small tip. I have souced and makefile on remote  machine and I'm trying to compile it on my local machine, but I don't have the compiler and environment. So when I run "_M-x compile_", I use a _build_remote.sh_ script with following contents
 
     #!<span style="color:#003366;">/bin/bash</span>
     <span style="color:#003366;">ssh</span> my_remote_machine "<span style="color:#003366;">source</span> my_environment_file; <span style="color:#003366;">cd</span> my_build_directory; <span style="color:#003366;">make</span> my_target"

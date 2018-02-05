@@ -21,15 +21,15 @@ tags:
   - tsv
   - windows
 ---
-When it comes to implementing autocompletion in C++ in some type of input field, the question is which algorithm to choose and where to get the source for completion. In this post I&#8217;ll try to answer both questions.
+When it comes to implementing autocompletion in C++ in some type of input field, the question is which algorithm to choose and where to get the source for completion. In this post I'll try to answer both questions.
 
-As for the algorithm, SO gives us hints about tries, segment trees and others. You can find <a href="http://dhruvbird.blogspot.com.ee/2010/09/very-fast-approach-to-search.html" target="_blank">good article</a> about them. Author has implemented some of them in a repository called FACE (fastest auto-complete in the east). You can easily find it <a href="https://github.com/duckduckgo/cpp-libface" target="_blank">on GitHub</a>. This solution is used for the autocompletion in search engine Duck-Duck-Go which should tell you how good it is. Unfortunately their solution requires dependencies on `libuv` and joyent `http-parser`, which is not good in case you need just to integrate autocompletion functionality into your C++ application, but not build auto-complete server and send queries to it. Another drawback &#8211; `libuv` and `cpp-libface` itself fails to compile in Windows which is bad in case you&#8217;re building cross-platform solution.
+As for the algorithm, SO gives us hints about tries, segment trees and others. You can find <a href="http://dhruvbird.blogspot.com.ee/2010/09/very-fast-approach-to-search.html" target="_blank">good article</a> about them. Author has implemented some of them in a repository called FACE (fastest auto-complete in the east). You can easily find it <a href="https://github.com/duckduckgo/cpp-libface" target="_blank">on GitHub</a>. This solution is used for the autocompletion in search engine Duck-Duck-Go which should tell you how good it is. Unfortunately their solution requires dependencies on `libuv` and joyent `http-parser`, which is not good in case you need just to integrate autocompletion functionality into your C++ application, but not build auto-complete server and send queries to it. Another drawback - `libuv` and `cpp-libface` itself fails to compile in Windows which is bad in case you're building cross-platform solution.
 
 You can find out how to built FACE into your cross-platform C++ application below.
 
 <!--more-->
 
-Here comes my fork: <a href="https://github.com/Ribtoks/cpp-libface" target="_blank">library version of cpp-libface</a>. I&#8217;ve removed dependencies on `libuv` and `http-parser`. For Windows, one would need also `mman` &#8211; memory-mapped files IO. The only such thing I was able to find was `mman-win32` &#8211; cygwin port of mman from *nix&#8217;es. After puking thousands of warning, VS compiler did it&#8217;s job and in real life `mman-win32` worked so it&#8217;s ready at least for testing. I&#8217;ve created two Makefiles: for Windows and OS X/Linux. After building you will get library FACE (`libface.lib` or `libface.a`) and PoC executable for testing of auto-completion through the command line.
+Here comes my fork: <a href="https://github.com/Ribtoks/cpp-libface" target="_blank">library version of cpp-libface</a>. I've removed dependencies on `libuv` and `http-parser`. For Windows, one would need also `mman` - memory-mapped files IO. The only such thing I was able to find was `mman-win32` - cygwin port of mman from *nix'es. After puking thousands of warning, VS compiler did it's job and in real life `mman-win32` worked so it's ready at least for testing. I've created two Makefiles: for Windows and OS X/Linux. After building you will get library FACE (`libface.lib` or `libface.a`) and PoC executable for testing of auto-completion through the command line.
 
 As for the interface of libface, I have left only two methods:
 
@@ -38,9 +38,9 @@ As for the interface of libface, I have left only two methods:
     vp_t prompt(std::string prefix, uint_t n = 16);
 </code></pre>
 
-one of which allows you to import a file and another &#8211; generate completion suggestions.
+one of which allows you to import a file and another - generate completion suggestions.
 
-But it&#8217;s only half of the story. Also you need source for completion. Library FACE is able to digest TSV files (Tab-Separated Values) where first column is frequency of phrase/word and second column &#8211; phrase/word itself. After searching through the internet for some time I&#8217;ve found <a href="https://github.com/mozilla-b2g/gaia/tree/master/apps/keyboard/js/imes/latin/dictionaries" target="_blank">frequency tables for different languages</a> for Android. There are in the XML with simple structure and simple Ruby script written in 5 minutes transformed them into TSV:
+But it's only half of the story. Also you need source for completion. Library FACE is able to digest TSV files (Tab-Separated Values) where first column is frequency of phrase/word and second column - phrase/word itself. After searching through the internet for some time I've found <a href="https://github.com/mozilla-b2g/gaia/tree/master/apps/keyboard/js/imes/latin/dictionaries" target="_blank">frequency tables for different languages</a> for Android. There are in the XML with simple structure and simple Ruby script written in 5 minutes transformed them into TSV:
 
 <pre><code class="language-ruby">
 require 'nokogiri'

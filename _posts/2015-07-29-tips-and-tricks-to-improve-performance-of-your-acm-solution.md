@@ -22,7 +22,7 @@ Here I gathered system-programming tricks that can improve performance of your s
   * Use _scanf/printf_ functions for standard IO instead of _cin/cout_
   * _Memory-align_ buffers and structures to WORD size of your architecture (4 bytes for 32-bit and 8 bytes for 64-bit)
   * Use arrays instead of linked lists (to use memory block caching)
-  * Avoid &#8220;_if_&#8221; stamements in loops
+  * Avoid "_if_" stamements in loops
   * If-clause should contain code, which is more likely to execute (_if_-condition == true)
   * Use _inlining_ for short functions
   * Use objects allocated on stack but not on heap (local objects for functions instead of allocated with _malloc/new_)

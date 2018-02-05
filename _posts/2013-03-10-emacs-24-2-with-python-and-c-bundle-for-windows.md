@@ -26,7 +26,7 @@ tags:
   - semantic
   - windows
 ---
-I&#8217;ve managed to put together some interesting things with Emacs for Windows. For now we have:
+I've managed to put together some interesting things with Emacs for Windows. For now we have:
 
   * Emacs 24.2 for Windows
   * CEDET-1.1
@@ -50,8 +50,8 @@ How to install:
 
   1. Download zip archive from <a title="Emacs 24.2 for Windows with c++ and python support" href="http://ge.tt/4JjpBha/v/0" target="_blank">ge.tt</a>
   2. Unzip to some directory
-  3. Go to _bin/_ directory and edit _startemacs.bat_ file &#8211; remove _&#8211;debug-init_ parameter at your option
-  4. If your python installation path is not _C:Python27_, go to _config/.emacs.d/_ directory and edit _python-config.el_ file &#8211; find _PYMACS_PYTHON_ variable and make it correct (for your Windows + python installation)
+  3. Go to _bin/_ directory and edit _startemacs.bat_ file - remove _-debug-init_ parameter at your option
+  4. If your python installation path is not _C:Python27_, go to _config/.emacs.d/_ directory and edit _python-config.el_ file - find _PYMACS_PYTHON_ variable and make it correct (for your Windows + python installation)
   5. To add or change some c++ system include directories, go to _config/.emacs.d/ribtoks-cpp.el_ file, find _semantic-add-system-include_ call and change include path to yours
-  6. &#8230;
+  6. ...
   7. Profit, now you can launch Emacs with **_bin/startemacs.bat_**

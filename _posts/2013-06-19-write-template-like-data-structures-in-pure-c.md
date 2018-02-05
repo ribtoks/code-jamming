@@ -23,7 +23,7 @@ write type-independent data structure (say, red-black tree, dynamic array etc.) 
 
 _Solution_:
 
-First of all, lets create an interface of our &#8220;_generic_&#8221; (or &#8220;_template_&#8220;) type. We can interpret `void*` as this unknown type and build some interface functions. It definitely has to have a `constructor` and `destructor`. Also, it can have a `comparator` and kind of `print` function.
+First of all, lets create an interface of our "_generic_" (or "_template_") type. We can interpret `void*` as this unknown type and build some interface functions. It definitely has to have a `constructor` and `destructor`. Also, it can have a `comparator` and kind of `print` function.
 
 So, we can define it like this:
 
@@ -129,7 +129,7 @@ And for String:
        printf(str);
     }
 
-And I&#8217;ll provide some example of usage. Lets assume we have some tree structure and we have a task to implement  search of a value. Before usage we have to initialize our functions factory. We can just use function names as function pointers.
+And I'll provide some example of usage. Lets assume we have some tree structure and we have a task to implement  search of a value. Before usage we have to initialize our functions factory. We can just use function names as function pointers.
 
     <span style="color:#003366;">void</span> InitIntegerFactoryStruct(<span style="color:#008080;">FuncFactory</span>* factory)
     {

@@ -18,7 +18,7 @@ tags:
   - opengl
   - opentk
 ---
-Today I&#8217;ll tell you how to write a very simple OpenGL program on C# at Mono platform. Finally we&#8217;re going to get something like this:<figure id="attachment_1031" class="thumbnail wp-caption aligncenter" style="width: 310px">
+Today I'll tell you how to write a very simple OpenGL program on C# at Mono platform. Finally we're going to get something like this:<figure id="attachment_1031" class="thumbnail wp-caption aligncenter" style="width: 310px">
 
 [<img class=" wp-image-1031 " src="http://code.jamming.com.ua/wp-content/uploads/2013/06/opentk_test.png?w=300" alt="OpenTK Game Window" width="300" height="241" srcset="http://code.jamming.com.ua/wp-content/uploads/2013/06/opentk_test.png 400w, http://code.jamming.com.ua/wp-content/uploads/2013/06/opentk_test-300x242.png 300w" sizes="(max-width: 300px) 100vw, 300px" />](http://code.jamming.com.ua/wp-content/uploads/2013/06/opentk_test.png)<figcaption class="caption wp-caption-text">Result of OpenGL app</figcaption></figure> 
 

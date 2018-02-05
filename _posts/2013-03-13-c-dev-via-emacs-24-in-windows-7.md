@@ -24,9 +24,9 @@ tags:
 ---
 Recently I had issue with CEDET 1.1: semantic was not able to parse header files from Visual Studio, when using
 
-_(semantic-add-system-include &#8220;C:/Program Files/Microsoft Visual Studio 10.0/VS/Include&#8221; &#8216;c++-mode)_
+_(semantic-add-system-include "C:/Program Files/Microsoft Visual Studio 10.0/VS/Include" 'c++-mode)_
 
-But after looking through Visual Stuio headers in Studio itself, I&#8217;ve found some headers with defines, which are new to semantic, so you have to add them after this system include in your _.el_ files:
+But after looking through Visual Stuio headers in Studio itself, I've found some headers with defines, which are new to semantic, so you have to add them after this system include in your _.el_ files:
 
     (defun windows-semantic-hook ()
       (setq microsoft-base-dir 

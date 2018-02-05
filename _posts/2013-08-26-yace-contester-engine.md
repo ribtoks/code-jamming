@@ -21,9 +21,9 @@ tags:
   - test
   - yace
 ---
-This is not-a-success story about one of my projects, YaCE (Yet another Contester Engine). It&#8217;s a system, written in Ruby and Bash which can check ACM problems solution validity. It can be scaled on a number of nodes, accessible via network (VMs or real machines).
+This is not-a-success story about one of my projects, YaCE (Yet another Contester Engine). It's a system, written in Ruby and Bash which can check ACM problems solution validity. It can be scaled on a number of nodes, accessible via network (VMs or real machines).
 
-The main reason to create it was to rewrite existing system which we used to train for ACM contests. &#8220;ACM Contester&#8221; was not scalable enough and it didn&#8217;t have precise enough measurements of used memory and cpu time, which is crucial for testing our solutions.
+The main reason to create it was to rewrite existing system which we used to train for ACM contests. "ACM Contester" was not scalable enough and it didn't have precise enough measurements of used memory and cpu time, which is crucial for testing our solutions.
 
 I wanted to make it scalable and predictable. I wanted to write it in Ruby on Linux and for Linux.
   

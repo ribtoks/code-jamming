@@ -18,15 +18,15 @@ tags:
   - qt
   - text
 ---
-Have you ever needed a small, really small encryption in your C++ project for some piece of text? Say, credentials, login details or any other sensitive data? Of course, the best way is to keep just hash of salted password, but&#8230; What if you just **need** to do it and the size is so much critical for you?
+Have you ever needed a small, really small encryption in your C++ project for some piece of text? Say, credentials, login details or any other sensitive data? Of course, the best way is to keep just hash of salted password, but... What if you just **need** to do it and the size is so much critical for you?
 
-There&#8217;re <a href="https://www.openssl.org/" target="_blank" rel="noopener">openSSL</a> library and <a href="http://www.cryptopp.com/" target="_blank" rel="noopener">Crypto++</a> library which are monsters with tons of encryption algorithms, used in a number of solid projects etc. But.. they are big! I don&#8217;t want 30Mb library in my tiny project, which weights 10 Mb with high-resolution icons for OS X which weight by itself 5Mb. So I don&#8217;t want to sacrifice the size but still need encryption. Meet <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES.</a> It&#8217;s really small AES 128-bit library which does encryption in <a href="https://en.wikipedia.org/wiki/Block_cipher_modes_of_operation" target="_blank" rel="noopener">CBC and ECB modes</a>. It really contains everything you needed just to encrypt and decrypt your sensitive data and forget about it.
+There're <a href="https://www.openssl.org/" target="_blank" rel="noopener">openSSL</a> library and <a href="http://www.cryptopp.com/" target="_blank" rel="noopener">Crypto++</a> library which are monsters with tons of encryption algorithms, used in a number of solid projects etc. But.. they are big! I don't want 30Mb library in my tiny project, which weights 10 Mb with high-resolution icons for OS X which weight by itself 5Mb. So I don't want to sacrifice the size but still need encryption. Meet <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES.</a> It's really small AES 128-bit library which does encryption in <a href="https://en.wikipedia.org/wiki/Block_cipher_modes_of_operation" target="_blank" rel="noopener">CBC and ECB modes</a>. It really contains everything you needed just to encrypt and decrypt your sensitive data and forget about it.
 
 You can find example under the hood.
 
 <!--more-->
 
-Tiny-AES is not super-strong, it implements AES, it&#8217;s build for ARMs.. but it works! It&#8217;s easy to adopt to any C++ project. Here&#8217;s how I implemented encryption in my small Qt C++ project.
+Tiny-AES is not super-strong, it implements AES, it's build for ARMs.. but it works! It's easy to adopt to any C++ project. Here's how I implemented encryption in my small Qt C++ project.
 
 Key for AES-128 should be 128 bit length, so I used MD5 hashing to get exactly 128 bit buffer for AES key. Cypher-text should be 16 bit aligned, so I use my own inlined alignment function (which could be macro etc.). Also I used _utf8()_ method of QString to get pointer to underlying _ushort*_ buffer and to encode directly it.
 
@@ -98,4 +98,4 @@ namespace Encryption {
 
 #endif // AESQT_H</code></pre>
 
-I wrote <a href="https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-tests/encryption_tests.cpp" target="_blank" rel="noopener" class="broken_link">a bunch of tests</a> against that functions so the solution is proven to be working. So if you&#8217;re looking for really tiny encryption or AES implementation, use <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES-128</a>!
+I wrote <a href="https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-tests/encryption_tests.cpp" target="_blank" rel="noopener" class="broken_link">a bunch of tests</a> against that functions so the solution is proven to be working. So if you're looking for really tiny encryption or AES implementation, use <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES-128</a>!

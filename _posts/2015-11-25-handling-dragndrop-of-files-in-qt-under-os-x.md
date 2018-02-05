@@ -1,6 +1,6 @@
 ---
 id: 1248
-title: 'Handling drag&#8217;n&#8217;drop of files in Qt under OS X'
+title: 'Handling drag'n'drop of files in Qt under OS X'
 date: 2015-11-25T18:00:02+00:00
 author: latobcode
 layout: post
@@ -19,7 +19,7 @@ tags:
   - qt
   - url
 ---
-If you ever tried to handle drag&#8217;n&#8217;drop files in your Qt application, you would usually come up with the code like the following.
+If you ever tried to handle drag'n'drop files in your Qt application, you would usually come up with the code like the following.
   
 First of all you will need a Drop Area somewhere in your application, which will handle drops
 
@@ -41,11 +41,11 @@ rootContext-&gt;setContextProperty("yourCppModel", &myCppModel);
 
 and <code class="language-clike">int dropFiles(const QList&lt;QUrl&gt; &urls)</code> is just an ordinary method exposed to QML via _`Q_INVOKABLE`_ attribute.
 
-You will sure notice everything works fine unless you&#8217;re working under OS X. In OS X instead of QUrls to local files you will get something like this: _ `file:///.file/id=6571367.2773272/`_. There&#8217;s a bug in Qt for that and it even looks closed, but it still doesn&#8217;t work for me that&#8217;s why I&#8217;ve implemented my own helper using mixing of Objective-C and Qt-C++ code.
+You will sure notice everything works fine unless you're working under OS X. In OS X instead of QUrls to local files you will get something like this: _ `file:///.file/id=6571367.2773272/`_. There's a bug in Qt for that and it even looks closed, but it still doesn't work for me that's why I've implemented my own helper using mixing of Objective-C and Qt-C++ code.
 
 <!--more-->
 
-I&#8217;ve added a `osxnshelper.h` and `osxnshelper.mm` source file with helper method to my project:
+I've added a `osxnshelper.h` and `osxnshelper.mm` source file with helper method to my project:
 
 <pre><code class="language-clike">#include &lt;Foundation/Foundation.h&gt;
 #include &lt;QUrl&gt;
@@ -70,7 +70,7 @@ HEADERS += osxnsurlhelper.h
 }
 </code></pre>
 
-Now I&#8217;m able to use this helper in my actual `dropFiles()` method:
+Now I'm able to use this helper in my actual `dropFiles()` method:
 
 <pre><code class="language-clike">int MySuperCppModel::dropFiles(const QList&lt;QString&gt; &urls)
 {
@@ -88,4 +88,4 @@ Now I&#8217;m able to use this helper in my actual `dropFiles()` method:
 }
 </code></pre>
 
-That&#8217;s it. Now it works perfectly.
+That's it. Now it works perfectly.

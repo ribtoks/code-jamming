@@ -15,9 +15,9 @@ tags:
   - rails
   - ruby
 ---
-Today we&#8217;ll set up a complete Ruby On Rails development environment on Linux. For an IDE we&#8217;ll use Emacs and for host system &#8211; OpenSUSE.
+Today we'll set up a complete Ruby On Rails development environment on Linux. For an IDE we'll use Emacs and for host system - OpenSUSE.
 
-Let&#8217;s install latest Ruby+Rails bundle before configuring Emacs. You can refer to <a title="Rails on OpenSUSE 12.1" href="http://alphacluster.wordpress.com/2012/03/29/rails-on-opensuse-12-1/" target="_blank">nice article</a> on that. In short, you need get RVM and follow through script steps in terminal:
+Let's install latest Ruby+Rails bundle before configuring Emacs. You can refer to <a title="Rails on OpenSUSE 12.1" href="http://alphacluster.wordpress.com/2012/03/29/rails-on-opensuse-12-1/" target="_blank">nice article</a> on that. In short, you need get RVM and follow through script steps in terminal:
 
 <pre><span style="color: #0000ff;"><span style="color: #000000;">&gt;</span> bash</span> -s stable &lt; &lt;(<span style="color: #0000ff;">curl</span> -s <span style="color: #808000;">https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer</span>)</pre>
 
@@ -25,20 +25,20 @@ Then load path to installed RVM in current bash session:
 
 <pre><span style="color: #000000;">&gt;</span> . ~/.bash_profile</pre>
 
-It&#8217;s a bit frustrating that if bash finds a _.bash_profile_ file, it ignores _.bashrc_, so be careful. Usually, I just move this one line from _.bash_profile_ to _.profile_ or _.bashrc_.
+It's a bit frustrating that if bash finds a _.bash_profile_ file, it ignores _.bashrc_, so be careful. Usually, I just move this one line from _.bash_profile_ to _.profile_ or _.bashrc_.
 
 Then check requirements and install everything what is needed
 
 <pre>&gt; rvm requirements</pre>
 
-Now let&#8217;s set ruby version to 2.0 and install rails (4):
+Now let's set ruby version to 2.0 and install rails (4):
 
 <pre>&gt; rvm install 2.0
 &gt; rvm use 2.0
 &gt; gem install rails
 &gt; gem install sqlite3</pre>
 
-Now, when everything is ready, we can configure Emacs installation. I assume you&#8217;ve already installed emacs package via your favorite package manager.
+Now, when everything is ready, we can configure Emacs installation. I assume you've already installed emacs package via your favorite package manager.
   
 Then lets add some custom configuration file for ruby configs in the _.emacs.d_ directory, say _ruby-configuration.el_ and add it to your .emacs file using
 
@@ -90,5 +90,5 @@ My other configuration are mostly copy-and-pasted from EmacsWiki for those packa
 
 Links:
 
-  * <a href="http://viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu" target="_blank">Emacs 24 Rails Development Environment &#8211; From *scratch* to Productive in 5 Minutes</a>
+  * <a href="http://viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu" target="_blank">Emacs 24 Rails Development Environment - From *scratch* to Productive in 5 Minutes</a>
   * <a href="http://www.emacswiki.org/emacs/RubyOnRails" target="_blank">EmacsWiki: RubyOnRails</a>

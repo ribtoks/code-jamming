@@ -21,9 +21,9 @@ tags:
 ---
 Struggled to safely eject my 1TB  Western Digital My Passport external hard drive in OpenSUSE. Googling regarding Western Digital was inefficient, because lots of people have been just saying not-such-a-good-things about WD products and nothing valuable regarding ejecting it.
 
-Usual `eject` command had no success: hard drive continued to spin. I&#8217;ve even upgraded firmware to 1.49 on my Windows 7 machine at work. No succcess.
+Usual `eject` command had no success: hard drive continued to spin. I've even upgraded firmware to 1.49 on my Windows 7 machine at work. No succcess.
 
-After some time googling I&#8217;ve found next working solution:
+After some time googling I've found next working solution:
 
   * install `udisks` utility
   * run `sudo udisks --unmount /mount/point` from terminal

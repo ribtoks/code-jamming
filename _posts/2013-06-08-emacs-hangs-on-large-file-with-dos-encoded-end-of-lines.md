@@ -19,9 +19,9 @@ tags:
   - inhibit-eol-convension
   - unix
 ---
-I&#8217;ve had a quite big C++ source file, copied from Windows with _^M_ symbol after each line. After any scrolling downside Emacs 24.2 hanged up and the only option was to kill it.
+I've had a quite big C++ source file, copied from Windows with _^M_ symbol after each line. After any scrolling downside Emacs 24.2 hanged up and the only option was to kill it.
 
-Due to the fact that my _.emacs_ configuration is quite big, I started with binary search, commenting out parts of lisp code. After few minutes I&#8217;ve figured out, that the problem lies in _.gnu-emacs_ file, so I moved with binary search to that file.
+Due to the fact that my _.emacs_ configuration is quite big, I started with binary search, commenting out parts of lisp code. After few minutes I've figured out, that the problem lies in _.gnu-emacs_ file, so I moved with binary search to that file.
 
 Within 5 minutes, source of the problem was found:
 

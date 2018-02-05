@@ -24,7 +24,7 @@ Have you ever heard about this simple problem? Generating spiral matrices. The o
 14 23 22 21 8
 13 12 11 10 9</pre>
 
-After a hour of trying different approaches (except one which consists of 4 loops for filling up & down row and left & right) I&#8217;ve written a working ruby snippet (just for fun):
+After a hour of trying different approaches (except one which consists of 4 loops for filling up & down row and left & right) I've written a working ruby snippet (just for fun):
 
 <pre><code class="language-clike">def spiral(n)
     arr = Array.new(n){Array.new(n){0}}

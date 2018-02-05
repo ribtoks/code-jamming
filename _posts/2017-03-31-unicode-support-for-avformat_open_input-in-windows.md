@@ -20,7 +20,7 @@ tags:
 ---
 For those of us ever writing cross-platform application there has always been enough quires and quests to accomplish. Typical one is to correctly handle multibyte/unicode filepaths in Windows. And though they are handled pretty good in Qt, when you write your own library you have to do it yourself.
 
-Another level of quests is using third-party libraries which were not designed for cross-platform usage. For example if you wanted to use ffmpeg / libav libraries in Windows, you have to deal with lack of support of `std::wstring` parameters in the API. One way to deal with it &#8211; arrange a custom IO using `AVFormatContext` and handle file paths by yourself. I have found a wonderful article and code example of how to do it in the [blog of Marika Wei](https://mw.gl/posts/ffmpeg_custom_io/). Slightly adapted, the solution will handle all Windows paths
+Another level of quests is using third-party libraries which were not designed for cross-platform usage. For example if you wanted to use ffmpeg / libav libraries in Windows, you have to deal with lack of support of `std::wstring` parameters in the API. One way to deal with it - arrange a custom IO using `AVFormatContext` and handle file paths by yourself. I have found a wonderful article and code example of how to do it in the [blog of Marika Wei](https://mw.gl/posts/ffmpeg_custom_io/). Slightly adapted, the solution will handle all Windows paths
 
 <pre><code class="language-clike">
 struct {

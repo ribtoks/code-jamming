@@ -17,7 +17,7 @@ tags:
   - quick
   - ui
 ---
-Everybody who wanted to customize UI of `ComboBox` in QML knows that it is only possible though crutches and hacks. Usually that&#8217;s not a problem and people start implementing their own custom ComboBoxes that are docked to somewhere. You can see an example of such implementation below (the code is simplified). These sort of implementations have few big problems which I will cover afterwards.
+Everybody who wanted to customize UI of `ComboBox` in QML knows that it is only possible though crutches and hacks. Usually that's not a problem and people start implementing their own custom ComboBoxes that are docked to somewhere. You can see an example of such implementation below (the code is simplified). These sort of implementations have few big problems which I will cover afterwards.
 
 <pre><code class="language-clike">Item {
     id: comboBox
@@ -87,13 +87,13 @@ This approach has 2 big flaws.
 
 The very first problem with this approach is `z-index` management. You have to make sure that owner of your custom `ComboBox` is on top of everything possible so I set `z: 100500` every time I instantiated my object. But what if you have several instances which can overlap? Correct, you have to assign `z-index` dynamically every time..
 
-The other problem with this way is the focus management in QML apps which I personally find quite clumsy and raw (but of course it could be just my lack of skill). Simple enough, you want to click outside to close the dropdown and .. usually that&#8217;s just not possible without hacks. I&#8217;ve done horrible things to workaround this. I used to put huge `MouseArea` elements everywhere to emit `closeComboBoxes()` signal when it get&#8217;s clicked and all the `ComboBox` in the area were subscribed to that signal.
+The other problem with this way is the focus management in QML apps which I personally find quite clumsy and raw (but of course it could be just my lack of skill). Simple enough, you want to click outside to close the dropdown and .. usually that's just not possible without hacks. I've done horrible things to workaround this. I used to put huge `MouseArea` elements everywhere to emit `closeComboBoxes()` signal when it get's clicked and all the `ComboBox` in the area were subscribed to that signal.
 
 So is there anything better?
 
 <!--more-->
 
-But finally, I managed to get a satisfying solution. What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the <ComboBox> functionality. It&#8217;s code is pretty simple (file _ComboBoxHeader.qml_):
+But finally, I managed to get a satisfying solution. What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the <ComboBox> functionality. It's code is pretty simple (file _ComboBoxHeader.qml_):
 
 <pre><code class="language-clike">Item {
     id: comboBox
@@ -223,4 +223,4 @@ Now to use it you just go
 }
 </code></pre>
 
-With this you can guarantee natural behavior of `ComboBox` and it is absolutely custom: you can style it as you want. So far this is the best option of customizable `ComboBox` I&#8217;ve seen anywhere.
+With this you can guarantee natural behavior of `ComboBox` and it is absolutely custom: you can style it as you want. So far this is the best option of customizable `ComboBox` I've seen anywhere.

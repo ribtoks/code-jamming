@@ -19,4 +19,4 @@ When you import or restore a database from bak file, you can have same problems 
 
 First of all, make sure SQL server is in Mixed Authentication mode (right click on SQL server connection and Security tab). Then create a new Login in top Security object, and memorize username and password for your connection string.
 
-Then you can add a User in appropriate Security object of your database, also setting a Login to one you created just before. Now it&#8217;s valid!
+Then you can add a User in appropriate Security object of your database, also setting a Login to one you created just before. Now it's valid!

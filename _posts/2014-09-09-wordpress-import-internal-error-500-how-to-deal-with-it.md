@@ -16,5 +16,5 @@ tags:
 ---
 When you import really large website to WP, server process can crash because of different restrictions for PHP memory, request processing time, database connection time etc. To deal with it, you have several options:
 
-  * one can find WP support forum with <a href="http://wordpress.org/support/topic/importing-wordpress-xml-fails-with-a-500-error" target="_blank">appropriate post</a> and solution: the simplier is to refresh page and click &#8220;Resend&#8221; which will repeat POST request and WP will continue to import data (it&#8217;s smart enough to skip already imported posts)
-  * another (wiser) solution is to split your import file to several smaller files and import them one by one. Import file is just an ordinary XML file, so you&#8217;ll just have to copy-paste header and then split import data is fairly small parts.
+  * one can find WP support forum with <a href="http://wordpress.org/support/topic/importing-wordpress-xml-fails-with-a-500-error" target="_blank">appropriate post</a> and solution: the simplier is to refresh page and click "Resend" which will repeat POST request and WP will continue to import data (it's smart enough to skip already imported posts)
+  * another (wiser) solution is to split your import file to several smaller files and import them one by one. Import file is just an ordinary XML file, so you'll just have to copy-paste header and then split import data is fairly small parts.

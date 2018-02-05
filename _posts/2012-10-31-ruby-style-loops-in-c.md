@@ -29,7 +29,7 @@ Simple and useful solution to use ruby-like loops in C#. Also, you can add exten
 
 <!--more-->
 
-[sourcecode language=&#8221;csharp&#8221;]
+[sourcecode language="csharp"]
   
 public struct MyInt
   
@@ -81,7 +81,7 @@ public MyInt Times()
       
 {
           
-return MyInt.Int(0).Step(this.i &#8211; 1, 1);
+return MyInt.Int(0).Step(this.i - 1, 1);
       
 }
 
@@ -123,7 +123,7 @@ else
           
 {
               
-direction = x => x &#8211; step;
+direction = x => x - step;
               
 condition = (a, b) => a >= b;
           

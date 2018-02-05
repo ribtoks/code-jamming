@@ -10,6 +10,6 @@ categories:
   - Programming
 format: link
 ---
-Just an elegant and &#8220;hacky&#8221; way
+Just an elegant and "hacky" way
 
 <a href="http://tgrignon.wordpress.com/2007/03/07/using-excel-to-generate-inserts-for-sql-server/" target="_blank">http://tgrignon.wordpress.com/2007/03/07/using-excel-to-generate-inserts-for-sql-server/</a>

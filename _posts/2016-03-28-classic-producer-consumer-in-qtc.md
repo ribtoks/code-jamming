@@ -20,23 +20,23 @@ tags:
   - qt
   - spurious wakeup
 ---
-Producer-Consumer is a classic pattern of interaction between two or more threads which share common tasks queue and workers who process that queue. When I came to similar task first I googled for standard approaches in Qt to solve this problem, but they were based on signals/slots plus synchronization primitives while I wanted simple and clear solution. Of course, in the end I&#8217;ve invented my own wheel and I invite you to take a look at it.
+Producer-Consumer is a classic pattern of interaction between two or more threads which share common tasks queue and workers who process that queue. When I came to similar task first I googled for standard approaches in Qt to solve this problem, but they were based on signals/slots plus synchronization primitives while I wanted simple and clear solution. Of course, in the end I've invented my own wheel and I invite you to take a look at it.
 
-For the synchronization in Producer-Consumer it&#8217;s useful to use Mutex and some kind of WaitingEvent for synchronous waiting until mutex is acquired. In Qt you have QMutex and QWaitCondition which are all that we need.
+For the synchronization in Producer-Consumer it's useful to use Mutex and some kind of WaitingEvent for synchronous waiting until mutex is acquired. In Qt you have QMutex and QWaitCondition which are all that we need.
 
-Let&#8217;s suppose we have following data structures:
+Let's suppose we have following data structures:
 
 <pre><code class="language-clike">        QWaitCondition m_WaitAnyItem;
         QMutex m_QueueMutex;
         QVector&lt;T*&gt; m_Queue;</code></pre>
 
-where T is type of messages we&#8217;re producing/consuming. So we have queue of elements being processed, mutex to secure access to the queue and wait condition to wait if the queue is empty.
+where T is type of messages we're producing/consuming. So we have queue of elements being processed, mutex to secure access to the queue and wait condition to wait if the queue is empty.
 
-For Producer-Consumer usually we need methods `produce()` and `consume()`. Let&#8217;s see how we can implement them.
+For Producer-Consumer usually we need methods `produce()` and `consume()`. Let's see how we can implement them.
 
 <!--more-->
 
-For consuming we will run a loop where we would check if queue has any item available and if yes &#8211; we will process it. Also NULL item will stop processing.
+For consuming we will run a loop where we would check if queue has any item available and if yes - we will process it. Also NULL item will stop processing.
 
 <pre><code class="language-clike">        // consuming is an infinite loop
          void consume() {
@@ -58,7 +58,7 @@ For consuming we will run a loop where we would check if queue has any item avai
             }
         }</code></pre>
 
-If queue is not empty then first item is extracted and processed using `processOneItem()` method. If queue is empty then we&#8217;re waiting for any item to be added to the queue using `WaitCondition`. Waiting itself is put into the while loop because of &#8220;spurious wakeups&#8221;. It&#8217;s the situation when kernel object responsible for wait condition was signaled after timeout (quite big one) in order not to block calling thread forever.
+If queue is not empty then first item is extracted and processed using `processOneItem()` method. If queue is empty then we're waiting for any item to be added to the queue using `WaitCondition`. Waiting itself is put into the while loop because of "spurious wakeups". It's the situation when kernel object responsible for wait condition was signaled after timeout (quite big one) in order not to block calling thread forever.
 
 To add an item for processing, we call `produce()` method:
 

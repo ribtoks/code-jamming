@@ -23,11 +23,11 @@ tags:
   - raw
   - wine
 ---
-My favorite tool, Darktable, does not support new Nikon D5300 NEF format and, obviously, a lot of other RAW formats due to proprietary software for them. But there is a solution. There is a <a href="http://www.adobe.com/support/downloads/product.jsp?product=106&platform=Windows" target="_blank">free tool from Adobe for Windows</a> and Mac: DNG converter, which is free and converts a lot (almost all, I guess) of proprietary RAW formats to <a href="http://en.wikipedia.org/wiki/Digital_Negative" target="_blank">DNG </a>(Digital NeGative &#8211; open lossless raw format. <a href="http://helpx.adobe.com/photoshop/camera-raw.html" target="_blank">Complete list of supported RAW formats</a> for DNG Converter.
+My favorite tool, Darktable, does not support new Nikon D5300 NEF format and, obviously, a lot of other RAW formats due to proprietary software for them. But there is a solution. There is a <a href="http://www.adobe.com/support/downloads/product.jsp?product=106&platform=Windows" target="_blank">free tool from Adobe for Windows</a> and Mac: DNG converter, which is free and converts a lot (almost all, I guess) of proprietary RAW formats to <a href="http://en.wikipedia.org/wiki/Digital_Negative" target="_blank">DNG </a>(Digital NeGative - open lossless raw format. <a href="http://helpx.adobe.com/photoshop/camera-raw.html" target="_blank">Complete list of supported RAW formats</a> for DNG Converter.
 
 [<img class="aligncenter wp-image-1123 size-large" src="http://code.jamming.com.ua/wp-content/uploads/2014/09/snapshot2-1024x616.png" alt="snapshot2" width="604" height="363" srcset="http://code.jamming.com.ua/wp-content/uploads/2014/09/snapshot2-1024x616.png 1024w, http://code.jamming.com.ua/wp-content/uploads/2014/09/snapshot2-300x181.png 300w, http://code.jamming.com.ua/wp-content/uploads/2014/09/snapshot2-768x462.png 768w, http://code.jamming.com.ua/wp-content/uploads/2014/09/snapshot2.png 1180w" sizes="(max-width: 604px) 100vw, 604px" />](http://code.jamming.com.ua/wp-content/uploads/2014/09/snapshot2.png)
 
-For now DNG Converter is fairly simple so it runs flawlessly under Wine and you&#8217;re able to export all your NEF (or other) photos first to DNG and then to process them in your favorite RAW editor. That&#8217;s it!
+For now DNG Converter is fairly simple so it runs flawlessly under Wine and you're able to export all your NEF (or other) photos first to DNG and then to process them in your favorite RAW editor. That's it!
 
 (in my case then I switched Alt-Tab from working DNG converter, it crashed under Wine, but when window is active all the time, it works ok)
 
