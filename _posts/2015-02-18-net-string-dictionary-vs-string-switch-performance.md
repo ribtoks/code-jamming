@@ -48,8 +48,8 @@ I can show two Map methods for the reference here:
 
 Dictionary method is here:
 
-<pre><code class="language-clike">private static readonly IDictionary&lt;String, String&gt; BoobsTypeNameMap =
-            new Dictionary&lt;String, String&gt;
+<pre><code class="language-clike">private static readonly IDictionary<String, String> BoobsTypeNameMap =
+            new Dictionary<String, String>
             {
                 {"MultipleType", "MultipleType"},
 

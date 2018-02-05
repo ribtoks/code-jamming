@@ -41,7 +41,7 @@ Sample call to register (you can find tons of them on the internet):
     "Your Name",
     "Your Name",
     "2014",
-    "&lt;Toolbox&gt;/Tools/Resize images to min size...",
+    "<Toolbox>/Tools/Resize images to min size...",
     "",
     [
         (PF_INT, "min_size", "Minimum image size", 6000000),

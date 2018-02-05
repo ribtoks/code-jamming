@@ -41,12 +41,12 @@ dicPath = "\\\\?\\" + QDir::toNativeSeparators(dicPath);
 try {
     m_Hunspell = new Hunspell(affPath.toUtf8().constData(),
                               dicPath.toUtf8().constData());
-    LOG_DEBUG &lt;&lt; "Hunspell with AFF" &lt;&lt; affPath &lt;&lt; "and DIC" &lt;&lt; dicPath; 
-    m_Encoding = QString::fromLatin1(m_Hunspell-&gt;get_dic_encoding());
+    LOG_DEBUG << "Hunspell with AFF" << affPath << "and DIC" << dicPath; 
+    m_Encoding = QString::fromLatin1(m_Hunspell->get_dic_encoding());
     m_Codec = QTextCodec::codecForName(m_Encoding.toLatin1().constData());
 }
 catch(...) {
-    LOG_DEBUG &lt;&lt; "Error in Hunspell with AFF" &lt;&lt; affPath &lt;&lt; "and DIC" &lt;&lt; dicPath;
+    LOG_DEBUG << "Error in Hunspell with AFF" << affPath << "and DIC" << dicPath;
     m_Hunspell = NULL;
 }</code></pre>
 
@@ -57,7 +57,7 @@ The most common operation is, of course, to check if particular word is spelled 
 <pre><code class="language-clike">bool isSpellingCorrect(const QString &word) const {
     bool isOk = false;
     try {
-        isOk = m_Hunspell-&gt;spell(m_Codec-&gt;fromUnicode(word).constData()) != 0;
+        isOk = m_Hunspell->spell(m_Codec->fromUnicode(word).constData()) != 0;
     }
     catch (...) {
         isOk = false;
@@ -76,17 +76,17 @@ Besides of checking spelling, it's useful to provide user with corrections for t
 
     try {
         // Encode from Unicode to the encoding used by current dictionary
-        int count = m_Hunspell-&gt;suggest(&suggestWordList, m_Codec-&gt;fromUnicode(word).constData());
+        int count = m_Hunspell->suggest(&suggestWordList, m_Codec->fromUnicode(word).constData());
         QString lowerWord = word.toLower();
 
-        for (int i = 0; i &lt; count; ++i) { 
-            QString suggestion = m_Codec-&gt;toUnicode(suggestWordList[i]);
-            suggestions &lt;&lt; suggestion;
+        for (int i = 0; i < count; ++i) { 
+            QString suggestion = m_Codec->toUnicode(suggestWordList[i]);
+            suggestions << suggestion;
             free(suggestWordList[i]);
         }
     }
     catch (...) {
-        LOG_WARNING &lt;&lt; "Error for keyword:" &lt;&lt; word;
+        LOG_WARNING << "Error for keyword:" << word;
     }
 
     return suggestions;

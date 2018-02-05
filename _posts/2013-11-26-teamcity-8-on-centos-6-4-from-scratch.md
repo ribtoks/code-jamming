@@ -102,7 +102,7 @@ password postgres
 
 TEAMCITY_USER=teamcity
 TEAMCITY_DIR=/opt/jetbrains/TeamCity/
-&lt;strong>TEAMCITY_SERVER=bin/teamcity-server.sh&lt;/strong>
+<strong>TEAMCITY_SERVER=bin/teamcity-server.sh</strong>
 
 TEAMCITY_DATADIR="/opt/jetbrains/TeamCity/.BuildServer"
 
@@ -110,7 +110,7 @@ TEAMCITY_DATADIR="/opt/jetbrains/TeamCity/.BuildServer"
 
 case "$1" in
 start)
-    sudo -u $TEAMCITY_USER -s -- sh -c "cd $TEAMCITY_DIR; &lt;strong>TEAMCITY_DATA_PATH&lt;/strong>=$TEAMCITY_DATADIR $TEAMCITY_SERVER start"
+    sudo -u $TEAMCITY_USER -s -- sh -c "cd $TEAMCITY_DIR; <strong>TEAMCITY_DATA_PATH</strong>=$TEAMCITY_DATADIR $TEAMCITY_SERVER start"
     ;;
 stop)
     sudo -u $TEAMCITY_USER -s -- sh -c "cd $TEAMCITY_DIR; TEAMCITY_DATA_PATH=$TEAMCITY_DATADIR $TEAMCITY_SERVER stop"
@@ -222,9 +222,9 @@ $ cp database.postgresql.properties.dist database.properties</pre>
   
   <div>
     <div>
-      <pre><code>connectionUrl=jdbc:postgresql:</code><code>//</code><code>&lt;host&gt;/&lt;database name&gt;
-connectionProperties.user=&lt;user&gt;
-connectionProperties.password=&lt;password&gt;</code></pre>
+      <pre><code>connectionUrl=jdbc:postgresql:</code><code>//</code><code><host>/<database name>
+connectionProperties.user=<user>
+connectionProperties.password=<password></code></pre>
     </div>
   </div>
   

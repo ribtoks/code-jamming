@@ -48,14 +48,14 @@ During installation choose PostgreSQL instead of MySQL. Enter username you've cr
 
 After you would succeed with MediaWiki intallation, let's make this Wiki available outside of the VirtualBox. First, go to _/etc/apache2/vhosts.d/_ directory and create two files. One named _\_default\_vhost.conf_ (with an underscore before name to be the default VirtualHost entry - read more in the <a href="http://activedoc.opensuse.org/book/opensuse-reference/chapter-20-the-apache-http-server" target="_blank" class="broken_link">OpenSUSE apache docs</a> and <a href="http://httpd.apache.org/docs/2.2/vhosts/" target="_blank">Official apache docs</a>) with the following contents:
 
-<pre>&lt;VirtualHost *:80&gt;
+<pre><VirtualHost *:80>
     ServerName localhost
     DocumentRoot /srv/www/htdocs
-&lt;/VirtualHost&gt;</pre>
+</VirtualHost></pre>
 
 And the second one, say, _your\_website\_wiki.conf_:
 
-<pre>&lt;VirtualHost *:80&gt;
+<pre><VirtualHost *:80>
     ServerAdmin your.name@mail.com
     ServerName <em>your_website_wiki</em>.local
 
@@ -70,13 +70,13 @@ And the second one, say, _your\_website\_wiki.conf_:
     # needed for named virtual hosts
     UseCanonicalName Off
 
-    &lt;Directory "/var/lib/mediawiki/webroot"&gt;
+    <Directory "/var/lib/mediawiki/webroot">
     AllowOverride None
     Options +ExecCGI -Includes
     Order allow,deny
     Allow from all
-    &lt;/Directory&gt;
-&lt;/VirtualHost&gt;</pre>
+    </Directory>
+</VirtualHost></pre>
 
 First file ensures correct resolution for requests to _localhost_ and the second one is for our wiki resolution for external requests. After VirtualHosts are added, edit the _/etc/apache2/listen.conf_ file and uncomment next line
 

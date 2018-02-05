@@ -36,10 +36,10 @@ First of all you will need a Drop Area somewhere in your application, which will
 Where _yourCppModel_ is a model exposed to Qml in main.cpp or wherever like this:
 
 <pre><code class="language-clike">QQmlContext *rootContext = engine.rootContext();
-rootContext-&gt;setContextProperty("yourCppModel", &myCppModel);
+rootContext->setContextProperty("yourCppModel", &myCppModel);
 </code></pre>
 
-and <code class="language-clike">int dropFiles(const QList&lt;QUrl&gt; &urls)</code> is just an ordinary method exposed to QML via _`Q_INVOKABLE`_ attribute.
+and <code class="language-clike">int dropFiles(const QList<QUrl> &urls)</code> is just an ordinary method exposed to QML via _`Q_INVOKABLE`_ attribute.
 
 You will sure notice everything works fine unless you're working under OS X. In OS X instead of QUrls to local files you will get something like this: _ `file:///.file/id=6571367.2773272/`_. There's a bug in Qt for that and it even looks closed, but it still doesn't work for me that's why I've implemented my own helper using mixing of Objective-C and Qt-C++ code.
 
@@ -47,8 +47,8 @@ You will sure notice everything works fine unless you're working under OS X. In 
 
 I've added a `osxnshelper.h` and `osxnshelper.mm` source file with helper method to my project:
 
-<pre><code class="language-clike">#include &lt;Foundation/Foundation.h&gt;
-#include &lt;QUrl&gt;
+<pre><code class="language-clike">#include <Foundation/Foundation.h>
+#include <QUrl>
 
 QUrl fromNSUrl(const QUrl &url) {
     NSURL *nsUrl = url.toNSURL();
@@ -72,9 +72,9 @@ HEADERS += osxnsurlhelper.h
 
 Now I'm able to use this helper in my actual `dropFiles()` method:
 
-<pre><code class="language-clike">int MySuperCppModel::dropFiles(const QList&lt;QString&gt; &urls)
+<pre><code class="language-clike">int MySuperCppModel::dropFiles(const QList<QString> &urls)
 {
-    QList&lt;QString&gt; localUrls;
+    QList<QString> localUrls;
 
 #ifdef Q_OS_MAC
     foreach (const QUrl &url, urls) {

@@ -28,7 +28,7 @@ Let's suppose we have following data structures:
 
 <pre><code class="language-clike">        QWaitCondition m_WaitAnyItem;
         QMutex m_QueueMutex;
-        QVector&lt;T*&gt; m_Queue;</code></pre>
+        QVector<T*> m_Queue;</code></pre>
 
 where T is type of messages we're producing/consuming. So we have queue of elements being processed, mutex to secure access to the queue and wait condition to wait if the queue is empty.
 
