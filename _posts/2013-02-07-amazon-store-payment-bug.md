@@ -1,7 +1,7 @@
 ---
 title: Amazon store payment bug
 date: 2013-02-07T14:46:08+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /amazon-store-payment-bug/
 categories:

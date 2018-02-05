@@ -1,7 +1,7 @@
 ---
 title: 'Ruby style loops in C#'
 date: 2012-10-31T13:44:18+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /ruby-style-loops-in-c/
 categories:

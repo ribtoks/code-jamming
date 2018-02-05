@@ -1,7 +1,7 @@
 ---
 title: Tips and tricks to improve performance of your ACM solution
 date: 2015-07-29T12:21:32+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /tips-and-tricks-to-improve-performance-of-your-acm-solution/
 categories:

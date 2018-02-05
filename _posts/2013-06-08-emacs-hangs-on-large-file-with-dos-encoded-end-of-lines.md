@@ -1,7 +1,7 @@
 ---
 title: Emacs hangs on large file with DOS-encoded end of lines
 date: 2013-06-08T22:28:16+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /emacs-hangs-on-large-file-with-dos-encoded-end-of-lines/
 categories:

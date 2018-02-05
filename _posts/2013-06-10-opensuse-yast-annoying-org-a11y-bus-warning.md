@@ -1,7 +1,7 @@
 ---
 title: OpenSUSE Yast annoying org.a11y.Bus warning
 date: 2013-06-10T22:59:52+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /opensuse-yast-annoying-org-a11y-bus-warning/
 tagazine-media:

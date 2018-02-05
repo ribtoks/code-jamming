@@ -1,7 +1,7 @@
 ---
 title: Simple Gimp plugin for batch processing in Python
 date: 2014-11-12T11:32:35+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /simple-gimp-plugin-for-batch-processing-in-python/
 categories:

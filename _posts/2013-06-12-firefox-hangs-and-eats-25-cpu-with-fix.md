@@ -1,7 +1,7 @@
 ---
 title: 'Firefox hangs and eats 25% cpu! (with fix)'
 date: 2013-06-12T22:50:19+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /firefox-hangs-and-eats-25-cpu-with-fix/
 categories:

@@ -1,7 +1,7 @@
 ---
 title: Text encryption in Qt/C++ with tiny AES 128bit
 date: 2015-02-24T15:12:39+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /text-encryption-in-qtc-with-tiny-aes-128bit/
 categories:

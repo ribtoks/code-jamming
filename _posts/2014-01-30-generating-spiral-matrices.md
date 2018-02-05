@@ -1,7 +1,7 @@
 ---
 title: Generation of spiral matrices
 date: 2014-01-30T20:55:20+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /generating-spiral-matrices/
 categories:

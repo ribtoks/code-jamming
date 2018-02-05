@@ -1,7 +1,7 @@
 ---
 title: How to write template-like data structure in pure C
 date: 2013-06-19T20:53:22+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /write-template-like-data-structures-in-pure-c/
 tagazine-media:

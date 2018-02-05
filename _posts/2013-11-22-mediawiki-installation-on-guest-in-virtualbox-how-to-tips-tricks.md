@@ -1,7 +1,7 @@
 ---
 title: 'MediaWiki installation on a linux guest in the VirtualBox: how-to, tips & tricks'
 date: 2013-11-22T18:51:36+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /mediawiki-installation-on-guest-in-virtualbox-how-to-tips-tricks/
 categories:

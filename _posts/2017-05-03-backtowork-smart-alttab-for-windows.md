@@ -1,7 +1,7 @@
 ---
 title: 'BackToWork - smarter Alt+Tab for Windows'
 date: 2017-05-03T17:44:32+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /backtowork-smart-alttab-for-windows/
 categories:

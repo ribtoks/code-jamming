@@ -1,7 +1,7 @@
 ---
 title: Mustek 1248 UB scanner setup in linux (openSuSE 12.2)
 date: 2013-02-10T15:05:18+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /mustek-1248ub-setup-in-linux/
 categories:

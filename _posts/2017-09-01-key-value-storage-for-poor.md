@@ -1,7 +1,7 @@
 ---
 title: Key-Value storage for poor
 date: 2017-09-01T11:30:44+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /key-value-storage-for-poor/
 categories:

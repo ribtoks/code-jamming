@@ -1,7 +1,7 @@
 ---
 title: 'Simple OpenGL program on C# under Linux'
 date: 2013-06-19T23:12:44+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /simple-opengl-program-on-c-under-linux/
 tagazine-media:

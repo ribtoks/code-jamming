@@ -1,7 +1,7 @@
 ---
 title: Ultimate ComboBox in QML
 date: 2017-11-22T23:28:25+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /ultimate-combobox-in-qml/
 categories:

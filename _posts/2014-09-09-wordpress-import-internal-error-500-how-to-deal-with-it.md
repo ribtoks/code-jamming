@@ -1,7 +1,7 @@
 ---
 title: 'WordPress import Internal Error 500: how to deal with it'
 date: 2014-09-09T12:38:21+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /wordpress-import-internal-error-500-how-to-deal-with-it/
 categories:

@@ -1,7 +1,7 @@
 ---
 title: C++ dev via Emacs 24 in Windows 7 (visual studio includes)
 date: 2013-03-13T08:23:35+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /c-dev-via-emacs-24-in-windows-7/
 categories:

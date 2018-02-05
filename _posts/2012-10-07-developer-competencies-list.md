@@ -1,7 +1,7 @@
 ---
 title: Developer competencies list with useful links (preparing to the interview)
 date: 2012-10-07T15:39:29+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /developer-competencies-list/
 categories:

@@ -1,7 +1,7 @@
 ---
 title: Problems when ejecting WD My Passport in Linux (OpenSUSE)
 date: 2013-09-10T21:46:43+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /problems-when-ejecting-wd-my-passport-in-linux-opensuse/
 categories:

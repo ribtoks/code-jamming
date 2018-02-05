@@ -1,7 +1,7 @@
 ---
 title: Android development materials
 date: 2012-10-25T19:12:04+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /android-development-materials/
 categories:

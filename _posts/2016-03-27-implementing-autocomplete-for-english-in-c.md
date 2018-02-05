@@ -1,7 +1,7 @@
 ---
 title: Implementing autocomplete for English in C++
 date: 2016-03-27T22:07:35+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /implementing-autocomplete-for-english-in-c/
 categories:

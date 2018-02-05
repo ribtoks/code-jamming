@@ -1,7 +1,7 @@
 ---
 title: Emacs 24.2 with Python and C++ bundle for Windows
 date: 2013-03-10T21:36:35+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /emacs-24-2-with-python-and-c-bundle-for-windows/
 categories:

@@ -1,7 +1,7 @@
 ---
 title: Use Emacs for remote compilation and catch output
 date: 2013-06-19T19:57:42+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /use-emacs-for-remote-compilation/
 tagazine-media:

@@ -1,7 +1,7 @@
 ---
 title: Solve problem from string
 date: 2013-11-02T21:34:55+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /solve-problem-from-string/
 categories:

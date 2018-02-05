@@ -1,7 +1,7 @@
 ---
 title: YaCE contester engine
 date: 2013-08-26T21:43:47+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /yace-contester-engine/
 tagazine-media:

@@ -1,7 +1,7 @@
 ---
 title: Fuller Stack Development
 date: 2018-02-02T00:21:09+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /fuller-stack-development/
 categories:

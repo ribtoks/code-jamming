@@ -1,7 +1,7 @@
 ---
 title: Implementing spellchecking in desktop application in C++
 date: 2016-06-05T12:24:38+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /implementing-spellchecking-in-desktop-application-in-c/
 categories:

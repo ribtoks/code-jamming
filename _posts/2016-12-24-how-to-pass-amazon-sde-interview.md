@@ -1,7 +1,7 @@
 ---
 title: How to pass Amazon SDE interview
 date: 2016-12-24T19:45:06+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /how-to-pass-amazon-sde-interview/
 categories:

@@ -1,7 +1,7 @@
 ---
 title: How to keyword and upload photos/illustrations to microstocks
 date: 2015-11-18T14:20:07+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /how-to-keyword-and-upload-photosillustrations-to-microstocks/
 categories:

@@ -1,7 +1,7 @@
 ---
 title: Interesting issues and features of Qt programming
 date: 2015-07-16T16:17:35+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /interesting-issues-and-features-of-qt-programming/
 categories:

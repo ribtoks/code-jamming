@@ -1,7 +1,7 @@
 ---
 title: 'Queem - open source computer chess in C#'
 date: 2013-08-26T22:00:52+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /queem-open-source-computer-chess-in-c/
 tagazine-media:

@@ -1,7 +1,7 @@
 ---
 title: Rails development environment in Emacs on OpenSuSE Linux
 date: 2013-10-29T23:12:15+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /rails-development-environment-in-emacs-on-opensuse-linux/
 categories:

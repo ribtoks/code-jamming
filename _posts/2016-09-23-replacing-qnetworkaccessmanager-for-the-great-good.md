@@ -1,7 +1,7 @@
 ---
 title: Replacing QNetworkAccessManager for the great good
 date: 2016-09-23T10:49:55+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /replacing-qnetworkaccessmanager-for-the-great-good/
 categories:

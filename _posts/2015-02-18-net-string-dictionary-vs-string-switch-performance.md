@@ -1,7 +1,7 @@
 ---
 title: .NET String Dictionary vs string switch performance
 date: 2015-02-18T22:11:26+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /net-string-dictionary-vs-string-switch-performance/
 categories:

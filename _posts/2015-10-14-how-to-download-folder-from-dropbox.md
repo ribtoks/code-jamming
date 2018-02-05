@@ -1,7 +1,7 @@
 ---
 title: How to download huge folder from Dropbox
 date: 2015-10-14T15:53:49+00:00
-author: latobcode
+author: "Taras Kushnir"
 layout: post
 permalink: /how-to-download-folder-from-dropbox/
 categories:
