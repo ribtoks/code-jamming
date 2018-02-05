@@ -1,15 +1,9 @@
 ---
-id: 675
 title: Emacs 24.2 with Python and C++ bundle for Windows
 date: 2013-03-10T21:36:35+00:00
 author: latobcode
 layout: post
-guid: http://latobco.wordpress.com/?p=675
 permalink: /emacs-24-2-with-python-and-c-bundle-for-windows/
-tagazine-media:
-  - 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:8:"20401582";s:7:"blog_id";s:8:"41116138";s:9:"mod_stamp";s:19:"2013-03-11 20:04:48";}'
-original_post_id:
-  - "675"
 categories:
   - Emacs
   - Programming

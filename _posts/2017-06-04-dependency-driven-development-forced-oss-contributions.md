@@ -1,10 +1,8 @@
 ---
-id: 1393
 title: 'Dependency-driven development: forced OSS contributions'
 date: 2017-06-04T13:26:08+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1393
 permalink: /dependency-driven-development-forced-oss-contributions/
 categories:
   - C++

@@ -1,10 +1,8 @@
 ---
-id: 1310
 title: Classic Producer-Consumer in Qt/C++
 date: 2016-03-28T15:44:38+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1310
 permalink: /classic-producer-consumer-in-qtc/
 categories:
   - C++

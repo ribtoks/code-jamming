@@ -1,10 +1,8 @@
 ---
-id: 1081
 title: TeamCity 8 on CentOS 6.4 from scratch
 date: 2013-11-26T16:22:43+00:00
 author: latobcode
 layout: post
-guid: http://latobcode.wordpress.com/?p=1081
 permalink: /teamcity-8-on-centos-6-4-from-scratch/
 categories:
   - Linux

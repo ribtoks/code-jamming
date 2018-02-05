@@ -1,10 +1,8 @@
 ---
-id: 1440
 title: Key-Value storage for poor
 date: 2017-09-01T11:30:44+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1440
 permalink: /key-value-storage-for-poor/
 categories:
   - Programming

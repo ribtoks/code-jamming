@@ -1,10 +1,8 @@
 ---
-id: 1168
 title: Interesting issues and features of Qt programming
 date: 2015-07-16T16:17:35+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1168
 permalink: /interesting-issues-and-features-of-qt-programming/
 categories:
   - C++

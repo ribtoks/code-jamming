@@ -1,10 +1,8 @@
 ---
-id: 1111
 title: Generation of spiral matrices
 date: 2014-01-30T20:55:20+00:00
 author: latobcode
 layout: post
-guid: http://latobcode.wordpress.com/?p=1111
 permalink: /generating-spiral-matrices/
 categories:
   - Programming

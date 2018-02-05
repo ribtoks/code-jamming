@@ -1,10 +1,8 @@
 ---
-id: 1379
 title: Unicode support for avformat_open_input in Windows
 date: 2017-03-31T13:59:09+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1379
 permalink: /unicode-support-for-avformat_open_input-in-windows/
 categories:
   - C++

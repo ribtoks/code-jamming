@@ -1,10 +1,8 @@
 ---
-id: 1243
 title: How to keyword and upload photos/illustrations to microstocks
 date: 2015-11-18T14:20:07+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1243
 permalink: /how-to-keyword-and-upload-photosillustrations-to-microstocks/
 categories:
   - Linux

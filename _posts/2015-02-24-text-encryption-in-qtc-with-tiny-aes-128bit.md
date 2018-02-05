@@ -1,10 +1,8 @@
 ---
-id: 1173
 title: Text encryption in Qt/C++ with tiny AES 128bit
 date: 2015-02-24T15:12:39+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1173
 permalink: /text-encryption-in-qtc-with-tiny-aes-128bit/
 categories:
   - C++

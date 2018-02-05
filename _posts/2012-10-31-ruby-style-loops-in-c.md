@@ -1,15 +1,9 @@
 ---
-id: 243
 title: 'Ruby style loops in C#'
 date: 2012-10-31T13:44:18+00:00
 author: latobcode
 layout: post
-guid: http://latobco.wordpress.com/2012/10/31/ruby-style-loops-in-c/
 permalink: /ruby-style-loops-in-c/
-tagazine-media:
-  - 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:8:"20401582";s:7:"blog_id";s:8:"41116138";s:9:"mod_stamp";s:19:"2012-10-31 13:51:18";}'
-original_post_id:
-  - "243"
 categories:
   - Programming
 tags:

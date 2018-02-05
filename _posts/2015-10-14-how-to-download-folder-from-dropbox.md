@@ -1,10 +1,8 @@
 ---
-id: 1227
 title: How to download huge folder from Dropbox
 date: 2015-10-14T15:53:49+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1227
 permalink: /how-to-download-folder-from-dropbox/
 categories:
   - Programming

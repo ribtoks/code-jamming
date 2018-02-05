@@ -1,10 +1,8 @@
 ---
-id: 1386
 title: 'BackToWork - smarter Alt+Tab for Windows'
 date: 2017-05-03T17:44:32+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1386
 permalink: /backtowork-smart-alttab-for-windows/
 categories:
   - Programming

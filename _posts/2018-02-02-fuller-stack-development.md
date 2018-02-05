@@ -1,10 +1,8 @@
 ---
-id: 1488
 title: Fuller Stack Development
 date: 2018-02-02T00:21:09+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1488
 permalink: /fuller-stack-development/
 categories:
   - C++

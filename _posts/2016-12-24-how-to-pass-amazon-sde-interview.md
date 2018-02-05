@@ -1,10 +1,8 @@
 ---
-id: 1365
 title: How to pass Amazon SDE interview
 date: 2016-12-24T19:45:06+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1365
 permalink: /how-to-pass-amazon-sde-interview/
 categories:
   - Programming

@@ -1,10 +1,8 @@
 ---
-id: 1301
 title: Implementing autocomplete for English in C++
 date: 2016-03-27T22:07:35+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1301
 permalink: /implementing-autocomplete-for-english-in-c/
 categories:
   - C++

@@ -1,10 +1,8 @@
 ---
-id: 1248
 title: 'Handling drag'n'drop of files in Qt under OS X'
 date: 2015-11-25T18:00:02+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1248
 permalink: /handling-dragndrop-of-files-in-qt-under-os-x/
 categories:
   - C++

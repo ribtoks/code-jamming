@@ -1,10 +1,8 @@
 ---
-id: 1113
 title: How to process Nikon D5300 NEF and other unsupported RAW formats in Darktable
 date: 2014-09-09T12:26:07+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1113
 permalink: /how-to-process-nikon-d5300-nef-and-other-unsupported-raw-formats-in-darktable/
 categories:
   - Linux

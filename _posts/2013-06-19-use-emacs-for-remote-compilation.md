@@ -1,10 +1,8 @@
 ---
-id: 1012
 title: Use Emacs for remote compilation and catch output
 date: 2013-06-19T19:57:42+00:00
 author: latobcode
 layout: post
-guid: http://latobcode.wordpress.com/?p=1012
 permalink: /use-emacs-for-remote-compilation/
 tagazine-media:
   - 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:8:"20401582";s:7:"blog_id";s:8:"53632187";s:9:"mod_stamp";s:19:"2013-06-19 19:25:15";}'

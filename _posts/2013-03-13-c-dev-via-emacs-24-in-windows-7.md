@@ -1,15 +1,9 @@
 ---
-id: 680
 title: C++ dev via Emacs 24 in Windows 7 (visual studio includes)
 date: 2013-03-13T08:23:35+00:00
 author: latobcode
 layout: post
-guid: http://latobco.wordpress.com/?p=680
 permalink: /c-dev-via-emacs-24-in-windows-7/
-tagazine-media:
-  - 'a:7:{s:7:"primary";s:0:"";s:6:"images";a:0:{}s:6:"videos";a:0:{}s:11:"image_count";i:0;s:6:"author";s:8:"20401582";s:7:"blog_id";s:8:"41116138";s:9:"mod_stamp";s:19:"2013-03-13 08:26:08";}'
-original_post_id:
-  - "680"
 categories:
   - Emacs
   - Programming

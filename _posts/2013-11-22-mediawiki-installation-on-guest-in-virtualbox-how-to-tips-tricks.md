@@ -1,10 +1,8 @@
 ---
-id: 1071
 title: 'MediaWiki installation on a linux guest in the VirtualBox: how-to, tips & tricks'
 date: 2013-11-22T18:51:36+00:00
 author: latobcode
 layout: post
-guid: http://latobcode.wordpress.com/?p=1071
 permalink: /mediawiki-installation-on-guest-in-virtualbox-how-to-tips-tricks/
 categories:
   - Linux

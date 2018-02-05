@@ -1,10 +1,8 @@
 ---
-id: 1065
 title: Solve problem from string
 date: 2013-11-02T21:34:55+00:00
 author: latobcode
 layout: post
-guid: http://latobcode.wordpress.com/?p=1065
 permalink: /solve-problem-from-string/
 categories:
   - Humour

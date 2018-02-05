@@ -1,10 +1,8 @@
 ---
-id: 1210
 title: Tips and tricks to improve performance of your ACM solution
 date: 2015-07-29T12:21:32+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1210
 permalink: /tips-and-tricks-to-improve-performance-of-your-acm-solution/
 categories:
   - C++

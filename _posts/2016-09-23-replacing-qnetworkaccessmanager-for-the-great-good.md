@@ -1,10 +1,8 @@
 ---
-id: 1352
 title: Replacing QNetworkAccessManager for the great good
 date: 2016-09-23T10:49:55+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1352
 permalink: /replacing-qnetworkaccessmanager-for-the-great-good/
 categories:
   - C++

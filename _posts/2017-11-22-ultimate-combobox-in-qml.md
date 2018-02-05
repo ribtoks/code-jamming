@@ -1,10 +1,8 @@
 ---
-id: 1453
 title: Ultimate ComboBox in QML
 date: 2017-11-22T23:28:25+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1453
 permalink: /ultimate-combobox-in-qml/
 categories:
   - Programming

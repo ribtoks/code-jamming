@@ -1,10 +1,8 @@
 ---
-id: 1343
 title: Resources to learn and understand parallel programming. The hard way
 date: 2016-08-29T12:28:38+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1343
 permalink: /resources-to-learn-and-understand-parallel-programming-the-hard-way/
 categories:
   - C++

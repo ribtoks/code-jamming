@@ -1,10 +1,8 @@
 ---
-id: 1148
 title: Building Hedgewars under OS X Yosemite
 date: 2014-12-31T13:23:20+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1148
 permalink: /building-hedgewars-under-os-x-yosemite/
 categories:
   - Linux

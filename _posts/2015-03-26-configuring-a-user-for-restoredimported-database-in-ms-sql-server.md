@@ -1,10 +1,8 @@
 ---
-id: 1190
 title: Configuring a user for restored/imported database in MS SQL Server
 date: 2015-03-26T14:09:30+00:00
 author: latobcode
 layout: post
-guid: http://code.jamming.com.ua/?p=1190
 permalink: /configuring-a-user-for-restoredimported-database-in-ms-sql-server/
 categories:
   - Programming

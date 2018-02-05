@@ -1,10 +1,8 @@
 ---
-id: 1069
 title: Solving mouse delays and lags in linux
 date: 2013-11-16T22:09:52+00:00
 author: latobcode
 layout: post
-guid: http://latobcode.wordpress.com/?p=1069
 permalink: /solving-mouse-delays-and-lags-in-linux/
 categories:
   - Linux
