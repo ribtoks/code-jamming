@@ -35,7 +35,7 @@ Apparently it was hard to come up with an idea of what exactly to do. Of course,
 
 <!--more-->
 
-#### Hardware/Firmware
+### Hardware/Firmware
 
 First part to implement was transmitter-receiver with Arduino-RaspberryPi respectively. After reading manuals to 433MHz module I brought in the local shop, this simple prototype has been assembled with Raspberry Pi:<figure id="attachment_1493" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
@@ -89,7 +89,7 @@ So we will be sending 6-bit header, specifying that it's our protocol, 6-bit sen
 
 Last step to polish the firmware was to add a delay of 10 minutes instead of 5 seconds, because temperature in the apartment does not change that often and we need to save power for Arduino if it will be autonomous.
 
-#### Temperature Server
+### Temperature Server
 
 Next thing to work on was our own server on Raspberry Pi which will save those temperatures. Just 433_Utils app which prints raw data to `stdout` was no longer enough. Of course, we needed a database for that as well. I chose **SQLite**: for an application on C++ which was receiving data from sensor and needed to save it somewhere this was the easiest option in my opinion. Of course it does not have _delta encoding_ and it's probably bad for saving time series but for the load arriving from 64 sensors at maximum it is probably more than OK.
 
@@ -127,7 +127,7 @@ while (1) {
 
 where `handleReading()` is parsing the message and saving temperature to the database.
 
-#### Web server
+### Web server
 
 The other piece of software to write was a web server to show the temperature through local website. I had many options for language for such a task - Ruby, Python, Go would easily fit. The point was to do as little work as possible so we choose Go.
 
@@ -146,7 +146,7 @@ http.Handle("/temps", handler)
 err = http.ListenAndServe(":8080", nil)
 ```
 
-#### Front End
+### Front End
 
 Directory `www` contained 2 files: `index.html` and `homeinsights.js`. Html page only had a bare skeleton with one `div` element with an ID for charts. We chose **D3.js** for plotting and javascript file only requested json with reading from Go webserver and rendered them on a chart.
 
@@ -180,7 +180,7 @@ window.onload = function () {
 
 ![Screenshot of the website]({{ "/assets/img/temps-website.png" | absolute_url }})
 
-#### "Production" prototype
+### "Production" prototype
 
 Now, when everything was sort of working, the time has come to create a first "prototype". In other words, replace huge and bulky Arduino UNO with Arduino Mini. The latter does not have convenient usb port to flush the firmware through so you need something more fancy. Luckily, if you have Arduino UNO everything you need to do is just to remove ATmega328P chip and you can flush Mini straight ahead if you will connect power, ground, TX, RX and Reset pins from UNO to Mini.
 
@@ -189,7 +189,7 @@ The other thing to consider is that if you have few prototypes, you will need to
 First prototype ready to be connected to the power source
 ![Screenshot of the website]({{ "/assets/img/arduino-mini-dht-433.jpg" | absolute_url }})
 
-#### The end
+### The end
 
 So this is how embedded programming stack of this project looks like: from IO Pins, volts and radio signals to backends, databases, servers and frontend which displays it. _A little bit fuller than just full._
 
