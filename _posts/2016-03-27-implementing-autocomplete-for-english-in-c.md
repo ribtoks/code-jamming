@@ -40,7 +40,7 @@ one of which allows you to import a file and another - generate completion sugge
 
 But it's only half of the story. Also you need source for completion. Library FACE is able to digest TSV files (Tab-Separated Values) where first column is frequency of phrase/word and second column - phrase/word itself. After searching through the internet for some time I've found <a href="https://github.com/mozilla-b2g/gaia/tree/master/apps/keyboard/js/imes/latin/dictionaries" target="_blank">frequency tables for different languages</a> for Android. There are in the XML with simple structure and simple Ruby script written in 5 minutes transformed them into TSV:
 
-<pre><code class="language-ruby">
+```ruby
 require 'nokogiri'
 doc = File.open(ARGV.first) { |f| Nokogiri::XML(f) }
 

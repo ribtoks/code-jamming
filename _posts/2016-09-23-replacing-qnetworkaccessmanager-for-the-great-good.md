@@ -16,16 +16,17 @@ tags:
   - qnetworkaccessmanager
   - replacement
 ---
-Everybody using Qt for networking for small tasks will sometimes face oddities of <code class="language-clike">QNetworkAccessManager</code>. This class aims to be useful and convenient while having few quite sensible drawbacks. First one of couse is inability to use it in blocking way. What you should do instead is to create instance of <code class="language-clike">QEventLoop</code> and connect it's <code class="language-clike">quit()</code> signal with network manager.
+Everybody using Qt for networking for small tasks will sometimes face oddities of `QNetworkAccessManager`. This class aims to be useful and convenient while having few quite sensible drawbacks. First one of couse is inability to use it in blocking way. What you should do instead is to create instance of `QEventLoop` and connect it's `quit()` signal with network manager.
 
-```QNetworkAccessManager networkManager;</code><code class="language-clike">
-QEventLoop loop;</code><code class="language-clike">
+```cpp
+QNetworkAccessManager networkManager;``
+QEventLoop loop;``
 QNetworkReply *netReply = networkManager.get(resource);
 connect(netReply, SIGNAL(finished()), &loop, SLOT(quit()));
 loop.exec();    
 ```
 
-This is overkill and overengineering of course. This inconveniency strikes also when you try to use it from background thread for downloading something - <code class="language-clike">QNetworkAccessManager</code> needs an event loop and it will launch one more thread - it's own to do all the operations required.
+This is overkill and overengineering of course. This inconveniency strikes also when you try to use it from background thread for downloading something - `QNetworkAccessManager` needs an event loop and it will launch one more thread - it's own to do all the operations required.
 
 Also it has a lot of data, methods and abilities not needed for "everyday simple network operations" like querying some API or downloading files. I don't know anybody who wasn't looking for a substitude for it at least once. But fortunately the solution exists.
 
@@ -41,4 +42,4 @@ LIBS += -lcurl
 
 Curl library has [tons of examples](https://curl.haxx.se/libcurl/c/example.html) available to a fellow programmer and it won't take much time to copy-and-paste solutions to almost any problem you may encounter. Using libcurl will allow you to choose if you want to create a blocking calls or to do everything in thread controlled by you. You can read more on that by wonderful [topic by Maya Posch](https://mayaposch.wordpress.com/2011/11/01/how-to-really-truly-use-qthreads-the-full-explanation/).
 
-You can find working examples of replacement for <code class="language-clike">QNetworkAccessManager</code> for API calls named <code class="language-clike">SimpleCurlRequest</code> [at GitHub as part of Xpiks project](https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-qt/Conectivity/simplecurlrequest.cpp){.broken_link} and [it's usage](https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-qt/Helpers/remoteconfig.cpp).
+You can find working examples of replacement for `QNetworkAccessManager` for API calls named `SimpleCurlRequest` [at GitHub as part of Xpiks project](https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-qt/Conectivity/simplecurlrequest.cpp){.broken_link} and [it's usage](https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-qt/Helpers/remoteconfig.cpp).

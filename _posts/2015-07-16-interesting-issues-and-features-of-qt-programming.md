@@ -48,7 +48,7 @@ Drag and Drop files in OS X inserts NSUrl instead of QUrl and you have to conver
 
 28.11 Use QVector instead of QList for most types. If you have released public version with wrong type and users depend on it, you're screwed
 
-12.12 QML ListView fails to update itself after sophisticated filter/remove operations. You have to manually <code class="language-clike">positionViewAtBeginning()</code> stuff
+12.12 QML ListView fails to update itself after sophisticated filter/remove operations. You have to manually `positionViewAtBeginning()` stuff
 
 20.03 QFile in Windows does not respect flag QIODevice::Unbuffered because of "lack of native support in Windows" (bullshit) as of Qt 5.6
 

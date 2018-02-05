@@ -28,7 +28,8 @@ Tiny-AES is not super-strong, it implements AES, it's build for ARMs.. but it wo
 
 Key for AES-128 should be 128 bit length, so I used MD5 hashing to get exactly 128 bit buffer for AES key. Cypher-text should be 16 bit aligned, so I use my own inlined alignment function (which could be macro etc.). Also I used _utf8()_ method of QString to get pointer to underlying _ushort*_ buffer and to encode directly it.
 
-```#ifndef AESQT_H
+```cpp
+#ifndef AESQT_H
 #define AESQT_H
 
 # tons of other includes

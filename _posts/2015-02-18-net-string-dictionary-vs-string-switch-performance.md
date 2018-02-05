@@ -25,7 +25,8 @@ Details below..
 
 I can show two Map methods for the reference here:
 
-```private static string MapStringBySwitch(string line)
+```csharp
+private static string MapStringBySwitch(string line)
         {
             switch (line)
             {
@@ -46,7 +47,8 @@ I can show two Map methods for the reference here:
 
 Dictionary method is here:
 
-```private static readonly IDictionary<String, String> BoobsTypeNameMap =
+```csharp
+private static readonly IDictionary<String, String> BoobsTypeNameMap =
             new Dictionary<String, String>
             {
                 {"MultipleType", "MultipleType"},

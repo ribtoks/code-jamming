@@ -32,7 +32,8 @@ Other parameters of _register_ function set actual parameters of you plugin main
 
 Sample call to register (you can find tons of them on the internet):
 
-```register(
+```python
+register(
     "python_fu_resize_max",
     "Scales the image to fit minimal size in megapixels",
     "Help here",
@@ -48,7 +49,7 @@ Sample call to register (you can find tons of them on the internet):
         (PF_DIRNAME, "path", "Directory to Open", "./"),
     ],
     [],
-    plugin_main)</code>
+    plugin_main)`
 </pre>
 
 And declaration of _plugin_main_:

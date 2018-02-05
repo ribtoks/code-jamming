@@ -28,7 +28,8 @@ To use it you should download it from <a href="http://www.opentk.com/" target="_
 
 Now add some .cs file to your solution and paste this code:
 
-<pre><code class="language-c">using System;
+```csharp
+using System;
 
 using OpenTK;
 using OpenTK.Graphics.OpenGL;

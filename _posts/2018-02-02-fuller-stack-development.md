@@ -46,7 +46,8 @@ In order to check if radio channel is working at all we chose [433_Utils](https:
 
 As for the Arduino - connecting transmitter was a lot easier and there're many examples with [RC-switch](https://github.com/sui77/rc-switch) library to do that.
 
-```// just send "42" each 5 seconds
+```cpp
+// just send "42" each 5 seconds
 // and blink with LED when we send
 #include "RCSwitch.h"
 
@@ -94,7 +95,8 @@ Next thing to work on was our own server on Raspberry Pi which will save those t
 
 `main()` was only about reading data from RCswitch library and trying to parse integers out of it:
 
-```const int IO_PIN = 2;
+```cpp
+const int IO_PIN = 2;
 tempSwitch = RCSwitch();
 tempSwitch.enableReceive(IO_PIN);
 log("Listening on pin %d...", IO_PIN);
@@ -133,7 +135,8 @@ The webserver was supposed to do 2 main functions: to produce json replies for R
 
 The former requirement was implemented using custom type with prepared SQLite statement which implemented `http.Handler` interface. The latter requirement - just with default `http.FileServer` call. Main function looked like this:
 
-```handler := &TempHandler{}
+```go
+handler := &TempHandler{}
 err = handler.initDatabase()
 if err != nil { return }
 
@@ -147,7 +150,8 @@ err = http.ListenAndServe(":8080", nil)
 
 Directory `www` contained 2 files: `index.html` and `homeinsights.js`. Html page only had a bare skeleton with one `div` element with an ID for charts. We chose **D3.js** for plotting and javascript file only requested json with reading from Go webserver and rendered them on a chart.
 
-```window.onload = function () {
+```javascript
+window.onload = function () {
     var url = document.URL + 'temps?lastn=150';
 
     d3.json(url, function(data) {

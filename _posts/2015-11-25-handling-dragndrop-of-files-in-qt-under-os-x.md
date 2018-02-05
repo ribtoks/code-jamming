@@ -21,7 +21,8 @@ If you ever tried to handle drag'n'drop files in your Qt application, you would 
   
 First of all you will need a Drop Area somewhere in your application, which will handle drops
 
-<pre><code class="language-javascript">DropArea {
+```json
+DropArea {
   anchors.fill: parent
   onDropped: {
     if (drop.hasUrls) {
@@ -33,11 +34,12 @@ First of all you will need a Drop Area somewhere in your application, which will
 
 Where _yourCppModel_ is a model exposed to Qml in main.cpp or wherever like this:
 
-```QQmlContext *rootContext = engine.rootContext();
+```cpp
+QQmlContext *rootContext = engine.rootContext();
 rootContext->setContextProperty("yourCppModel", &myCppModel);
 ```
 
-and <code class="language-clike">int dropFiles(const QList<QUrl> &urls)</code> is just an ordinary method exposed to QML via _`Q_INVOKABLE`_ attribute.
+and `int dropFiles(const QList<QUrl> &urls)` is just an ordinary method exposed to QML via _`Q_INVOKABLE`_ attribute.
 
 You will sure notice everything works fine unless you're working under OS X. In OS X instead of QUrls to local files you will get something like this: _ `file:///.file/id=6571367.2773272/`_. There's a bug in Qt for that and it even looks closed, but it still doesn't work for me that's why I've implemented my own helper using mixing of Objective-C and Qt-C++ code.
 
@@ -70,7 +72,8 @@ HEADERS += osxnsurlhelper.h
 
 Now I'm able to use this helper in my actual `dropFiles()` method:
 
-```int MySuperCppModel::dropFiles(const QList<QString> &urls)
+```cpp
+int MySuperCppModel::dropFiles(const QList<QString> &urls)
 {
     QList<QString> localUrls;
 
