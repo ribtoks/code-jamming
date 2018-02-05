@@ -1,5 +1,5 @@
 ---
-title: 'Handling drag'n'drop of files in Qt under OS X'
+title: "Handling drag'n'drop of files in Qt under OS X"
 date: 2015-11-25T18:00:02+00:00
 author: "Taras Kushnir"
 layout: post
