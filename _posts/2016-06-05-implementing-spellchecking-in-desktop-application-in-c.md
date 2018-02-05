@@ -1,0 +1,99 @@
+---
+id: 1324
+title: Implementing spellchecking in desktop application in C++
+date: 2016-06-05T12:24:38+00:00
+author: latobcode
+layout: post
+guid: http://code.jamming.com.ua/?p=1324
+permalink: /implementing-spellchecking-in-desktop-application-in-c/
+categories:
+  - C++
+  - Programming
+  - Qt
+tags:
+  - checking
+  - consumer
+  - error
+  - hunspell
+  - myspell
+  - producer
+  - qt
+  - spelling
+---
+When user is supposed to enter significant amount of text in your application, it&#8217;s better to help him/her to control it with checking spelling. Basically, to check spelling you need a dictionary with words and algorithm to order these words. Also it might be useful to provide user with possible corrections for any spelling error. Here where [Hunspell](https://hunspell.github.io/) comes handy. It&#8217;s an open source library built on top of MySpell library and used in a significant number of projects varying from open source projects like Firefox to proprietary like OS X. It contains bindings to a number of platforms (.NET, Ruby etc.) and should be fairly easy to integrate to your project. In this post I&#8217;ll discuss how to integrate it to C++/Qt project.
+
+<!--more-->
+
+First of all, you should download Hunspell source code and try to build it for your platform. You can take a look at README for the instructions. Once you&#8217;re done, it&#8217;s time to link just built library with your project. Also you should add Hunspell include files to your include path in order to use the API.
+
+After you&#8217;re done, let&#8217;s include C++ Hunspell API to your header and add following variable to your class
+
+<pre><code class="language-clike">Hunspell *m_Hunspell;</code></pre>
+
+Constructor of Hunspell class takes paths to DIC and AFF files (wordlist and affix files). If you&#8217;re building cross-platform solution, it will be useful to know, that to handle utf-8 paths in Windows, you need to prefix paths to DIC and AFF files with &#8220;\\?\&#8221;. Loading code in my Qt project looks like this:
+
+<pre><code class="language-clike">#ifdef Q_OS_WIN
+// specific Hunspell handling of UTF-8 encoded pathes
+affPath = "\\\\?\\" + QDir::toNativeSeparators(affPath);
+dicPath = "\\\\?\\" + QDir::toNativeSeparators(dicPath);
+#endif
+
+try {
+    m_Hunspell = new Hunspell(affPath.toUtf8().constData(),
+                              dicPath.toUtf8().constData());
+    LOG_DEBUG &lt;&lt; "Hunspell with AFF" &lt;&lt; affPath &lt;&lt; "and DIC" &lt;&lt; dicPath; 
+    m_Encoding = QString::fromLatin1(m_Hunspell-&gt;get_dic_encoding());
+    m_Codec = QTextCodec::codecForName(m_Encoding.toLatin1().constData());
+}
+catch(...) {
+    LOG_DEBUG &lt;&lt; "Error in Hunspell with AFF" &lt;&lt; affPath &lt;&lt; "and DIC" &lt;&lt; dicPath;
+    m_Hunspell = NULL;
+}</code></pre>
+
+In this code except of instantiating Hunspell class we also get right Codec to query the dictionary. Now you can use API&#8217;s of <code class="language-clike">Hunspell</code> class to access spellchecking API. To get real AFF and DIC files, you can check out a number of open source projects which use spellchecking and hunspell &#8211; e.g. OpenOffice.
+
+The most common operation is, of course, to check if particular word is spelled OK or not:
+
+<pre><code class="language-clike">bool isSpellingCorrect(const QString &word) const {
+    bool isOk = false;
+    try {
+        isOk = m_Hunspell-&gt;spell(m_Codec-&gt;fromUnicode(word).constData()) != 0;
+    }
+    catch (...) {
+        isOk = false;
+    }
+    return isOk;
+}
+</code></pre>
+
+This demonstrates also usage of <code class="language-clike">Codec</code> retrieved before.
+
+Besides of checking spelling, it&#8217;s useful to provide user with corrections for the particular word. <code class="language-clike">Hunspell</code> class has API for this and it can be used like this:
+
+<pre><code class="language-clike">QStringList suggestCorrections(const QString &word) {
+    QStringList suggestions;
+    char **suggestWordList = NULL;
+
+    try {
+        // Encode from Unicode to the encoding used by current dictionary
+        int count = m_Hunspell-&gt;suggest(&suggestWordList, m_Codec-&gt;fromUnicode(word).constData());
+        QString lowerWord = word.toLower();
+
+        for (int i = 0; i &lt; count; ++i) { 
+            QString suggestion = m_Codec-&gt;toUnicode(suggestWordList[i]);
+            suggestions &lt;&lt; suggestion;
+            free(suggestWordList[i]);
+        }
+    }
+    catch (...) {
+        LOG_WARNING &lt;&lt; "Error for keyword:" &lt;&lt; word;
+    }
+
+    return suggestions;
+}</code></pre>
+
+This code demonstrates usage of <code class="language-clike">suggest()</code> API of Hunspell object. Also useful tip would be to check case of the suggestion, since Hunspell can correct you word like &#8220;europe&#8221; with &#8220;Europe&#8221; and stuff like that.
+
+If you&#8217;re going to check spelling on the fly it might be a good idea to combine this approach with [producer-consumer implemented in Qt](http://code.jamming.com.ua/classic-producer-consumer-in-qtc/). So your app&#8217;s UI will be responsive while background worker will serve spelling requests.
+
+That&#8217;s all folks.
