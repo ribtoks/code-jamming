@@ -54,18 +54,18 @@ chown -R teamcity:teamcity TeamCity
 We'll use PostgreSQL for the internal database for TeamCity. So let's install postgresql packages (8.4 for CentOS 6.4). For details of the PostgreSQL installation please refer to <a title="PostgreSQL installation" href="http://wiki.postgresql.org/wiki/YUM_Installation" target="_blank">official webpage</a>.
 
 ```shell
-# yum install postgresql
-# service postgresql initdb
-# chkconfig postgresql on
+yum install postgresql
+service postgresql initdb
+chkconfig postgresql on
 ```
   
 Also edit the <em>/var/lib/pgsql/data/pg_hba.conf</em> file to allow authorization from <em>localhost</em>. Go to the end and replace <em>ident</em> to <em>trust</em> for <em>localhost</em> in the configuration for hosts. Now lets create another user for the future TeamCity database and create a database for that user.
   
 ```shell
-# sudo -u postgres psql postgres
+sudo -u postgres psql postgres
 password postgres
-# sudo -u postgres createuser -D -A -P teamcity_user
-# sudo -u postgres createdb -O teamcity_user teamcity_db
+sudo -u postgres createuser -D -A -P teamcity_user
+sudo -u postgres createdb -O teamcity_user teamcity_db
 ```
   
 (D = Cannot create databases, A = Cannot add users, P = Force password prompt)
@@ -107,9 +107,9 @@ exit 0
   
 Note the <em>TEAMCITY_DATA_PATH</em> system variable which is used to overwrite default <em>~/.BuildServer</em> path for the teamcity data. First commented lines exist for <em>chkconfig</em> compatability. Now you're able to register it:
   
-```
-# chkconfig --add teamcity-script
-# chkconfig teamcity-script on
+```shell
+chkconfig --add teamcity-script
+chkconfig teamcity-script on
 ```
   
 Now our script would autostart on system startup in 2, 3 and 5 runlevels.
@@ -176,7 +176,7 @@ connectionProperties.password=<password>
 ```
 After you're done, relaunch TeamCity:
 ```
-# service teamcity-script start
+service teamcity-script start
 ```
   
 Open your browser, go to the teamcity page and you should see TeamCity complaining about missing database. You'll have only one-button choice, so proceed. Now teamcity will try to create another database (many thanks to <a title="TeamCity and YouTrack on Ubuntu" href="http://jerryemilo.com/2012/12/29/teamcity-and-youtrack-on-ubuntu-12-10-quantal-quetzal/" target="_blank" class="broken_link">this tutorial</a>) but it will require an authorization key, which can be found at the end of <em>logs/teamcity-server.log</em> file in your TeamCity main directory. Copy it and paste in the browser textbox, press <em>Next</em> and now TeamCity should launch correctly with PostgreSQL in the backend.
