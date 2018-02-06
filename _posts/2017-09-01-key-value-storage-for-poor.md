@@ -4,6 +4,7 @@ date: 2017-09-01T11:30:44+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /key-value-storage-for-poor/
+image: poor-761144.jpeg
 categories:
   - Programming
 tags:
