@@ -4,6 +4,7 @@ date: 2018-02-02T00:21:09+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /fuller-stack-development/
+image: water-2296444_1920.jpg
 categories:
   - C++
   - Embedded
