@@ -40,8 +40,8 @@ Apparently it was hard to come up with an idea of what exactly to do. Of course,
 
 First part to implement was transmitter-receiver with Arduino-RaspberryPi respectively. After reading manuals to 433MHz module I brought in the local shop, this simple prototype has been assembled with Raspberry Pi:<figure id="attachment_1493" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
-Yes, you have to solder antenna on your own
 ![Raspberry Pi setup]({{ "/assets/img/20180122_125214.jpg" | absolute_url }})
+*Yes, you have to solder antenna on your own*
 
 In order to check if radio channel is working at all we chose [433_Utils](https://github.com/ninjablocks/433Utils). They provide an app which just prints everything it receives via 433MHz receiver to `stdout`. Please keep in mind that you only need to connect input pin to Raspberry Pi's Pin 21 on model B (27 on newer models) since _433MHz receiver only generates interrupts, not GPIO inputs_.
 
@@ -76,8 +76,8 @@ void loop() {
 
 &nbsp;
   
-Yes, and you have to solder another antenna to transmitter as well
 ![Arduino setup]({{ "/assets/img/20180122_125103.jpg" | absolute_url }})
+*Yes, and you have to solder another antenna to transmitter as well*
 
 #### Protocol
 
@@ -178,8 +178,8 @@ window.onload = function () {
 
 &nbsp;
 
-
 ![Screenshot of the website]({{ "/assets/img/temps-website.png" | absolute_url }})
+*Screenshot of the website*
 
 ### "Production" prototype
 
@@ -187,8 +187,8 @@ Now, when everything was sort of working, the time has come to create a first "p
 
 The other thing to consider is that if you have few prototypes, you will need to change `SENSOR_ID` in the firmware each time you flush in order to distinguish the sensors you put in different rooms/floors/etc.<figure id="attachment_1503" class="thumbnail wp-caption aligncenter" style="width: 707px">
 
-First prototype ready to be connected to the power source
-![Screenshot of the website]({{ "/assets/img/arduino-mini-dht-433.jpg" | absolute_url }})
+![Sort-of production prototype]({{ "/assets/img/arduino-mini-dht-433.jpg" | absolute_url }})
+*First prototype ready to be connected to the power source*
 
 ### The end
 
