@@ -43,7 +43,8 @@ private static string MapStringBySwitch(string line)
                 default:
                     return "default value here";
             }
-        }```
+        }
+```
 
 Dictionary method is here:
 
@@ -70,7 +71,8 @@ private static readonly IDictionary<String, String> BoobsTypeNameMap =
             }
 
             return result;
-        }```
+        }
+```
 
 Null comparison should be in the original, so I preserved it. Null-check added about 100 milliseconds to Dictionary Map on my machine.
 

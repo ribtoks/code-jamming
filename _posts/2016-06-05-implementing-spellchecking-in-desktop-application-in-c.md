@@ -47,7 +47,8 @@ try {
 catch(...) {
     LOG_DEBUG << "Error in Hunspell with AFF" << affPath << "and DIC" << dicPath;
     m_Hunspell = NULL;
-}```
+}
+```
 
 In this code except of instantiating Hunspell class we also get right Codec to query the dictionary. Now you can use API's of `Hunspell` class to access spellchecking API. To get real AFF and DIC files, you can check out a number of open source projects which use spellchecking and hunspell - e.g. OpenOffice.
 
@@ -91,7 +92,8 @@ QStringList suggestCorrections(const QString &word) {
     }
 
     return suggestions;
-}```
+}
+```
 
 This code demonstrates usage of `suggest()` API of Hunspell object. Also useful tip would be to check case of the suggestion, since Hunspell can correct you word like "europe" with "Europe" and stuff like that.
 

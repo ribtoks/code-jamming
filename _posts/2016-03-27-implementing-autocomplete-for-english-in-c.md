@@ -56,6 +56,7 @@ end
 
 tsv_file.close
 
-puts "Done"```
+puts "Done"
+```
 
 Now everything is ready and you can easily integrate library FACE into your C++ solution and fed it with tsv dicts.

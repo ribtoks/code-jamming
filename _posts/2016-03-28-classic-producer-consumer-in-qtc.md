@@ -27,7 +27,8 @@ Let's suppose we have following data structures:
 ```cpp
 QWaitCondition m_WaitAnyItem;
 QMutex m_QueueMutex;
-QVector<T*> m_Queue;```
+QVector<T*> m_Queue;
+```
 
 where T is type of messages we're producing/consuming. So we have queue of elements being processed, mutex to secure access to the queue and wait condition to wait if the queue is empty.
 

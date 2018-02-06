@@ -36,7 +36,8 @@ So what I came up with was [libcurl library](https://curl.haxx.se/libcurl/). F*c
 
 To add it to the project, you need to download source code, build it and add it as linkage dependency to your own Qt project:
 
-```INCLUDEPATH = "/path/to/libcurl/source/code"
+```shell
+INCLUDEPATH = "/path/to/libcurl/source/code"
 LIBS += -lcurl
 ```
 

@@ -47,5 +47,4 @@ m_IOContext = avio_alloc_context(
     0, // no writing
     IOSeekFunc
 );
-
 ```

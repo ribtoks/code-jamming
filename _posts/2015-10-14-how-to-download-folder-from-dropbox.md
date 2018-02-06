@@ -19,13 +19,14 @@ When I faced this problem I knew I would need to create my own solution and quic
 
 I opened javascript console and extracted all links from the folder. Then I replaced "dl=0" to "dl=1" to get actual download link.
 
-```javascrip
+```javascript
 var links = document.querySelectorAll("div.filename a")
 var processed = Array.prototype.map.call(links, 
   function(link) { 
     return link["href"].replace("dl=0", "dl=1"); 
 })
-console.log(processed.join("\n"))```
+console.log(processed.join("\n"))
+```
 
 After I copied those to file _links\_to\_download_. If your _processed_ array is too big, you can print it to console by chunks, using _<code class="language-">slice(start, end)`_ method from Javascript. Now the problem is to download them.
 

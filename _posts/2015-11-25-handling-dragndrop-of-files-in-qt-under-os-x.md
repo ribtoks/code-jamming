@@ -21,7 +21,7 @@ If you ever tried to handle drag'n'drop files in your Qt application, you would 
   
 First of all you will need a Drop Area somewhere in your application, which will handle drops
 
-```json
+```
 DropArea {
   anchors.fill: parent
   onDropped: {
@@ -30,7 +30,8 @@ DropArea {
       console.log(filesCount + ' files added via drag&drop')
     }
  }
-}```
+}
+```
 
 Where _yourCppModel_ is a model exposed to Qml in main.cpp or wherever like this:
 
@@ -47,7 +48,8 @@ You will sure notice everything works fine unless you're working under OS X. In 
 
 I've added a `osxnshelper.h` and `osxnshelper.mm` source file with helper method to my project:
 
-```#include <Foundation/Foundation.h>
+```
+#include <Foundation/Foundation.h>
 #include <QUrl>
 
 QUrl fromNSUrl(const QUrl &url) {
@@ -61,7 +63,8 @@ QUrl fromNSUrl(const QUrl &url) {
 
 and added it into the .pro file with conditional define:
 
-```macx {
+```
+macx {
 OBJECTIVE_SOURCES += \
     osxnsurlhelper.mm
 
