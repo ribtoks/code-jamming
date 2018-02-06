@@ -1,9 +1,9 @@
 # Change to true for Disqus comments
 disqus:
-  comments: false
-#  disqus_shortname: 'https-lenpaul-github-io-lagrange'
+  comments: true
+  disqus_shortname: 'codejamming'
 
-#google-ID: 'UA-112060364-1'
+google-ID: 'UA-10412407-11'
 
 menu:
 - {name: 'About', path: 'menu', url: 'about.html'}
