@@ -4,6 +4,7 @@ date: 2015-07-16T16:17:35+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /interesting-issues-and-features-of-qt-programming/
+image: man-person-street-shoes.jpg
 categories:
   - C++
   - Programming

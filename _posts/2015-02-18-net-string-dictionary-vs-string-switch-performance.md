@@ -4,6 +4,7 @@ date: 2015-02-18T22:11:26+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /net-string-dictionary-vs-string-switch-performance/
+image: goats-competition-dispute.jpg
 categories:
   - Programming
 tags:

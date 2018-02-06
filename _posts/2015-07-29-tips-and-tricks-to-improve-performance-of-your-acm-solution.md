@@ -4,6 +4,7 @@ date: 2015-07-29T12:21:32+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /tips-and-tricks-to-improve-performance-of-your-acm-solution/
+image: speed-flights.jpeg
 categories:
   - C++
   - Programming
