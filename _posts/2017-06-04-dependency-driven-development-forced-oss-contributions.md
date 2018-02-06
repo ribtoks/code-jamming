@@ -4,6 +4,7 @@ date: 2017-06-04T13:26:08+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /dependency-driven-development-forced-oss-contributions/
+image: snail-167054.jpeg
 categories:
   - C++
   - Linux
