@@ -4,6 +4,7 @@ date: 2016-03-28T15:44:38+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /classic-producer-consumer-in-qtc/
+image: exchange-95425.jpeg
 categories:
   - C++
   - Programming
