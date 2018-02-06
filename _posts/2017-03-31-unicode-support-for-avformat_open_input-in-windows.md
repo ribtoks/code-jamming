@@ -4,6 +4,7 @@ date: 2017-03-31T13:59:09+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /unicode-support-for-avformat_open_input-in-windows/
+image: hieroglyphs-590663.jpeg
 categories:
   - C++
   - Programming
