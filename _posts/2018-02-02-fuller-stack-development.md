@@ -43,7 +43,7 @@ First part to implement was transmitter-receiver with Arduino-RaspberryPi respec
 ![Raspberry Pi setup]({{ "/assets/img/20180122_125214.jpg" | absolute_url }})
 *Yes, you have to solder antenna on your own*
 
-In order to check if radio channel is working at all we chose [433_Utils](https://github.com/ninjablocks/433Utils). They provide an app which just prints everything it receives via 433MHz receiver to `stdout`. Please keep in mind that you only need to connect input pin to Raspberry Pi's Pin 21 on model B (27 on newer models) since _433MHz receiver only generates interrupts, not GPIO inputs_.
+In order to check if radio channel is working at all we chose [433-Utils](https://github.com/ninjablocks/433Utils). They provide an app which just prints everything it receives via 433MHz receiver to `stdout`. Please keep in mind that you only need to connect input pin to Raspberry Pi's Pin 21 on model B (27 on newer models) since _433MHz receiver only generates interrupts, not GPIO inputs_.
 
 As for the Arduino - connecting transmitter was a lot easier and there're many examples with [RC-switch](https://github.com/sui77/rc-switch) library to do that.
 
@@ -92,7 +92,7 @@ Last step to polish the firmware was to add a delay of 10 minutes instead of 5 s
 
 ### Temperature Server
 
-Next thing to work on was our own server on Raspberry Pi which will save those temperatures. Just 433_Utils app which prints raw data to `stdout` was no longer enough. Of course, we needed a database for that as well. I chose **SQLite**: for an application on C++ which was receiving data from sensor and needed to save it somewhere this was the easiest option in my opinion. Of course it does not have _delta encoding_ and it's probably bad for saving time series but for the load arriving from 64 sensors at maximum it is probably more than OK.
+Next thing to work on was our own server on Raspberry Pi which will save those temperatures. Just 433-Utils app which prints raw data to `stdout` was no longer enough. Of course, we needed a database for that as well. I chose **SQLite**: for an application on C++ which was receiving data from sensor and needed to save it somewhere this was the easiest option in my opinion. Of course it does not have _delta encoding_ and it's probably bad for saving time series but for the load arriving from 64 sensors at maximum it is probably more than OK.
 
 `main()` was only about reading data from RCswitch library and trying to parse integers out of it:
 
