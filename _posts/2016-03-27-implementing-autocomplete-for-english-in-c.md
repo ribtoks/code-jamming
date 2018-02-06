@@ -4,6 +4,7 @@ date: 2016-03-27T22:07:35+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /implementing-autocomplete-for-english-in-c/
+image: letters-heap.jpeg
 categories:
   - C++
   - Programming
