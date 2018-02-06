@@ -4,6 +4,7 @@ date: 2016-06-05T12:24:38+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /implementing-spellchecking-in-desktop-application-in-c/
+image: spellcheck-503898.jpg
 categories:
   - C++
   - Programming
