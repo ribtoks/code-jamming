@@ -159,7 +159,8 @@ exit 0
     Another important thing is <em>iptables</em>. This is a server, right? So let's configure a firewall properly. You can paste below config as a working one for a server in the <em>/etc/sysconfig/iptables</em> file:
   </div>
   
-  <pre>*filter
+```
+*filter
 :INPUT ACCEPT [0:0]
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
@@ -176,7 +177,8 @@ exit 0
 <strong>-A INPUT -m state --state NEW -m tcp -p tcp --dport 8111 -j ACCEPT</strong>
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
-COMMIT</pre>
+COMMIT
+```
   
   <div>
     The most valuable line for us is highlighted and allows packets on <strong>8111</strong> port (the one Tomcat is listening to). You can easily configure Tomcat to listen to another port in the <em>conf/server.xml</em> file on your TeamCity installation. You can also find lots of articles on the web about making a proxy with <em>apache</em> or <em>lighttpd</em> for Tomcat just in order to enter urls like <em>http://my-server/teamcity</em> instead of <em>http://my-server:8111/teamcity/</em>. Believe me, <del>java and tomcat are not worth normal url in your browser! Besides,</del> you'll have to spend your time to deal with several issues:
@@ -196,11 +198,11 @@ COMMIT</pre>
       So, I assume, you have enough reasons to leave the 8111 port as the default one. Let's ensure that <em>iptables</em> function properly:
     </p>
   </div>
-  
-  <pre># service iptables restart
+```  
+# service iptables restart
 # chkconfig iptables on
-# service teamcity-script start</pre>
-  
+# service teamcity-script start
+```
   <div>
   </div>
   
@@ -208,13 +210,15 @@ COMMIT</pre>
     Now you can launch a browser and navigate to <em>http://my_server.my_domain:8111 </em>(TeamCity data is stored in <em>webapps/ROOT</em> directory and you're able to move it to some other like <em>webapps/teamcity</em> but in this case your address would be <em>http://my_server.my_domain:8111/teamcity</em>) and see TeamCity page with a correct DATA_PATH (check if it's same like the one you specified in the <em>/etc/init.d/teamcity-script</em>). Check if user <em>teamcity</em> is able to create a directory DATA_PATH.  If everything is correct, proceed, agree to the license terms and wait while TeamCity will finish with basic installation. Please, note, that for now TeamCity is using internal DB which is not for the production purposes! Let's fix this using the <a title="PostgreSQL for TeamCity" href="http://confluence.jetbrains.com/display/TCD8/Setting+up+an+External+Database" target="_blank">official how-to</a> by downloading proper postgresql jdbc driver (for postgresql version on current CentOS) and configuring PostgreSQL authentication:
   </div>
   
-  <pre># service teamcity-script stop
+```
+# service teamcity-script stop
 # cd YOUR_DATA_PATH
 # cd lib/jdbc
 # su - teamcity
 $ wget jdbc.postgresql.org/download/postgresql-8.4-703.jdbc4.jar
 $ cd ../../config/
-$ cp database.postgresql.properties.dist database.properties</pre>
+$ cp database.postgresql.properties.dist database.properties
+```
   
   <div>
     Now edit <em>database.properties</em> with you favorite editor (say, <em>vi</em>) and replace placeholder credentials with those you've specified in the PostgreSQL post-installation configuration.
@@ -222,9 +226,11 @@ $ cp database.postgresql.properties.dist database.properties</pre>
   
   <div>
     <div>
-      ```connectionUrl=jdbc:postgresql://<host>/<database name>
+```
+      connectionUrl=jdbc:postgresql://<host>/<database name>
 connectionProperties.user=<user>
-connectionProperties.password=<password>```
+connectionProperties.password=<password>
+```
     </div>
   </div>
   

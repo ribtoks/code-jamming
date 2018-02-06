@@ -50,11 +50,13 @@ register(
     ],
     [],
     plugin_main)`
-</pre>
+```
 
 And declaration of _plugin_main_:
 
-<pre>def plugin_main(minsize=6000000, savecopy=TRUE, processdir=TRUE, dirname="./"):</pre>
+```python
+def plugin_main(minsize=6000000, savecopy=TRUE, processdir=TRUE, dirname="./"):
+```
 
 Don't forget to make the script executable itself.
 

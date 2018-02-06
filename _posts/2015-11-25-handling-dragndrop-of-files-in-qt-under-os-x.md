@@ -48,7 +48,7 @@ You will sure notice everything works fine unless you're working under OS X. In 
 
 I've added a `osxnshelper.h` and `osxnshelper.mm` source file with helper method to my project:
 
-```
+```cpp
 #include <Foundation/Foundation.h>
 #include <QUrl>
 

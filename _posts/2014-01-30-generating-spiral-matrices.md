@@ -16,11 +16,13 @@ tags:
 ---
 Have you ever heard about this simple problem? Generating spiral matrices. The one like this:
 
-<pre>1  2  3  4  5
+```
+1  2  3  4  5
 16 17 18 19 6
 15 24 25 20 7
 14 23 22 21 8
-13 12 11 10 9</pre>
+13 12 11 10 9
+```
 
 After a hour of trying different approaches (except one which consists of 4 loops for filling up & down row and left & right) I've written a working ruby snippet (just for fun):
 
@@ -58,6 +60,7 @@ def spiral(n)
 end
 
 arr = spiral(10)
-puts arr.map{|ia| ia.join(' ')}.join("\n")```
+puts arr.map{|ia| ia.join(' ')}.join("\n")
+```
 
 You can find code about on <a href="https://gist.github.com/Ribtoks/8712591" target="_blank">Gist</a>.

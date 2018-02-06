@@ -28,11 +28,12 @@ var processed = Array.prototype.map.call(links,
 console.log(processed.join("\n"))
 ```
 
-After I copied those to file _links\_to\_download_. If your _processed_ array is too big, you can print it to console by chunks, using _<code class="language-">slice(start, end)`_ method from Javascript. Now the problem is to download them.
+After I copied those to file _links\_to\_download_. If your _processed_ array is too big, you can print it to console by chunks, using `slice(start, end)` method from Javascript. Now the problem is to download them.
 
 I came up with _wget_ for such problem. Linux and OS X users should have wget available (OS X users can install it via e.g. homebrew). Windows users have to download it separately, install and add to the _PATH_ environmental variable. Additionaly I used _-trust-server-names_ and _-content-disposition_ parameters to save real filenames instead of dropbox hashed url. Then I faced a problem that it fails to download a file on first request and request timeout is quite big so I've set it to 5 seconds. Now it makes several timed-out requests, but they quickly resolve to the successful one.
 
-<pre><code class="language-">wget --content-disposition --trust-server-names 
-  --timeout=5 -i links_to_download```
+```
+wget --content-disposition --trust-server-names --timeout=5 -i links_to_download
+```
 
 Also in order to download via https in Windows you probably will need to use "_-no-check-certificate_".
