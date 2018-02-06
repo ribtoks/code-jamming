@@ -4,6 +4,7 @@ date: 2016-12-24T19:45:06+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /how-to-pass-amazon-sde-interview/
+image: interview-288477.jpeg
 categories:
   - Programming
 tags:
