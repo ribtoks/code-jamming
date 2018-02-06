@@ -4,6 +4,7 @@ date: 2017-05-03T17:44:32+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /backtowork-smart-alttab-for-windows/
+image: sky-earth-space-working.jpg
 categories:
   - Programming
 ---
