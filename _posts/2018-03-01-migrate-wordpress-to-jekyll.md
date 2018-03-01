@@ -91,16 +91,7 @@ end
 
 Typical Ruby/Perl regex style: you debug it, it works and you forget how it works in a month. Nevertheless, it worked flawlessly. Now all bad links, galleries and images are normalized. You just launch a script like that on every file in `_posts/` directory.
 
-Also if you have non-latin characters, Jekyll importer will make all links and filenames url-encoded. In order to fix that, you can use simple scriptable Ruby snippet:
-
-```ruby
-require 'uri'
-
-filepath = ARGV[0]
-filepath.sub!(".html", ".markdown")
-decoded_filepath = URI.decode(filepath)
-File.rename(filepath, decoded_filepath)
-```
+Also if you have non-latin characters, Jekyll importer will make all links and filenames url-encoded. In order to fix that, just use `URI.decode()` method for links and filenames.
 
 ## Step 4. Images cleanup
 
