@@ -36,7 +36,7 @@ All posts imported with Jekyll plugin are pretty "dirty". They contain tons of u
 
 In order to clean it up, I wrote a [simple script](https://github.com/ribtoks/heap/blob/master/scripts/fix_jekyll_post.rb) in Ruby, but it is very specific for my needs for you to use it as is. The main idea is that I just go through each post and fix it with my script line by line:
 
-```Ruby
+```ruby
 filepath = ARGV[0]
 
 text = File.read(filepath)
@@ -76,7 +76,7 @@ As you can see I'm just moving data from input file to output file letting all l
 
 For example, here's a code of `fix_caption_images()` routine
 
-```Ruby
+```ruby
 def fix_caption_images(str)
   # image with caption
   str.gsub(/\[caption.*?\]<a href=\"(.+?)\".*?><img .*?\/><\/a>(.+?)\[\/caption\]/) { |match|
@@ -93,7 +93,7 @@ Typical Ruby/Perl regex style: you debug it, it works and you forget how it work
 
 Also if you have non-latin characters, Jekyll importer will make all links and filenames url-encoded. In order to fix that, you can use simple scriptable Ruby snippet:
 
-```Ruby
+```ruby
 require 'uri'
 
 filepath = ARGV[0]
