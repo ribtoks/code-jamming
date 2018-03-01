@@ -14,13 +14,13 @@ tags:
   - bash
 ---
 
-Living in the modern age of 0-day vulnerabilities is complicated when you have a Wordpress blog. Since I didn't have anything fancy in there I decided to migrate it to static pages. Sounds easy? I'm sure it does. But there're many tricks along the process. You can find a full manual below.
+Living in the modern age of 0-day vulnerabilities is complicated when you have a Wordpress blog. Since I didn't have anything fancy in there I decided to migrate it to static pages. Sounds easy? I'm sure it does. But there're many hidden tricks along. You can find a full manual below.
 
 <!--more-->
 
 ## Step 1. Export all Wordpress data
 
-Go to Wordpress admin panel, find there "Export everything to XML" and download it to your computer. "Everything" for sure should not include images. If you have many of them, your server will timeout especially if you brought a cheap hosting.
+Go to Wordpress admin panel, find there "Export everything to XML" and download it to your computer. "Everything" for sure should _not include images_. If you have many of them, your server will timeout especially if you bought a cheap hosting.
 
 Download your media using FTP client like [FileZilla](https://filezilla-project.org/) to a location on your computer.
 
