@@ -118,6 +118,27 @@ find . -type f \( -name '*.jpg' -o -name '*.png' -o -name '*.jpeg' \) -exec mogr
 
 I used `mogrify` command from ImageMagic in order to scale down images and reduce their quality to 90% which is more than enough for web. Also you can host images on Flickr or any other external source.
 
-## Step 5. New style setup
+## Step 5. New blog setup
 
 Well, now you're kind of good to go with your own style/template. All data is properly imported and cleaned up. Just move it to your shiny template into `_posts` and `assets/` directories.
+
+Edit your `_config.yml`:
+
+* set production `url` of your website
+* set `permalink` style
+* set `gems` , `title` and other important properties
+
+## Step 6. Prettifying URLs
+
+In case you rely on url style "http://myblog.com/mypost.html" and it looks a little bit ugly for you, I have good news. It looks ugly for me as well. I would prefer "http://myblog.com/mypost" much more. And if you cannot do that in Jekyll's `_config.yml` for any reason, it can be easily achieved using URL Rewrite in Apache with the following rules added to your `.htaccess`
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^.*\.html$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ %{REQUEST_FILENAME}.html
+```
+
+Which means that if we go to url without ".html" and we have a file with same name and extension ".html" we should serve it instead of 404 page.
