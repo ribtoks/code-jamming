@@ -14,7 +14,7 @@ tags:
   - bash
 ---
 
-Living in the modern age of 0-day vulnerabilities is complicated when you have a Wordpress blog. Since I didn't have anything fancy in there I decided to migrate it to static pages. Sounds easy? I'm sure it does. But there're many hidden tricks along. You can find a full manual below.
+Living in the modern age of 0-day vulnerabilities is complicated when you have a Wordpress blog. Since I didn't have anything fancy in there I decided to migrate it to static pages. Sounds easy? I'm sure it does. See what it takes to migrate an average blog with images and crosslinks. I've organized my process in a sort of a step by step manual.
 
 <!--more-->
 
@@ -34,7 +34,9 @@ As for now, go to [official page of wordpress importer](http://import.jekyllrb.c
 
 All posts imported with Jekyll plugin are pretty "dirty". They contain tons of useless metadata in post header which should definitely be pruned. Also many if not all links are broken along with gallery media references.
 
-In order to clean it up, I wrote a [simple script](https://github.com/ribtoks/heap/blob/master/scripts/fix_jekyll_post.rb) in Ruby, but it is very specific for my needs for you to use it as is. The main idea is that I just go through each post and fix it with my script line by line:
+It will be a damn good idea to use source control and commit all the original ("dirty") files in there so you will be sure you will not screw them.
+
+In order to clean them up, I wrote a [simple script](https://github.com/ribtoks/heap/blob/master/scripts/fix_jekyll_post.rb) in Ruby, but it is very specific for my needs for you to use it as is. The main idea is that I just go through each post and fix it with my script line by line:
 
 ```ruby
 filepath = ARGV[0]
@@ -107,7 +109,7 @@ Also if your blog contains some worthy images, somebody can use them to sell at 
 find . -type f \( -name '*.jpg' -o -name '*.png' -o -name '*.jpeg' \) -exec mogrify -resize 1500x1500\> -quality 90 {} \;
 ```
 
-I used `mogrify` command from [ImageMagic](https://www.imagemagick.org) in order to scale down images and reduce their quality to 90% which is more than enough for web, but renders them useless for microstocks. Also you can host images on Flickr or any other external source.
+I used `mogrify` command from [ImageMagic](https://www.imagemagick.org) in order to scale down images and reduce their quality to 90% which is more than enough for web, but renders them useless for microstocks and saves lots of space. Also you can host images on Flickr or any other external source.
 
 ## Step 5. New blog setup
 
@@ -120,7 +122,7 @@ Edit your `_config.yml`:
 
 ## Step 6. Prettifying URLs
 
-In case you rely on url style "http://myblog.com/mypost.html" and it looks a little bit ugly for you, I have good news. It looks ugly for me as well. I would prefer "http://myblog.com/mypost" much more. And if you cannot do that in Jekyll's `_config.yml` for any reason, it can be easily achieved using URL Rewrite in Apache with the following rules added to your `.htaccess`
+In case you rely on url style "http://myblog.com/mypost.html" and it looks a little bit ugly for you, I have good news. _It looks ugly for me as well_. I would prefer "http://myblog.com/mypost" much more without that nasty ".html" in the end. And if you cannot do that in Jekyll's `_config.yml` for any reason, it can be easily achieved using URL Rewrite in Apache with the following rules added to your website's root `.htaccess` file:
 
 ```
 RewriteEngine On
