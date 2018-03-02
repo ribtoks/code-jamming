@@ -132,3 +132,7 @@ RewriteRule ^(.*)$ %{REQUEST_FILENAME}.html
 ```
 
 Which means that if we go to url without ".html" and we have a file with same name and extension ".html" we should serve it instead of 404 page.
+
+## Enjoy your new blog
+
+Now it's time to check your blog locally with `bundle exec jekyll serve` if everything works as expected. When all the minor issues are fixed would be a great time to finally publish it to GitHub Pages or just to generate static pages and upload them to your hosting (probably the same one which used to run Wordpress).
