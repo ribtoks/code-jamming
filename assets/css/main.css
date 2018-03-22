@@ -158,6 +158,10 @@ hr {
   font-size:0.8rem;
 }
 
+.posts h1 {
+  text-align: left;
+}
+
 @media (max-width: 30rem) {
   .posts h1 {
     font-size: 1.5rem;
