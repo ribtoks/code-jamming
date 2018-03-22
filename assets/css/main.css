@@ -82,7 +82,7 @@ hr {
 .container {
   margin-left: auto;
   margin-right: auto;
-  width: 615px;
+  width: 800px;
 }
 
 /*48em*/
@@ -140,6 +140,7 @@ hr {
 
 .post-container {
   margin-bottom: 4rem;
+  text-align: justify;
 }
 
 .posts {
