@@ -92,7 +92,7 @@ So is there anything better?
 
 <!--more-->
 
-But finally, I managed to get a satisfying solution. What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the <ComboBox> functionality. It's code is pretty simple (file _ComboBoxHeader.qml_):
+What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the <ComboBox> functionality. It's code is pretty simple - file _ComboBoxHeader.qml_:
 
 ```
 Item {
