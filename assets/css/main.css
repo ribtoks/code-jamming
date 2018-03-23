@@ -34,7 +34,7 @@ body {
   }
 }
 
-h1{
+h1 {
   font-size: 2rem;
 }
 
@@ -141,6 +141,10 @@ hr {
 .post-container {
   margin-bottom: 4rem;
   text-align: justify;
+}
+
+.post-container h1 {
+  text-align: left;
 }
 
 .posts {
