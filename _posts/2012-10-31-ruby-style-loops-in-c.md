@@ -22,163 +22,90 @@ tags:
 Simple and useful solution to use ruby-like loops in C#. Also, you can add extensions
 
 <!--more-->
-
-[sourcecode language="csharp"]
-  
+```
 public struct MyInt
-  
 {
-      
-public delegate void Loop(int i);
+    public delegate void Loop(int i);
+    private delegate int Aggregate(int aggregatedValue, int nextValue);
+    private delegate int LoopDirection(int prev);
+    private delegate bool LoopCondition(int a, int b);
+    private int i;
+    private int start;
+    private int end;
+    private LoopDirection direction;
+    private LoopCondition condition;
 
-private delegate int Aggregate(int aggregatedValue, int nextValue);
+    public static MyInt Int(int i)
+    {
+        return new MyInt(i);
+    }
 
-private delegate int LoopDirection(int prev);
+    public MyInt(int i)
+    {
+        this.i = i;
+        this.start = 0;
+        this.end = 0;
+        this.direction = null;
+        this.condition = null;
+    }
 
-private delegate bool LoopCondition(int a, int b);
+    public MyInt Times()
+    {
+        return MyInt.Int(0).Step(this.i - 1, 1);
+    }
 
-private int i;
-      
-private int start;
-      
-private int end;
-      
-private LoopDirection direction;
-      
-private LoopCondition condition;
+    public MyInt DownTo(int i)
+    {
+        return this.Step(i, 1);
+    }
 
-public static MyInt Int(int i)
-      
-{
-          
-return new MyInt(i);
-      
-}
+    public MyInt UpTo(int i)
+    {
+        return this.Step(i, 1);
+    }
 
-public MyInt(int i)
-      
-{
-          
-this.i = i;
-          
-this.start = 0;
-          
-this.end = 0;
-          
-this.direction = null;
-          
-this.condition = null;
-      
-}
+    public MyInt Step(int end, int step)
+    {
+        this.start = this.i;
+        this.end = end;
+        if (start <= end)
+        {
+            direction = x => x + step;
+            condition = (a, b) => a <= b;
+        }
+        else
+        {
+            direction = x => x - step;
+            condition = (a, b) => a >= b;
+        }
+        return this;
+    }
 
-public MyInt Times()
-      
-{
-          
-return MyInt.Int(0).Step(this.i - 1, 1);
-      
-}
-
-public MyInt DownTo(int i)
-      
-{
-          
-return this.Step(i, 1);
-      
-}
-
-public MyInt UpTo(int i)
-      
-{
-          
-return this.Step(i, 1);
-      
-}
-
-public MyInt Step(int end, int step)
-      
-{
-          
-this.start = this.i;
-          
-this.end = end;
-          
-if (start <= end)
-          
-{
-              
-direction = x => x + step;
-              
-condition = (a, b) => a <= b;
-          
-}
-          
-else
-          
-{
-              
-direction = x => x - step;
-              
-condition = (a, b) => a >= b;
-          
-}
-          
-return this;
-      
-}
-
-public void Do(Loop del)
-      
-{
-          
-for (int iter = start; condition(iter, end); iter = direction(iter))
-          
-{
-              
-del(iter);
-          
-}
-      
-}
-  
-}
+    public void Do(Loop del)
+    {
+        for (int iter = start; condition(iter, end); iter = direction(iter))
+        {
+            del(iter);
+        }
+    }
 
 public static class MyIntExtension
-  
 {
-      
-public static MyInt Step(this int value, int end, int step)
-      
-{
-          
-return MyInt.Int(value).Step(end, step);
-      
+    public static MyInt Step(this int value, int end, int step)
+    {
+        return MyInt.Int(value).Step(end, step);
+    }
+    public static MyInt DownTo(this int value, int i)
+    {
+        return MyInt.Int(value).DownTo(i);
+    }
+    public static MyInt UpTo(this int value, int i)
+    {
+        return MyInt.Int(value).UpTo(i);
+    }
+    public static MyInt Times(this int value)
+    {
+        return MyInt.Int(value).Times();
+    }
 }
-
-public static MyInt DownTo(this int value, int i)
-      
-{
-          
-return MyInt.Int(value).DownTo(i);
-      
-}
-
-public static MyInt UpTo(this int value, int i)
-      
-{
-          
-return MyInt.Int(value).UpTo(i);
-      
-}
-
-public static MyInt Times(this int value)
-      
-{
-          
-return MyInt.Int(value).Times();
-      
-}
-  
-}
-  
-[/sourcecode]
+```
