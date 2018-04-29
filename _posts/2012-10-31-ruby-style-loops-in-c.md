@@ -88,6 +88,7 @@ public struct MyInt
             del(iter);
         }
     }
+}
 
 public static class MyIntExtension
 {
@@ -95,14 +96,17 @@ public static class MyIntExtension
     {
         return MyInt.Int(value).Step(end, step);
     }
+
     public static MyInt DownTo(this int value, int i)
     {
         return MyInt.Int(value).DownTo(i);
     }
+
     public static MyInt UpTo(this int value, int i)
     {
         return MyInt.Int(value).UpTo(i);
     }
+
     public static MyInt Times(this int value)
     {
         return MyInt.Int(value).Times();
