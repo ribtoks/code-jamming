@@ -16,7 +16,7 @@ title: Categories
         <ul class="category-posts">
             {% for post in tag[1] %}
             <li>
-                <a href="{{ site.url }}/{{ post.url }}">
+                <a href="{{ site.url }}{{ post.url }}">
                     {{ post.title }}&nbsp;&nbsp;
                     <small class="post-date">{{ post.date | date_to_string }}</small>
                 </a>
