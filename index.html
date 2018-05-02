@@ -24,12 +24,12 @@ title: Home
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.next_page %}
-    <a class="pagination-button pagination-active" href="{{ site.url }}/{{ paginator.next_page_path }}" class="next">{{ site.data.settings.pagination.previous_page }}</a>
+    <a class="pagination-button pagination-active" href="{{ site.url }}{{ paginator.next_page_path }}" class="next">{{ site.data.settings.pagination.previous_page }}</a>
   {% else %}
     <span class="pagination-button">{{ site.data.settings.pagination.previous_page }}</span>
   {% endif %}
   {% if paginator.previous_page %}
-    <a class="pagination-button pagination-active" href="{{ site.url }}/{{ paginator.previous_page_path }}">{{ site.data.settings.pagination.next_page }}</a>
+    <a class="pagination-button pagination-active" href="{{ site.url }}{{ paginator.previous_page_path }}">{{ site.data.settings.pagination.next_page }}</a>
   {% else %}
     <span class="pagination-button">{{ site.data.settings.pagination.next_page }}</span>
   {% endif %}
