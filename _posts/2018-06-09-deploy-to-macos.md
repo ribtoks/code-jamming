@@ -64,7 +64,7 @@ In order to change `@rpath` (and other sections) you need `install_name_tool` ut
 
 If you're bundling a Qt app you can make use of `macdeployqt` utility which comes with Qt distribution and can pretty much pack all the frameworks and libraries required for your app and missing in `/usr/lib/`.
 
-    `macdeployqt HelloWorld.app -no-strip -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../SEC/`
+    `macdeployqt HelloWorld.app -no-strip -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/`
 
 This command will bundle all the dependencies of the executable passed to it via command line. And this will work if your application only depends on some system and Qt libraries.
 
@@ -107,7 +107,7 @@ To be more precise first you need to choose where exactly your app will be with 
               - Frameworks/
               - Resources/
 
-Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the bundle. What makes more sense is to reuse dependencies of the main app give that they cover smaller one. In order to do so you will need to change `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script.
+Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the bundle. What makes more sense is to reuse dependencies of the main app given that they cover smaller one. In order to do so you will need to change `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script.
 
 ### Qt world
 
@@ -141,4 +141,4 @@ In order to do so you have to copy background file to `.background` directory of
 
 ## The end
 
-As you can see deploying desktop apps on ~OS X~ macOS is a total hassle as soon as you have something more complex than `HelloWorld.app`. XCode/QtCreator can automate many things but custom libraries, additional applications and others require doing some push-ups with custom deployment scripts.
+As you can see deploying desktop apps on macOS is a total hassle as soon as you have something more complex than `HelloWorld.app`. XCode/QtCreator can automate many things but custom libraries, additional applications and others require doing some push-ups with custom deployment scripts.
