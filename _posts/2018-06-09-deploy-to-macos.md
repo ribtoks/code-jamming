@@ -72,7 +72,7 @@ This command will bundle all the dependencies of the executable passed to it via
 
 If your application depends on other resources (icon, videos, dictionaries etc.) that are not compiled into the executable, you also have to ship them using `Resources/` directory. I recommend creating a deployment script that will do that for you of course because doing it manually every time is very error-prone.
 
-Deployment: as easy as:
+Deployment as easy as:
 
     cp -v /path/to/your/file HelloWorld.app/Contents/Resources/
 
