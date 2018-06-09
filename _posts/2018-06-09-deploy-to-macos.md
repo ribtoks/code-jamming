@@ -142,7 +142,7 @@ What people usually do is they set a pretty background image with some instructi
 ![Prettified DMG]({{ "/assets/img/bundle-background.png" | absolute_url }})
 *Bundle with set background and link to Applications*
 
-In order to do so you have to copy background file to `.background` directory of the DMG and reside it's window and icons inside to fit it. Mount your first dmg, do these manipulations and then reexport it from `Disk Utility` to read-only dmg. You can also automate these actions with a Apple Script but that's a topic for another post.
+In order to do so you have to copy background file to `.background` directory of the DMG, then select it in Finder as background image, resize the window and icons inside to fit it. Mount your first dmg, do these manipulations and then reexport it from `Disk Utility` to read-only dmg. You can also automate these actions with a Apple Script but that's a topic for another post.
 
 ## The end
 
@@ -150,4 +150,6 @@ As you can see deploying desktop apps on macOS is a total hassle as soon as you 
 
 ## References
 
-There's an awesome article about [dynamic loading in Linux](https://amir.rachum.com/blog/2016/09/17/shared-libraries/). It explains about `rpath`, `runpath` and other quirks.
+* [Xpiks deployment script](https://github.com/ribtoks/xpiks/blob/master/scripts/deploy/deploy_mac.sh)
+
+* There's an awesome article about [dynamic loading in Linux](https://amir.rachum.com/blog/2016/09/17/shared-libraries/). It explains about `rpath`, `runpath` and other quirks.
