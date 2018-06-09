@@ -33,12 +33,12 @@ To understand which dependencies does your `HelloWorld` executable have, you can
 
     > otool -L HelloWorld.app/Contents/MacOS/HelloWorld
 
-        @rpath/QtNetwork.framework/Versions/5/QtNetwork (compatibility version 5.6.0, current version 5.6.2)
-	@rpath/QtCore.framework/Versions/5/QtCore (compatibility version 5.6.0, current version 5.6.2)
-	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit (compatibility version 1.0.0, current version 275.0.0)
-	@rpath/QtGui.framework/Versions/5/QtGui (compatibility version 5.6.0, current version 5.6.2)
-	/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 120.1.0)
-	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1226.10.1)
+        @rpath/QtNetwork.framework/Versions/5/QtNetwork 
+	@rpath/QtCore.framework/Versions/5/QtCore 
+	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit 
+	@rpath/QtGui.framework/Versions/5/QtGui 
+	/usr/lib/libc++.1.dylib 
+	/usr/lib/libSystem.B.dylib 
         .....
 
 It lists all dependencies of your app. You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) which value is computed when your app is started. For native applications built for debug it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
