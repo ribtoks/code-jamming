@@ -83,10 +83,10 @@ This is harder. Simple copying library or framework to `Frameworks/` in order to
 So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your other libs.
 
     # copy library to Frameworks
-    cp -v /path/to/library.so HelloWorld.app/Contents/Frameworks/
+    cp -v /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
 
     # fix dependency of the main app
-    install_name_tool -change "library.so" "@executable_path/../Frameworks/library.so" HelloWorld.app/Contents/MacOS/HelloWorld
+    install_name_tool -change "library.dylib" "@executable_path/../Frameworks/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
 
     # and dependencies of dependencies
     install_name_tool -change "/usr/local/lib/$depend_lib" "@executable_path/../Frameworks/$depend_lib" "$lib"
