@@ -130,15 +130,17 @@ So to reuse resources and platform-specific plugins of the main app you would ne
 Of course it would be too easy if bundling an `.app` was everything that you needed to ship your application. In Apple world applications are usually shipped in `.dmg` files which are Apple Disk Image files. Good news is that if you only want to compress `.app` to `.dmg` you need pretty much one command:
 
     > hdiutil create -srcfolder "/path/to/HelloWorld.app" -volname "NameOfDMG" -fs HFS+ \
-    -fsargs "-c c=64,a=16,e=16" -format UDRW -size ${SIZE}m "${DMG_TMP}"
+    -fsargs "-c c=64,a=16,e=16" -format UDRW -size ${SIZE}m "HelloWorld.dmg"
 
 Bad news is that it will lead to bad user experience. Imagine you open an installer and what you see is just ugly white background and some `HelloWorld.app` in top left corner left totally at your disposal. You should guess yourself what you want to do with it. Probably just close or trash immediately.
 
 ![Raw DMG]({{ "/assets/img/bundle-raw.png" | absolute_url }})
+*Pretty much RAW bundle created with a command above*
 
 What people usually do is they set a pretty background image with some instructions and place a link to `Applications/` directory. Instructions usually visually explain to drag the `HelloWorld.app` to `Applications` in order to install it.
 
 ![Prettified DMG]({{ "/assets/img/bundle-background.png" | absolute_url }})
+*Bundle with set background and link to Applications*
 
 In order to do so you have to copy background file to `.background` directory of the DMG and reside it's window and icons inside to fit it. Mount your first dmg, do these manipulations and then reexport it from `Disk Utility` to read-only dmg. You can also automate these actions with a Apple Script but that's a topic for another post.
 
