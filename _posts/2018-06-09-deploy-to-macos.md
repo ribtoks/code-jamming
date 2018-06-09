@@ -41,7 +41,7 @@ To understand which dependencies does your `HelloWorld` executable have, you can
 	/usr/lib/libSystem.B.dylib 
         .....
 
-It lists all dependencies of your app. You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) which value is computed when your app is started. For native applications built for debug it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
+It lists all dependencies of your app. You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) set by linker, but which value can be computed when your app is started or overriden with environmental `LD_LIBRARY_PATH` variable. For native applications built for debug it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
 
 You can learn this path also using `otool` but this time with parameter `-l` and checking for `LC_PATH` block:
 
@@ -56,15 +56,15 @@ You can learn this path also using `otool` but this time with parameter `-l` and
 
 Also `otool -l` is pretty useful command to learn how does your application starts anyway. How does it know it's depedencies and so on (yes, they are all just listed in your app).
 
-So obviously your user's computer will not have same path as the one on your computer so you have to change it. Remember bundle structure couple of passages above? All the libraries should live in `Frameworks/` directory so your application `@rpath` will point to `Frameworks/` and will be able to start using the libraries that come along.
+So obviously your user's computer probably will not have same path as the one on your computer so you have to change it. Remember bundle structure couple of passages above? All the libraries should live in `Frameworks/` directory so your application `@rpath` will point to `Frameworks/` and will be able to start using the libraries that come along.
 
 In order to change `@rpath` (and other sections) you need `install_name_tool` utility (also comes with XCode) so in the end your app's `LC_RPATH` will point to `@executable_path/../Frameworks/` (where `@executable_path` is another magic variable with self-descriptive name).
 
 ### Qt world
 
-If you're bundling a Qt app you can make use of `macdeployqt` utility which comes with Qt distribution and can pretty much pack all the frameworks and libraries required for your app and missing in `/usr/lib/`.
+If you're bundling a Qt app you can make use of `macdeployqt` utility which comes with Qt distribution and it can pretty much pack all the frameworks and libraries required for your app and missing in `/usr/lib/`.
 
-    `macdeployqt HelloWorld.app -no-strip -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/`
+    macdeployqt HelloWorld.app -no-strip -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/
 
 This command will bundle all the dependencies of the executable passed to it via command line. And this will work if your application only depends on some system and Qt libraries.
 
@@ -80,9 +80,12 @@ Deployment: as easy as:
 
 This is harder. Simple copying library or framework to `Frameworks/` in order to deploy it is not enough. Libraries as well as executables are of the same ELF (Executable and Linkable Format) format so they also have all these sections like `LC_LOAD_DYLIB` that need to be fixed. Also your executable will look for the library in a specific place that was set by the linker and this path also has to be fixed.
 
-So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your libs.
+So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your other libs.
 
+    # copy library to Frameworks
     cp -v /path/to/library.so HelloWorld.app/Contents/Frameworks/
+
+    # fix dependency of the main app
     install_name_tool -change "library.so" "@executable_path/../Frameworks/library.so" HelloWorld.app/Contents/MacOS/HelloWorld
 
     # and dependencies of dependencies
@@ -142,3 +145,7 @@ In order to do so you have to copy background file to `.background` directory of
 ## The end
 
 As you can see deploying desktop apps on macOS is a total hassle as soon as you have something more complex than `HelloWorld.app`. XCode/QtCreator can automate many things but custom libraries, additional applications and others require doing some push-ups with custom deployment scripts.
+
+## References
+
+There's an awesome article about [dynamic loading in Linux](https://amir.rachum.com/blog/2016/09/17/shared-libraries/). It explains about `rpath`, `runpath` and other quirks.
