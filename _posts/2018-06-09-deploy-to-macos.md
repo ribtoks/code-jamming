@@ -148,7 +148,7 @@ In order to do so you have to copy background file to `.background` directory of
 
 ## The end
 
-As you can see deploying desktop apps on macOS is a total hassle as soon as you have something more complex than `HelloWorld.app`. XCode/QtCreator can automate many things but custom libraries, additional applications and others require doing some push-ups with custom deployment scripts.
+As you can see deploying desktop apps on macOS is a total hassle as soon as you have something more complex than `HelloWorld.app`. XCode/QtCreator can rule many things out to an extent but custom libraries, additional applications and others may require writing custom deployment scripts.
 
 ## References
 
