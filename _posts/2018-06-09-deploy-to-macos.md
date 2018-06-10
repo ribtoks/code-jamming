@@ -41,7 +41,7 @@ To understand which dependencies does your `HelloWorld` executable have, you can
         /usr/lib/libSystem.B.dylib 
         .....
 
-It lists all dependencies of your app and their "install names". You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) that means a list of locations where the dynamic linker can find dependent dylib at runtime. This path can be set by a linker and overriden in a number of ways (e.g. by `install_name_tool` or with environmental `DYLD_LIBRARY_PATH` variable). For native applications it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
+It lists all dependencies of your app and their "install names". You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@loader_path`) that means a list of locations where the dynamic linker can find dependent dylib at runtime. This path can be set by a linker and overriden in a number of ways (e.g. by `install_name_tool` or with environmental `DYLD_LIBRARY_PATH` variable). For native applications it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
 
 You can learn this path also using `otool` but this time with parameter `-l` and checking for `LC_RPATH` block:
 
@@ -91,7 +91,7 @@ So in order to deploy custom libraries you have to first copy them to `Framework
     # and dependencies of dependencies of the library
     install_name_tool -change "/usr/local/lib/$depend_lib" "@loader_path/$depend_lib" "$lib"
 
-Previous link path to the dependent library can be learned using `otool -L` command.
+Previous link path to the dependent library can be learned using `otool -L` command. If you put all the dependencies on the same level together then they can be referred as `@loader_path/dependentlibrary.dylib` where `@loader_path` is magical variable expanded to the path of the library which caused current library to be loaded. So if they are on the same level in `Frameworks/` approach above should work.
 
 ## Level 3: additional applications
 
