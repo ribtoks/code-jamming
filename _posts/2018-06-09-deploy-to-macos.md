@@ -43,7 +43,7 @@ To understand which dependencies does your `HelloWorld` executable have, you can
         /usr/lib/libSystem.B.dylib 
         .....
 
-It lists all dependencies of your app and their "install names". You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@loader_path`) that means a list of locations where the dynamic linker can find dependent dylib at runtime. This path can be set by a linker and overriden in a number of ways (e.g. by `install_name_tool` or with environmental `DYLD_LIBRARY_PATH` variable). For native applications it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
+It lists all dependencies of your app and their "install names". You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@loader_path`) that means a list of locations where the dynamic linker can find dependent dylib at runtime. Items in list usually are set by a linker and can overriden in a number of ways (e.g. by `install_name_tool` or with environmental `DYLD_LIBRARY_PATH` variable). For native applications it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
 
 You can learn this path also using `otool` but this time with parameter `-l` and checking for `LC_RPATH` block:
 
