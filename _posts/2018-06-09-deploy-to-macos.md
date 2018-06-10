@@ -29,7 +29,7 @@ Sounds good in theory, but what does it mean in practice? You have to collect al
 
 Bundle is just a directory with suffix ".app" which magically converts it to the "bundle" where real executable is inside `Contents/MacOS/` directory, it's library dependencies live in `Frameworks/` directory and other resources in other appropriate places (`Resources/` or `PlugIns`).
 
-To understand which dependencies does your `HelloWorld` executable have, you can use `otool` command line utility (part of XCode):
+To understand which dependencies does your `HelloWorld` executable have, you can use `otool` command line utility (part of XCode) with parameter `-L`:
 
     > otool -L HelloWorld.app/Contents/MacOS/HelloWorld
 
@@ -43,7 +43,7 @@ To understand which dependencies does your `HelloWorld` executable have, you can
 
 It lists all dependencies of your app and their "install names". You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) that means a list of locations where the dynamic linker can find dependent dylib at runtime. This path can be set by a linker and overriden in a number of ways (e.g. by `install_name_tool` or with environmental `DYLD_LIBRARY_PATH` variable). For native applications it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
 
-You can learn this path also using `otool` but this time with parameter `-l` and checking for `LC_PATH` block:
+You can learn this path also using `otool` but this time with parameter `-l` and checking for `LC_RPATH` block:
 
     > otool -l HelloWorld.app/Contents/MacOS/HelloWorld
 
@@ -64,7 +64,7 @@ In order to change `@rpath` (and other sections) you need `install_name_tool` ut
 
 If you're bundling a Qt app you can make use of `macdeployqt` utility which comes with Qt distribution and it can pretty much pack all the frameworks and libraries required for your app and missing in `/usr/lib/`.
 
-    macdeployqt HelloWorld.app -no-strip -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/
+    macdeployqt HelloWorld.app -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/
 
 This command will bundle all the dependencies of the executable passed to it via command line. In addition this app will change `@rpath` using `install_name_tool` and will produce ready to deploy bundle. Although this will only work if your application depends on some system and Qt libraries and nothing else.
 
@@ -74,7 +74,7 @@ If your application depends on other resources (icon, videos, dictionaries etc.)
 
 Deployment as easy as:
 
-    cp -v /path/to/your/file HelloWorld.app/Contents/Resources/
+    cp /path/to/your/file HelloWorld.app/Contents/Resources/
 
 ## Level 2: custom libraries
 
@@ -83,13 +83,15 @@ This is harder. Simple copying library or framework to `Frameworks/` in order to
 So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your other libs. Rough example:
 
     # copy library to Frameworks
-    cp -v /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
+    cp /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
 
-    # fix dependency of the main app
+    # fix dependency of the main app if needed
     install_name_tool -change "/previous/link/path/to/library.dylib" "@executable_path/../Frameworks/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
 
-    # and dependencies of dependencies
+    # and dependencies of dependencies of the library
     install_name_tool -change "/usr/local/lib/$depend_lib" "@executable_path/../Frameworks/$depend_lib" "$lib"
+
+Previous link path to the dependent library can be learned using `otool -L` command.
 
 ## Level 3: additional applications
 
