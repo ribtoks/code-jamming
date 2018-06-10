@@ -80,9 +80,9 @@ Deployment as easy as:
 
 ## Level 2: custom libraries
 
-This is harder. Simple copying library or framework to `Frameworks/` in order to deploy it is not enough. Libraries as well as executables are of the same ELF (Executable and Linkable Format) format so they also have all these sections like `LC_LOAD_DYLIB` that need to be fixed. Also your executable will look for this library in a specific place that was set by the linker and this path also has to be fixed if library location is not in your app's `@rpath` list.
+This is harder. Simple copying library or framework to `Frameworks/` in order to deploy it is not enough. Your executable will look for the library in the place that was set by the linker and chances are it's not `@rpath`, but something like `/usr/local/lib/mycustomname.dylib`. Things get more complicated if the library requires other dynamic libraries so you will need to deploy transitive dependencies as well.
 
-So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your other libs. Rough example:
+So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix library path in your app and fix the librarie's `LC_LOAD_DYLIB` sections (like `LC_RPATH` but for dynamically linked libraries) where it's own dependencies are listed. Rough example:
 
     # copy library to Frameworks
     cp /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
