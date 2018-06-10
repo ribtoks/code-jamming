@@ -86,10 +86,10 @@ So in order to deploy custom libraries you have to first copy them to `Framework
     cp /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
 
     # fix dependency of the main app if needed
-    install_name_tool -change "/previous/link/path/to/library.dylib" "@executable_path/../Frameworks/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
+    install_name_tool -change "/previous/link/path/to/library.dylib" "@rpath/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
 
     # and dependencies of dependencies of the library
-    install_name_tool -change "/usr/local/lib/$depend_lib" "@executable_path/../Frameworks/$depend_lib" "$lib"
+    install_name_tool -change "/usr/local/lib/$depend_lib" "@loader_path/$depend_lib" "$lib"
 
 Previous link path to the dependent library can be learned using `otool -L` command.
 
