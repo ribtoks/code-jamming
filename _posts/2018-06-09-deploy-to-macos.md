@@ -11,6 +11,8 @@ tags:
   - qt
   - native
   - package
+  - deploy
+  - dynamic
 ---
 
 ## Level 0: warming up
