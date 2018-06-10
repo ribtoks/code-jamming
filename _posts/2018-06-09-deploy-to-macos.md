@@ -114,7 +114,11 @@ To be more precise first you need to choose where exactly your app will be with 
               - Frameworks/
               - Resources/
 
-Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. What makes more sense is to reuse dependencies of the main app as much as possible (usually they cover smaller one). In order to do so you will need to tweak `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script.
+Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. If you want you other app to have an icon you will anyway need to create a bundle, but no need to copy dependencies in there.
+
+What makes more sense is to reuse dependencies of the main app as much as possible (usually they cover smaller one). In order to do so you will need to tweak `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script like this:
+
+    install_name_tool -add_rpath "@executable_path/../../../../Frameworks" "${ADDITIONAL_APP}/Contents/MacOS/OtherAppName"
 
 ### Qt world
 
