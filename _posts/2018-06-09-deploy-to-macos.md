@@ -17,7 +17,7 @@ tags:
 
 ## Level 0: warming up
 
-Deploying anything anywhere has never been easy business. Deploying applications to desktop computers is no different. OS X (now macOS) had it's own solution of ["dll hell"](https://en.wikipedia.org/wiki/DLL_Hell): each application should be absolutely self contained. All the dependencies and dependencies of dependencies should be distributed within the "bundle" so apps won't conflict with other apps because of missing or outdated libraries.
+Deploying anything anywhere has never been easy business. Deploying applications to desktop computers is no different. OS X (now macOS) had its own solution of ["dll hell"](https://en.wikipedia.org/wiki/DLL_Hell): each application should be absolutely self contained. All the dependencies and dependencies of dependencies should be distributed within the "bundle" so apps won't conflict with other apps because of missing or outdated libraries.
 
 Sounds good in theory, but what does it mean in practice? You have to collect all the dependencies somehow and fit them into your "bundle". Bundle structure usually looks like this:
 
@@ -29,7 +29,7 @@ Sounds good in theory, but what does it mean in practice? You have to collect al
       - Resources/
       - PlugIns/
 
-Bundle is just a directory with suffix ".app" which magically converts it to the "bundle" where real executable is inside `Contents/MacOS/` directory, it's library dependencies live in `Frameworks/` directory and other resources in other appropriate places (`Resources/` or `PlugIns`).
+Bundle is just a directory with suffix ".app" which magically converts it to the "bundle" where real executable is inside `Contents/MacOS/` directory, its library dependencies live in `Frameworks/` directory and other resources in other appropriate places (`Resources/` or `PlugIns`).
 
 To understand which dependencies does your `HelloWorld` executable have, you can use `otool` command line utility (part of XCode) with parameter `-L`:
 
@@ -82,7 +82,7 @@ Deployment as easy as:
 
 This is harder. Simple copying library or framework to `Frameworks/` in order to deploy it is not enough. Your executable will look for the library in the place that was set by the linker and chances are it's not `@rpath`, but something like `/usr/local/lib/mycustomname.dylib`. Things get more complicated if the library requires other dynamic libraries so you will need to deploy transitive dependencies as well.
 
-So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix library path in your app and fix the librarie's `LC_LOAD_DYLIB` sections (like `LC_RPATH` but for dynamically linked libraries) where it's own dependencies are listed. Rough example:
+Bottom line is: in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix library load path in your app and fix the librarie's `LC_LOAD_DYLIB` sections (like `LC_RPATH` but for dynamically linked libraries) where its own dependencies are listed. Rough example:
 
     # copy library to Frameworks
     cp /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
@@ -90,14 +90,14 @@ So in order to deploy custom libraries you have to first copy them to `Framework
     # fix dependency of the main app if needed
     install_name_tool -change "/previous/link/path/to/library.dylib" "@rpath/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
 
-    # and dependencies of dependencies of the library
+    # and dependencies of dependencies of the library (repeat for every $depend_lib)
     install_name_tool -change "/usr/local/lib/$depend_lib" "@loader_path/$depend_lib" "$lib"
 
-Previous link path to the dependent library can be learned using `otool -L` command against your executable. If you put all the dependencies on the same level together then they can be referred as `@loader_path/dependentlibrary.dylib` where `@loader_path` is magical variable expanded to the path of the library which caused current library to be loaded.
+Previous link path to the dependent library can be learned using `otool -L` command against your executable as well as library dependencies. If you put all the dependencies on the same level together then they can be referred as `@loader_path/dependentlibrary.dylib` where `@loader_path` is magical variable expanded to the path of the library which caused current library to be loaded.
 
 ## Level 3: additional applications
 
-Say you need some additional application like a [crash handler](https://github.com/ribtoks/xpiks/blob/master/src/recoverty/README.md) to be deployed alongside with your main one. If you were skimming this post thoroughly then you know the answer: you copy it's dependencies to `Frameworks/` and tweak `@rpath` using `install_name_tool`.
+Say you need some additional application like a [crash handler](https://github.com/ribtoks/xpiks/blob/master/src/recoverty/README.md) to be deployed alongside with your main one. If you were skimming this post thoroughly then you know the answer: you copy its dependencies to `Frameworks/` and tweak `@rpath` using `install_name_tool`.
 
 To be more precise first you need to choose where exactly your app will be with regards to the main app. Usually it's put alongside with it in the `Contents/MacOS` directory like this:
 
