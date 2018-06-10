@@ -93,7 +93,7 @@ So in order to deploy custom libraries you have to first copy them to `Framework
     # and dependencies of dependencies of the library
     install_name_tool -change "/usr/local/lib/$depend_lib" "@loader_path/$depend_lib" "$lib"
 
-Previous link path to the dependent library can be learned using `otool -L` command. If you put all the dependencies on the same level together then they can be referred as `@loader_path/dependentlibrary.dylib` where `@loader_path` is magical variable expanded to the path of the library which caused current library to be loaded.
+Previous link path to the dependent library can be learned using `otool -L` command against your executable. If you put all the dependencies on the same level together then they can be referred as `@loader_path/dependentlibrary.dylib` where `@loader_path` is magical variable expanded to the path of the library which caused current library to be loaded.
 
 ## Level 3: additional applications
 
