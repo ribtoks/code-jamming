@@ -54,7 +54,7 @@ You can learn this path also using `otool` but this time with parameter `-l` and
           path /Users/user/Qt5.6.2/5.6/clang_64/lib (offset 12)
         ......
 
-Also `otool -l` is pretty useful command to learn how does your application starts anyway. How does it know it's depedencies and so on (yes, they are all just listed in your app).
+Also `otool -l` is pretty useful command to learn how does your application start anyway. How does it know it's depedencies and so on (yes, they are all just listed in your app).
 
 So your user's computer probably will not have same path as the one on your computer so you have to change it. Remember bundle structure couple of passages above? All the libraries should live in `Frameworks/` directory so your application `@rpath` will point to `Frameworks/` and will be able to start using the libraries that come along.
 
