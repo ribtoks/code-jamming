@@ -125,6 +125,8 @@ So to reuse resources and platform-specific plugins of the main app you would ne
     Qml2Imports = ../../../Resources/qml
     EOF
 
+Where relative paths point to parent's appropriate directories.
+
 ## Bonus level: DMG creation
 
 Of course it would be too easy if bundling an `.app` was everything that you needed to ship your application. In Apple world applications are usually shipped in `.dmg` files which are Apple Disk Image files. Good news is that if you only want to compress `.app` to `.dmg` you need pretty much one command:
