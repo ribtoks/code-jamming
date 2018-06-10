@@ -114,7 +114,7 @@ Of course you can first create a fully self-contained bundle of your other app, 
 
 ### Qt world
 
-If your small additional application is also a Qt application (which is likely) then above is not enough. Problem is that Qt apps need also platform-specific plugins and resources shipped alongside with them. If your main app already has them deployed using `macdeployqt` then you can reuse them using `qt.conf` file. This is a magical file that `QApplication`-descendent classes look for in order to learn about the environment, parameters, paths to plugins and resources and what not.
+If your small additional application is also a Qt application (which is likely if the main one is) then above is not enough. Problem is that Qt apps need also platform-specific plugins and resources shipped alongside with them. If your main app already has them deployed using `macdeployqt` then you can reuse them using `qt.conf` file. This is a magical file that `QApplication`-descendent classes look for in order to learn about the environment, parameters, paths to plugins and resources and what not.
 
 So to reuse resources and platform-specific plugins of the main app you would need to create a `qt.conf` in `Resources/` directory of the dependent app with relative paths like this:
 
@@ -131,7 +131,7 @@ Where relative paths point to parent's appropriate directories.
 
 Of course it would be too easy if bundling an `.app` was everything that you needed to ship your application. In Apple world applications are usually shipped in `.dmg` files which are Apple Disk Image files. Good news is that if you only want to compress `.app` to `.dmg` you need pretty much one command:
 
-    > hdiutil create -srcfolder "/path/to/HelloWorld.app" -volname "NameOfDMG" -fs HFS+ \
+    > hdiutil create -srcfolder "/path/to/HelloWorld.app" -volname "HelloWorld" -fs HFS+ \
     -fsargs "-c c=64,a=16,e=16" -format UDRW -size ${SIZE}m "HelloWorld.dmg"
 
 Bad news is that it will lead to bad user experience. Imagine you open an installer and what you see is just ugly white background and some `HelloWorld.app` in top left corner left totally at your disposal. You should guess yourself what you want to do with it. Probably just close or trash immediately.
