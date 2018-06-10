@@ -66,7 +66,7 @@ If you're bundling a Qt app you can make use of `macdeployqt` utility which come
 
     macdeployqt HelloWorld.app -no-strip -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/
 
-This command will bundle all the dependencies of the executable passed to it via command line. And this will work if your application only depends on some system and Qt libraries.
+This command will bundle all the dependencies of the executable passed to it via command line. In addition this app will change `@rpath` using `install_name_tool` and will produce ready to deploy bundle. Although this will only work if your application depends on some system and Qt libraries and nothing else.
 
 ## Level 1: additional files
 
