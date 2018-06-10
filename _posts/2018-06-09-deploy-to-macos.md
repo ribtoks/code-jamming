@@ -41,7 +41,7 @@ To understand which dependencies does your `HelloWorld` executable have, you can
         /usr/lib/libSystem.B.dylib 
         .....
 
-It lists all dependencies of your app. You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) set by linker, but which value can be computed when your app is started or overriden with environmental `LD_LIBRARY_PATH` variable. For native applications built for debug it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
+It lists all dependencies of your app and their "install names". You may ask what is `@rpath`? It's a special variable (a friend of `@executable_path` and `@load_path`) that means a list of locations where the dynamic linker can find dependent dylib at runtime. This path can be set by a linker and overriden in a number of ways (e.g. by `install_name_tool` or with environmental `DYLD_LIBRARY_PATH` variable). For native applications it could be `/usr/lib`. For Qt applications it could be `/path/to/Qt5.6.2/5.6/clang_64/lib` or anything alike.
 
 You can learn this path also using `otool` but this time with parameter `-l` and checking for `LC_PATH` block:
 
@@ -56,9 +56,9 @@ You can learn this path also using `otool` but this time with parameter `-l` and
 
 Also `otool -l` is pretty useful command to learn how does your application starts anyway. How does it know it's depedencies and so on (yes, they are all just listed in your app).
 
-So obviously your user's computer probably will not have same path as the one on your computer so you have to change it. Remember bundle structure couple of passages above? All the libraries should live in `Frameworks/` directory so your application `@rpath` will point to `Frameworks/` and will be able to start using the libraries that come along.
+So your user's computer probably will not have same path as the one on your computer so you have to change it. Remember bundle structure couple of passages above? All the libraries should live in `Frameworks/` directory so your application `@rpath` will point to `Frameworks/` and will be able to start using the libraries that come along.
 
-In order to change `@rpath` (and other sections) you need `install_name_tool` utility (also comes with XCode) so in the end your app's `LC_RPATH` will point to `@executable_path/../Frameworks/` (where `@executable_path` is another magic variable with self-descriptive name).
+In order to change `@rpath` (and other sections) you need `install_name_tool` utility (also comes with XCode) so in the end your app's `@rpath` will have at least one entry of `@executable_path/../Frameworks/` (where `@executable_path` is another magic variable with self-descriptive name).
 
 ### Qt world
 
@@ -78,22 +78,22 @@ Deployment as easy as:
 
 ## Level 2: custom libraries
 
-This is harder. Simple copying library or framework to `Frameworks/` in order to deploy it is not enough. Libraries as well as executables are of the same ELF (Executable and Linkable Format) format so they also have all these sections like `LC_LOAD_DYLIB` that need to be fixed. Also your executable will look for the library in a specific place that was set by the linker and this path also has to be fixed.
+This is harder. Simple copying library or framework to `Frameworks/` in order to deploy it is not enough. Libraries as well as executables are of the same ELF (Executable and Linkable Format) format so they also have all these sections like `LC_LOAD_DYLIB` that need to be fixed. Also your executable will look for this library in a specific place that was set by the linker and this path also has to be fixed if library location is not in your app's `@rpath` list.
 
-So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your other libs.
+So in order to deploy custom libraries you have to first copy them to `Frameworks/`, fix your app and fix the library in case it has other transitive dependencies on your other libs. Rough example:
 
     # copy library to Frameworks
     cp -v /path/to/library.dylib HelloWorld.app/Contents/Frameworks/
 
     # fix dependency of the main app
-    install_name_tool -change "library.dylib" "@executable_path/../Frameworks/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
+    install_name_tool -change "/previous/link/path/to/library.dylib" "@executable_path/../Frameworks/library.dylib" HelloWorld.app/Contents/MacOS/HelloWorld
 
     # and dependencies of dependencies
     install_name_tool -change "/usr/local/lib/$depend_lib" "@executable_path/../Frameworks/$depend_lib" "$lib"
 
 ## Level 3: additional applications
 
-Say you need some additional application like a [crash handler](https://github.com/ribtoks/xpiks/blob/master/src/recoverty/README.md) to be deployed alongside with your main one. If you were skimming this post thoroughly then you know the answer: you copy it's dependencies to `Frameworks/` and fix `@rpath` using `install_name_tool`.
+Say you need some additional application like a [crash handler](https://github.com/ribtoks/xpiks/blob/master/src/recoverty/README.md) to be deployed alongside with your main one. If you were skimming this post thoroughly then you know the answer: you copy it's dependencies to `Frameworks/` and tweak `@rpath` using `install_name_tool`.
 
 To be more precise first you need to choose where exactly your app will be with regards to the main app. Usually it's put alongside with it in the `Contents/MacOS` directory like this:
 
@@ -110,7 +110,7 @@ To be more precise first you need to choose where exactly your app will be with 
               - Frameworks/
               - Resources/
 
-Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the bundle. What makes more sense is to reuse dependencies of the main app given that they cover smaller one. In order to do so you will need to change `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script.
+Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. What makes more sense is to reuse dependencies of the main app as much as possible (usually they cover smaller one). In order to do so you will need to tweak `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script.
 
 ### Qt world
 
@@ -155,3 +155,5 @@ As you can see deploying desktop apps on macOS is a total hassle as soon as you 
 * [Xpiks deployment script](https://github.com/ribtoks/xpiks/blob/master/scripts/deploy/deploy_mac.sh)
 
 * There's an awesome article about [dynamic loading in Linux](https://amir.rachum.com/blog/2016/09/17/shared-libraries/). It explains about `rpath`, `runpath` and other quirks.
+
+* [Linking and install names on OS X](https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html)
