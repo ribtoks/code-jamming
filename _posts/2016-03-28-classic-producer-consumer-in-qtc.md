@@ -41,23 +41,23 @@ For consuming we will run a loop where we would check if queue has any item avai
 
 ```cpp
 // consuming is an infinite loop
- void consume() {
-	for (;;) {
-		m_QueueMutex.lock();
+void consume() {
+  for (;;) {
+    m_QueueMutex.lock();
 
-		while (m_Queue.isEmpty()) {
-			m_WaitAnyItem.wait(&m_QueueMutex);
-		}
+    while (m_Queue.isEmpty()) {
+      m_WaitAnyItem.wait(&m_QueueMutex);
+    }
 
-		T *item = m_Queue.first();
-		m_Queue.removeFirst();
+    T *item = m_Queue.first();
+    m_Queue.removeFirst();
 
-		m_QueueMutex.unlock();
+    m_QueueMutex.unlock();
 
-		if (item == NULL) { break; }
+    if (item == NULL) { break; }
 		
-		processOneItem(item);
-	}
+    processOneItem(item);
+  }
 }
 ```
 
@@ -68,16 +68,16 @@ To add an item for processing, we call `produce()` method:
 ```cpp
 // producer is another thread
 void produce(T *item) {
-	m_QueueMutex.lock();
-	{
-		bool wasEmpty = m_Queue.isEmpty();
-		m_Queue.append(item);
+  m_QueueMutex.lock();
+  {
+    bool wasEmpty = m_Queue.isEmpty();
+    m_Queue.append(item);
 
-		if (wasEmpty) {
-			m_WaitAnyItem.wakeOne();
-		}
-	}
-	m_QueueMutex.unlock();
+    if (wasEmpty) {
+      m_WaitAnyItem.wakeOne();
+    }
+  }
+  m_QueueMutex.unlock();
 }
 ```
 
