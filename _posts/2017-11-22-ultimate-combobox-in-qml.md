@@ -92,9 +92,10 @@ So is there anything better?
 
 <!--more-->
 
-What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the `ComboBox` functionality. It's code is pretty simple - file _ComboBoxHeader.qml_:
+What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`. The first one was the control I used to put in the QML here and there where I needed the `ComboBox` functionality. It's code is pretty simple:
 
 ```
+/* ComboBoxHeader.qml */
 Item {
     id: comboBox
 
@@ -127,6 +128,7 @@ The important part there is `property var globalParent`. You should set this to 
 
 ```javascript
 function openPopup() {
+    // MAGIC:
     var marginPoint = comboBox.mapToItem(globalParent, 0, comboBox.height)
 
     var options = {
@@ -145,6 +147,7 @@ function openPopup() {
 And the other control (in file _ComboBoxDropdown.qml_) is a dropdown control with an `Item` root element (`globalParent`) filling everything on background. This root element intercepts all the mouse activity outside and correctly closes the popup if clicked.
 
 ```
+/* ComboBoxDropdown.qml */
 Item {
     id: dropdownComponent
     anchors.fill: parent
