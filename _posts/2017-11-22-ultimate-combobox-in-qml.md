@@ -96,6 +96,7 @@ What I did is that I created 2 controls `ComboBoxHeader` and `ComboBoxDropdown`.
 
 ```
 /* ComboBoxHeader.qml */
+
 Item {
     id: comboBox
 
@@ -148,6 +149,7 @@ And the other control (in file _ComboBoxDropdown.qml_) is a dropdown control wit
 
 ```
 /* ComboBoxDropdown.qml */
+
 Item {
     id: dropdownComponent
     anchors.fill: parent
