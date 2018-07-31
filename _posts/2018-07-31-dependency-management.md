@@ -23,13 +23,13 @@ Let's review our possible options. I'd like to start with least maintainable and
 
 ```
 class GodObject {
-public getServiceA() { return serviceA; }
-public getServiceB() { return serviceB; }
-// ...
+  public getServiceA() { return serviceA; }
+  public getServiceB() { return serviceB; }
+  // ...
 
-private ServiceA serviceA;
-private ServiceB serviceB;
-// ...
+  private ServiceA serviceA;
+  private ServiceB serviceB;
+  // ...
 }
 
 class A {
