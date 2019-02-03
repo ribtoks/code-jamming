@@ -4,8 +4,7 @@ date: 2013-08-26T21:43:47+00:00
 author: "Taras Kushnir"
 layout: post
 permalink: /yace-contester-engine/
-tagazine-media:
-  - 'a:7:{s:7:"primary";s:59:"http://latobcode.files.wordpress.com/2013/08/yacescheme.jpg";s:6:"images";a:1:{s:59:"http://latobcode.files.wordpress.com/2013/08/yacescheme.jpg";a:6:{s:8:"file_url";s:59:"http://latobcode.files.wordpress.com/2013/08/yacescheme.jpg";s:5:"width";i:1329;s:6:"height";i:774;s:4:"type";s:5:"image";s:4:"area";i:1028646;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:1;s:6:"author";s:8:"20401582";s:7:"blog_id";s:8:"53632187";s:9:"mod_stamp";s:19:"2013-08-26 20:15:57";}'
+published: false
 categories:
   - Linux
   - Programming
