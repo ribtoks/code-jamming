@@ -41,6 +41,7 @@ with tf.Session(graph=loaded_graph) as sess:
         print('Saving layer: {0}\n'.format(layer.name))
         array = layer.eval()
 
+        # filesystems do not like files with colons inside
         layer_file = layer.name.replace(':', '_') + '.npz'
 
         with open(layer_file, 'wb') as file:
