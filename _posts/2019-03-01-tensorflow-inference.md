@@ -91,7 +91,7 @@ auto index = 0;
 for (auto height = 0; height < filter_height; height++) {
     for (auto width = 0; width < filter_width; width++) {
         for (auto depth = 0; depth < input_depth; depth++) {
-            for (auto filter = 0; filter < filters_number; filter++, index) {
+            for (auto filter = 0; filter < filters_number; filter++) {
                 weights_(filter, height, width, depth) = array_data[index++];
             }
         }
