@@ -17,7 +17,7 @@ Training of machine learning models is fun, but it's a useless waste of energy i
 
 If you were training model using popular framework [TensorFlow](https://tensorflow.org) you're covered in a sense that there are number of options you can stick to. To name just a few: inference with Tensorflow from Python, C++ inference with native library (TensorFlow is written in C++ after all), C++ inference with Tensorflow Lite (inference on mobile phones and/or Raspberry Pi) with bindings to Java&co, TensorFlow Serving (production-quality C++ HTTP server for inference using TF native library).
 
-When running on server you can use whatever is more convenient so in this article I'm mostly concerned about second use-case where you need to run inference on consumer devices. Let's see which options do we have. Actually there're not so many of these: TensorFlow native library (C++), TensorFlow Lite native library (C++) and third-party solutions (like project [Tract](https://github.com/snipsco/tract) from company Snips, written in Rust). Original TensorFlow library compiled for Release on my computer weights 30MB. Imagine you need to deploy it along with your 100MB model and you have 30% overhead which might be even worse if you have a smaller model. TensorFlow Lite supports a subset of operations you can use and it's compilation is fine-tuned for Android projects. Nevertheless it's quite possible to compile it for desktop and it's size in Release was about 3MB. This is already much better but the problem is that most probably you're not even using half of the features of TensorFlow Computation Graph that the library provides.
+When running on a server you can use whatever is more convenient so in this article I'm mostly concerned about second use-case where you need to run inference on consumer devices. Let's see which options do we have. Actually there're not so many of these: TensorFlow native library (C++), TensorFlow Lite native library (C++) and third-party solutions (like project [Tract](https://github.com/snipsco/tract) from company Snips, written in Rust). Original TensorFlow library compiled for Release on my computer weights 30MB. Imagine you need to deploy it along with your 100MB model and you have 30% overhead which might be even worse if you have a smaller model. TensorFlow Lite supports a subset of operations you can use and it's compilation is fine-tuned for Android projects. Nevertheless it's quite possible to compile it for desktop and it's size in Release was about 3MB. This is already much better but the problem is that most probably you're not even using half of the features of TensorFlow Computation Graph that the library provides.
 
 What is left for us is to write such inference on our own. It's not as hard as it sounds and definitely much more fun!
 
@@ -43,7 +43,7 @@ with tf.Session(graph=loaded_graph) as sess:
             numpy.savez(file, array)
 ```
 
-This will convert tensors to NumPy arrays and use NumPy's feature to save NDarray as zip archive with an extension ˋ.npzˋ.
+This will convert tensors to NumPy arrays and use NumPy's feature to save NDarray as zip archive with an extension `.npz`.
 
 ## Step 2. Import in C++
 
@@ -53,13 +53,13 @@ It's relatively easy to import these arrays to C++. You can use [cnpy](http://gi
 #include <cnpy/cnpy.h>
 
 auto array = cnpy::npz_load(array_path, "arr_0");
-// like python list (3, 4, 5)
+// std::vector like python list (3, 4, 5)
 auto shape = array.shape;
 // pointer to 1D array of raw data
 auto array_data = array.data<T>();
 ```
 
-There're few important things to note here. One is that TensorFlow has weights matrix of dense layer transposed in memory. That's why you need to transpose it if you plan to use it in "standard" way (of dot product with input vector).
+There're few important things to note here. One is that TensorFlow has weights matrix of dense layer transposed in memory. That's why you need to transpose it again if you plan to use it in more "common" way (of dot product with input vector).
 
 ```cpp
 auto input_flatten_size = shape[0];
@@ -79,15 +79,15 @@ for (int n = 0; n < size; n++) {
 }
 ```
 
-Another is that it's relatively hard to read convolution layer properly: there're many tricky things with indices so you should be careful with that.
+Another is that it's tricky to read convolution layer properly: there're too many indices for 1D array so you should be careful with them.
 
 ```cpp
 auto index = 0;
 for (auto height = 0; height < filter_height; height++) {
     for (auto width = 0; width < filter_width; width++) {
         for (auto depth = 0; depth < input_depth; depth++) {
-            for (auto filter = 0; filter < filters_number; filter++, index++) {
-                weights_(filter, height, width, depth) = array_data[index];
+            for (auto filter = 0; filter < filters_number; filter++, index) {
+                weights_(filter, height, width, depth) = array_data[index++];
             }
         }
     }
@@ -96,7 +96,7 @@ for (auto height = 0; height < filter_height; height++) {
 
 ## Step 3. Inference
 
-It's relatively easy to implement a fully-connected layer as trivial operation with dot product of matrix and vector. A little bit more effort is required for convolution layer but `feedforward()` part is quite simple anyways. I have an educational effort in this regard which is a [yannpp library](https://github.com/ribtoks/yannpp) - a small C++ only implementation of deep neural network (capable both of learning and inference). Code is relatively simple and heavily documented so it should be easy to start and use it or create a better library.
+It's relatively easy to implement a fully-connected layer as trivial operation with dot product of matrix and vector. A little bit more effort is required for convolution layer but `feedforward()` part is quite simple anyways. Recently I started an educational project that will help to understand how to do that. [yannpp library](https://github.com/ribtoks/yannpp) - a small C++ only implementation of deep neural network (capable both of learning and inference). Code is relatively simple and heavily documented so it should be easy to start and use it or create a better library.
 
 With yannpp you can precreate a model in C++ and it's ready for use. Here you can see an example for VGG-16 model:
 
@@ -137,7 +137,7 @@ auto input = read_image(testsDir + "/test_4.JPEG");
 auto output = network.feedforward(input);
 ```
 
-The most sensible way to use such library is to statically link it or just include all files in your project. Resulting overhead size of your executable will be only a couple of kilobytes even including ˋcnpyˋ library for reading `.npz` archives.
+The most sensible way to use such library is to statically link it or just include all files in your project. Resulting overhead size of your executable will be only a couple of kilobytes even including `cnpy` library for reading `.npz` archives.
 
 ![Inference example]({{ "/assets/img/vgg16-inference.png" | absolute_url }})
 *Example of inference of VGG-16 model*
@@ -146,8 +146,8 @@ Performance of this tiny inference engine is not that bad, although it can be he
 
 ## Conclusion
 
-You have many options to run inference for TensorFlow-trained models. However, if you're after reducing size of your deployed application you would need to have something tailored right for you. The best you can have is custom inference code and as you can see from this post it is not so hard to achieve.
+There are couple of options to run inference for TensorFlow-trained models. However, if you're after reducing size of your deployed application you would need to have something tailored right for you. The best you can have is custom inference code and as you can see from this post it is not so hard to achieve.
 
-Full code of VGG-16 export, load and inference can be found in this [awesome repository](https://github.com/Vearol/Tensorflow-Model-Inference).
+**Full code** of VGG-16 export, load and inference can be found in this [awesome repository](https://github.com/Vearol/Tensorflow-Model-Inference).
 
 I would be really happy to read in the comments how do you run inference on consumer devices.
