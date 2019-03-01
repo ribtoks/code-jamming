@@ -53,16 +53,16 @@ namespace Encryption {
 
         const ushort *rawData = rawText.utf16();
         void *rawDataVoid = (void*)rawData;
-        const char *rawDataChar = static_cast(rawDataVoid);
+        const char *rawDataChar = static_cast<const char*>(rawDataVoid);
         QByteArray inputData;
-        // ushort is 2*uint8_t + 1 byte for '\0'
-        inputData.append(rawDataChar, rawText.size() * 2 + 1);
+        inputData.append(rawDataChar, rawText.size() * sizeof(QChar) + 1);
 
         const int length = inputData.size();
         int encryptionLength = getAlignedSize(length, 16);
 
-        QByteArray encodingBuffer(encryptionLength, 0);
+        QByteArray encodingBuffer(encryptionLength, '\0');
         inputData.resize(encryptionLength);
+        for (int i = length; i < encryptionLength; i++) { inputData[i] = 0; }
 
         AES128_CBC_encrypt_buffer((uint8_t*)encodingBuffer.data(), (uint8_t*)inputData.data(),
            encryptionLength, (const uint8_t*)keyData.data(), iv);
@@ -83,7 +83,9 @@ namespace Encryption {
         QByteArray encodingBuffer(encryptionLength, 0);
 
         QByteArray encodedText = QByteArray::fromHex(hexEncodedText.toLatin1());
+        const int encodedOriginalSize = encodedText.size();
         encodedText.resize(encryptionLength);
+        for (int i = encodedOriginalSize; i < encryptionLength; i++) { encodedText[i] = 0; }
 
         AES128_CBC_decrypt_buffer((uint8_t*)encodingBuffer.data(), (uint8_t*)encodedText.data(), 
           encryptionLength, (const uint8_t*)keyData.data(), iv);
@@ -91,7 +93,7 @@ namespace Encryption {
         encodingBuffer.append("\0\0");
         void *data = encodingBuffer.data();
         const ushort *decodedData = static_cast(data);
-        QString result = QString::fromUtf16(decodedData);
+        QString result = QString::fromUtf16(decodedData, -1);
         return result;
     }
 }
@@ -99,4 +101,4 @@ namespace Encryption {
 #endif // AESQT_H
 ```
 
-I wrote <a href="https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-tests/encryption_tests.cpp" target="_blank" rel="noopener" class="broken_link">a bunch of tests</a> against that functions so the solution is proven to be working. So if you're looking for really tiny encryption or AES implementation, use <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES-128</a>!
+I wrote <a href="https://github.com/Ribtoks/xpiks/blob/master/src/xpiks-tests/xpiks-tests-core/encryption_tests.cpp" target="_blank" rel="noopener" class="broken_link">a bunch of tests</a> against that functions so the solution is proven to be working. So if you're looking for really tiny encryption or AES implementation, use <a href="https://github.com/kokke/tiny-AES128-C" target="_blank" rel="noopener">tiny-AES-128</a>!
