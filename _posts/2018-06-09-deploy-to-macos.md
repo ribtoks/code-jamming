@@ -68,7 +68,7 @@ If you're bundling a Qt app you can make use of `macdeployqt` utility which come
 
     macdeployqt HelloWorld.app -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/
 
-This command will bundle all the dependencies of the executable passed to it via command line. In addition this app will change `@rpath` using `install_name_tool` and will produce ready to deploy bundle. Although this will only work if your application depends on some system and Qt libraries and nothing else.
+This command will bundle all the dependencies of the executable passed to it via command line. In addition this app will change `@rpath` using `install_name_tool` and will produce ready to deploy bundle. Although this will only work if your application depends on some system and Qt libraries and nothing else. You can read more about deploying Qt apps on the [official website](https://doc.qt.io/qt-5/deployment.html).
 
 ## Level 1: additional files
 
@@ -114,7 +114,7 @@ To be more precise first you need to choose where exactly your app will be with 
               - Frameworks/
               - Resources/
 
-Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. If you want you other app to have an icon you will anyway need to create a bundle, but no need to copy dependencies in there.
+Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. If you want your other app to have an icon you will anyway need to create a bundle, but no need to copy dependencies in there.
 
 What makes more sense is to reuse dependencies of the main app as much as possible (usually they cover smaller one). In order to do so you will need to tweak `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script like this:
 
