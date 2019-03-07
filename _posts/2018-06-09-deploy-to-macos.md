@@ -68,7 +68,7 @@ If you're bundling a Qt app you can make use of `macdeployqt` utility which come
 
     macdeployqt HelloWorld.app -executable="HelloWorld.app/Contents/MacOS/HelloWorld" -qmldir=../src/
 
-This command will bundle all the dependencies of the executable passed to it via command line. In addition this app will change `@rpath` using `install_name_tool` and will produce ready to deploy bundle. Although this will only work if your application depends on some system and Qt libraries and nothing else. You can read more about deploying Qt apps on the [official website](https://doc.qt.io/qt-5/deployment.html).
+This command will bundle all the dependencies of the executable passed to it via command line. In addition this app will change `@rpath` using `install_name_tool` and will produce ready to deploy bundle. Although this will only work if your application depends on some system and Qt libraries and nothing else.
 
 ## Level 1: additional files
 
@@ -165,3 +165,5 @@ As you can see deploying desktop apps on macOS is a total hassle as soon as you 
 * There's an awesome article about [dynamic loading in Linux](https://amir.rachum.com/blog/2016/09/17/shared-libraries/). It explains about `rpath`, `runpath` and other quirks.
 
 * [Linking and install names on OS X](https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html)
+
+* [Deploying Qt applications](https://doc.qt.io/qt-5/deployment.html).
