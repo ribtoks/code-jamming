@@ -59,16 +59,16 @@ namespace Encryption {
 
         const int length = inputData.size();
         int encryptionLength = getAlignedSize(length, 16);
+        Q_ASSERT(encryptionLength % 16 == 0 && encryptionLength >= length);
 
-        QByteArray encodingBuffer(encryptionLength, '\0');
         inputData.resize(encryptionLength);
         for (int i = length; i < encryptionLength; i++) { inputData[i] = 0; }
 
-        AES128_CBC_encrypt_buffer((uint8_t*)encodingBuffer.data(), (uint8_t*)inputData.data(),
-           encryptionLength, (const uint8_t*)keyData.data(), iv);
+        struct AES_ctx ctx;
+        AES_init_ctx_iv(&ctx, (const uint8_t*)keyData.data(), iv);
+        AES_CBC_encrypt_buffer(&ctx, (uint8_t*)inputData.data(), encryptionLength);
 
-        QByteArray data(encodingBuffer.data(), encryptionLength);
-        QString hex = QString::fromLatin1(data.toHex());
+        QString hex = QString::fromLatin1(inputData.toHex());
         return hex;
     }
 
@@ -80,19 +80,19 @@ namespace Encryption {
         const int length = hexEncodedText.size();
         int encryptionLength = getAlignedSize(length, 16);
 
-        QByteArray encodingBuffer(encryptionLength, 0);
-
         QByteArray encodedText = QByteArray::fromHex(hexEncodedText.toLatin1());
         const int encodedOriginalSize = encodedText.size();
+        Q_ASSERT(encodedText.length() <= encryptionLength);
         encodedText.resize(encryptionLength);
         for (int i = encodedOriginalSize; i < encryptionLength; i++) { encodedText[i] = 0; }
 
-        AES128_CBC_decrypt_buffer((uint8_t*)encodingBuffer.data(), (uint8_t*)encodedText.data(), 
-          encryptionLength, (const uint8_t*)keyData.data(), iv);
+        struct AES_ctx ctx;
+        AES_init_ctx_iv(&ctx, (const uint8_t*)keyData.data(), iv);
+        AES_CBC_decrypt_buffer(&ctx, (uint8_t*)encodedText.data(), encryptionLength);
 
-        encodingBuffer.append("\0\0");
-        void *data = encodingBuffer.data();
-        const ushort *decodedData = static_cast(data);
+        encodedText.append("\0\0");
+        void *data = encodedText.data();
+        const ushort *decodedData = static_cast<ushort *>(data);
         QString result = QString::fromUtf16(decodedData, -1);
         return result;
     }
