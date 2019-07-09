@@ -33,8 +33,8 @@ Key for AES-128 should be 128 bit length, so I used MD5 hashing to get exactly 1
 #ifndef AESQT_H
 #define AESQT_H
 
-# tons of other includes
-#include "../tiny-aes/aes.h"
+# other includes
+#include <path/to/tiny-aes/aes.hpp>
 
 namespace Encryption {
 
