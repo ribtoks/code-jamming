@@ -11,7 +11,7 @@ tags:
   - time management
 ---
 
-Hobby projects are very important for me. They give me the freedom to do what I want, how I want it and also they help me to develop quite solid expertise in various fields. Some smaller, some bigger, they always require unattended focus and precious time to work on them. It's always hard to find that time. During the weekend I try to get outside, my evenings are busy with sports or family and during the night I prefer sleeping to coding. The only time left is 1-2 hours in the early morning before I go to work. 
+Hobby projects are very important for me. They give me the freedom to do what I want, how I want it and also they help me to develop quite solid expertise in various fields. Some smaller, some bigger, they always require unattended focus and precious time to work on them. It's always hard to find that time. During the weekend I try to get outside, my evenings are busy with sports or family and during the night I prefer sleeping to coding. **The only time left is 1-2 hours in the early morning before I go to work.**
 
 I've always struggled to use this time as efficiently as possible. **It's hard to open the laptop and continue where you stopped yesterday or before the weekend right away.** It takes time to remember how to proceed from the last stop. I tried various ways and in this post I'd like to share the setup I'm using right now that helps me minimize this catch-up time significantly.
 
