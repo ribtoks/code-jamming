@@ -138,7 +138,7 @@ Then I created a simple `post-commit` git hook in one of my projects and now aft
 
 ```bash
 #!/bin/bash
-# add real token to .bash_profile/.bashrc/.profile using `export KANBOARD_API_TOKEN='your-token-here'` (also KANBOARD_HOST)
+# add real token to .bash_profile/.bashrc using `export KANBOARD_API_TOKEN='your-token-here'` (also KANBOARD_HOST)
 API_TOKEN="${KANBOARD_API_TOKEN}"
 API_ENDPOINT="http://${KANBOARD_HOST}/kanboard/jsonrpc.php"
 
