@@ -17,11 +17,11 @@ I've always struggled to use this time as efficiently as possible. **It's hard t
 
 <!--more-->
 
-First of all I tried to answer the question what exactly information I need to continue from where I stopped. While I might remember some bits and pieces of what I did last night, on Monday morning it's almost impossible to remember what I was doing on Friday. So after all, I found these 3 questions to be the most important:
+First of all I tried to answer the question what exactly information I need to continue from where I stopped. While I might remember some bits and pieces of what I did last night, on Monday morning it's almost impossible to remember what I was doing on Friday. So after all, **I found these 3 questions to be the most important**:
 
-- what global problem I was trying to solve
-- what was already done in order to solve this problem
-- what should be done next in order to solve this problem
+- what global problem I was trying to solve?
+- what was already done in order to solve this problem?
+- what should be done next in order to solve this problem?
 
 As I write it they seem to be quite obvious, however, it was an important step to ask the right questions, because they helped me to find the solution.
 
