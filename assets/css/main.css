@@ -143,18 +143,14 @@ hr {
   text-align: justify;
 }
 
-.post-container h1 {
-  text-align: left;
+.post-container h1.post-header {
+  margin-bottom: 0rem;
 }
 
 .posts {
   margin-bottom: 5rem;
   padding: 0px;
   list-style: none;
-}
-
-h1.post-header {
-  margin-bottom: 0px;
 }
 
 .post-date {
