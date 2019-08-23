@@ -114,7 +114,7 @@ To be more precise first you need to choose where exactly your app will be with 
               - Frameworks/
               - Resources/
 
-Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. If you want you other app to have an icon you will anyway need to create a bundle, but no need to copy dependencies in there.
+Of course you can first create a fully self-contained bundle of your other app, but this will only increase total size of the main bundle. If you want your other app to have an icon you will anyway need to create a bundle, but no need to copy dependencies in there.
 
 What makes more sense is to reuse dependencies of the main app as much as possible (usually they cover smaller one). In order to do so you will need to tweak `@rpath` of the smaller executable to point to `Frameworks/` directory of the parent. Also sounds like a job for `install_name_tool` and a fresh couple of lines in your deployment script like this:
 
@@ -165,3 +165,5 @@ As you can see deploying desktop apps on macOS is a total hassle as soon as you 
 * There's an awesome article about [dynamic loading in Linux](https://amir.rachum.com/blog/2016/09/17/shared-libraries/). It explains about `rpath`, `runpath` and other quirks.
 
 * [Linking and install names on OS X](https://www.mikeash.com/pyblog/friday-qa-2009-11-06-linking-and-install-names.html)
+
+* [Deploying Qt applications](https://doc.qt.io/qt-5/deployment.html).
