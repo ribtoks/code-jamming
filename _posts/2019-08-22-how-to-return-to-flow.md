@@ -11,7 +11,9 @@ tags:
   - time management
 ---
 
-Hobby projects are very important for me. They give me the freedom to do what I want, how I want it and also they help me to develop quite solid expertise in various fields. Some smaller, some bigger, they always require unattended focus and precious time to work on them. It's always hard to find that time. During the weekend I try to get outside, my evenings are busy with sports or family and during the night I prefer sleeping to coding. The only time left is 1-2 hours in the early morning before I go to work. I've always struggled to use this time as efficiently as possible. It's hard to open the laptop and continue where you stopped yesterday or before the weekend right away. It takes time to remember how to proceed from the last stop. I tried various ways and in this post I'd like to share the setup I'm using right now that helps me minimize this catch-up time significantly.
+Hobby projects are very important for me. They give me the freedom to do what I want, how I want it and also they help me to develop quite solid expertise in various fields. Some smaller, some bigger, they always require unattended focus and precious time to work on them. It's always hard to find that time. During the weekend I try to get outside, my evenings are busy with sports or family and during the night I prefer sleeping to coding. The only time left is 1-2 hours in the early morning before I go to work. 
+
+I've always struggled to use this time as efficiently as possible. **It's hard to open the laptop and continue where you stopped yesterday or before the weekend right away.** It takes time to remember how to proceed from the last stop. I tried various ways and in this post I'd like to share the setup I'm using right now that helps me minimize this catch-up time significantly.
 
 <!--more-->
 
@@ -23,6 +25,8 @@ First of all I tried to answer the question what exactly information I need to c
 
 As I write it they seem to be quite obvious, however, it was an important step to ask the right questions, because they helped me to find the solution.
 
+<br />
+
 ## What global problem I was trying to solve
 
 This one was the easiest. Having typical kanban board in GitHub with "TODO", "In Progress" and "Done" and keeping it up to date pretty much resolves this bullet item. Since I'm a single developer, there wouldn't be much stuff "In Progress" so even a quick glance will remind me what in general I was doing.
@@ -31,6 +35,8 @@ This one was the easiest. Having typical kanban board in GitHub with "TODO", "In
 *GitHub "Project" kanban board from one of my projects*
 
 Also the issue I'm working on now can have some details in the description or in comments that are also 1 click away from this screen.
+
+<br />
 
 ## What was already done in order to solve this problem
 
@@ -49,6 +55,8 @@ I even attempted to write my own tool using [gocui](https://github.com/jroimarti
 *lazygit UI*
 
 You get everything from `gitk` but, in my opinion, simpler and organized better. You have a single large area that shows `git log` tree when you go through branches or file diff when you go through files changed in a commit. Also it shows you `git status` and lists latest branches you worked on. This is exactly what I needed.
+
+<br />
 
 ## What should be done next in order to solve this problem
 
@@ -115,7 +123,7 @@ After the import with the [plugin](https://github.com/ribtoks/kanboard-tdg-impor
 ![Xpiks kanboard]({{ "/assets/img/kanboard-xpiks.png" | absolute_url }})
 *My local kanboard after import using tdg*
 
-Import plugin for kanboard adds tags for each comment: issue that I'm currently working on and a branch when the task was created on. Also it adds a reference to the file and line of code where the `TODO` was found and time estimate if any left by developer. When I implement the subtask and remove `TODO` comment from code, it get's automatically moved to "Done" column in kanboard so there's no manual work involved.
+Import plugin for kanboard adds tags for each comment: issue that I'm currently working on and a branch when the task was created on. Also it adds a reference to the file and line of code where the `TODO` was found and time estimate if any left by developer. When I implement the subtask and remove `TODO` comment from code, it get's automatically moved to "Done" column in kanboard so there's **no manual work required**.
 
 Then I created a simple `post-commit` git hook in one of my projects and now after I run `git commit` all `TODO`/`FIXME`/`BUG` comments are automatically synchronized with local kanboard.
 
