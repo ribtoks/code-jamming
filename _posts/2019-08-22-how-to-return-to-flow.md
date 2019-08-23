@@ -61,7 +61,7 @@ Theoretically you can have subtasks in main GitHub issue, but that scales only u
 ![github subtasks]({{ "/assets/img/github-issue-subtasks.png" | absolute_url }})
 *Subtasks grow quite significantly if your issue is a huge feature*
 
-Of course, you can and should split big issues into smaller ones, but that only scales up to some level. Issue is also an incapsulation of a atomical task that at some point cannot be divided further. But list of subtasks can still be huge if you keep track of some imporant implementation details of your task. It is fully manual work to go and update subtasks each time you have an idea or finish one.
+Of course, you can and should split big issues into smaller ones, but that only scales up to some level. Issue is also an incapsulation of an atomical task that at some point cannot be divided further. But the list of subtasks can still be huge if you keep track of some imporant implementation details of your task. It is, however, fully manual work to go and update subtasks each time you have an idea or finish one.
 
 ### Puzzle-driven development
 
@@ -72,15 +72,15 @@ There was an [interesting concept](https://www.yegor256.com/2010/03/04/pdd.html)
 
 Initially I thought that this would be a perfect process for an indie developer like me that has only very limited chunks of time available. However, the devil is in the ~~implementation~~ detais. Main problem is that PDD (puzzle-driven development) was used in "outsourcing company" / "freelance market" that Yegor runs and used specifically for freelancers to bill the customer atomically. They forced it to work only in _master_ branch and only on "@todo" comments with specific syntax.
 
-Soon I realized this wouldn't work for me. I wanted to have my list of puzzles available in any branch I work (if it's a long-living feature branch), not only in master. Also I wanted to leverage existing "normal" style TODO/BUG/FIXME comments that were already present in the code that were not supported by `pdd`. Even besides that, the [ruby gem they provide](https://github.com/yegor256/pdd/) is [very slow](https://github.com/yegor256/pdd/issues/139). This renders this approach quite impractical for my own use.
+Soon I realized this wouldn't work for me. I wanted to have my list of puzzles available in any branch I work (if it's a long-living feature branch), not only in master. Also I wanted to leverage existing "normal" style `TODO`/`BUG`/`FIXME` comments that were already present in the code that were not supported by `pdd`. Even besides that, the [ruby gem they provide](https://github.com/yegor256/pdd/) is [very slow](https://github.com/yegor256/pdd/issues/139). This renders this approach quite impractical for my own use.
 
 ### TODO-driven development
 
-Although PDD is quite impractical for me, it showed me a right direction. I could still have my subtasks stated in the source code in TODO comments, however, I needed some tools to support me.
+Although PDD is quite impractical for me, it showed me a right direction. I could still have my subtasks stated in the source code in `TODO` comments, however, I needed some tools to support me.
 
-First of all I tried to check the market if there's anything available. Soon I found project [imdone](https://imdone.io/) that looked very promising. It parses your source code and extracts all TODO/BUG/FIXME comments and organizes them in the kanban board. However, when I installed trial version, I found it very raw. Layout was quite cheap and you couldn't specify which files to include or exclude. However the tool helped me to realize what I wanted and this was priceless.
+First of all I tried to check the market if there's anything available. Soon I found project [imdone](https://imdone.io/) that looked very promising. It parses your source code and extracts all `TODO`/`BUG`/`FIXME` comments and organizes them in the kanban board. However, when I installed trial version, I found it very raw. Layout was quite cheap and you couldn't specify which files to include or exclude. However the tool helped me to realize what I wanted and this was priceless.
 
-So at this stage I knew I wanted a kanban board with all extracted TODO comments from the source code. There was only 1 step left: to create this product. Of course, I wouldn't want to implement a kanban board from scratch. After quick search I found a beautifully simple project: [kanboard](https://kanboard.org/). After another hour I had it running on my old Raspberry Pi 2.
+**So now I knew I wanted a kanban board with all extracted `TODO` comments from the source code**. There was only 1 step left: to create this product. Of course, I didn't want to implement a kanban board from scratch. After quick search I found a beautifully simple project: [kanboard](https://kanboard.org/). After another hour I had it running on my old Raspberry Pi 2.
 
 ![kanboard example]({{ "/assets/img/kanboard.png" | absolute_url }})
 *Screenshot of kanboard from the official website*
@@ -115,9 +115,9 @@ After the import with the [plugin](https://github.com/ribtoks/kanboard-tdg-impor
 ![Xpiks kanboard]({{ "/assets/img/kanboard-xpiks.png" | absolute_url }})
 *My local kanboard after import using tdg*
 
-Import plugin for kanboard adds tags for each comment: issue that I'm currently working on and a branch when the task was created on. Also it adds a reference to the file and line of code where the TODO was found and time estimate if any left by developer. When I implement the subtask and remove TODO comment from code, it get's automatically moved to "Done" column in kanboard so there's no manual work involved.
+Import plugin for kanboard adds tags for each comment: issue that I'm currently working on and a branch when the task was created on. Also it adds a reference to the file and line of code where the `TODO` was found and time estimate if any left by developer. When I implement the subtask and remove `TODO` comment from code, it get's automatically moved to "Done" column in kanboard so there's no manual work involved.
 
-Then I created a simple `post-commit` git hook in one of my projects and now after I run `git commit` all TODO/FIXME/BUG comments are automatically synchronized with local kanboard.
+Then I created a simple `post-commit` git hook in one of my projects and now after I run `git commit` all `TODO`/`FIXME`/`BUG` comments are automatically synchronized with local kanboard.
 
 ```bash
 #!/bin/bash
@@ -138,6 +138,8 @@ else
 fi
 ```
 
+If you would like to use this setup as `pdd` to have each `TODO` to create a GitHub issue, kanboard project has you covered: there're multiple connectors to platforms as GitHub and GitLab.
+
 ## Profit
 
-Now when I start my indie 2-hour workday, I need only a quick glance on `lazygit` and Kanboard to see what I was or will be doing. Usually after I run `git commit`, I go to the Kanboard and drag a task or two to "In Progress" column in order to see next time what should I start with. Eventually before merging back to `master` my kanban board will have all TODOs in the "Done" column.
+Now when I start my indie 2-hour workday, I need only a quick glance on `lazygit` and Kanboard to see what I was or will be doing. Usually after I run `git commit`, I go to the Kanboard and drag a task or two to "In Progress" column in order to see next time what should I start with. Eventually before merging back to `master` my kanban board will have all `TODO`s in the "Done" column. Also you can setup automatic action in Kanboard to close all tasks in "Done" column after X days. This way I find it to be nice and clean.
