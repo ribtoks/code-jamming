@@ -1,5 +1,5 @@
 ---
-title: How to return to flow faster
+title: How to return to the flow faster
 date: 2019-08-22T21:34:29-08:00
 author: "Taras Kushnir"
 layout: post
