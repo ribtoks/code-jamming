@@ -69,7 +69,7 @@ Theoretically you can have subtasks in main GitHub issue, but that scales only u
 ![github subtasks]({{ "/assets/img/github-issue-subtasks.png" | absolute_url }})
 *Subtasks grow quite significantly if your issue is a huge feature*
 
-Of course, you can and should split big issues into smaller ones, but that only scales up to some level. Issue is also an incapsulation of an atomical task that at some point cannot be divided further. But the list of subtasks can still be huge if you keep track of some imporant implementation details of your task. It is, however, fully manual work to go and update subtasks each time you have an idea or finish one.
+Of course, you can and should split big issues into smaller ones, but that only scales up to some level. Issue is also an incapsulation of an atomical task that at some point cannot be divided further. But the list of subtasks can still be huge if you keep track of some imporant implementation details of your task. **It is, however, fully manual work to go and update subtasks** each time you have an idea or finish one.
 
 ### Puzzle-driven development
 
