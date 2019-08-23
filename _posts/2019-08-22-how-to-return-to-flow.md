@@ -62,6 +62,15 @@ You get everything from `gitk` but, in my opinion, simpler and organized better.
 
 This one was the hardest. I tried various approaches before I found the one.
 
+### OneNote pages
+
+This was the system I used initially. For everything which was significant to mention, but not significant enough to become a GitHub Issue, I was writing down in OneNote. When the list grew over 1 page so I needed to scroll, I started another page.
+
+![OneNote list]({{ "/assets/img/onenote-todo.jpg" | absolute_url }})
+*First primitive but working wolution*
+
+With time I was migrating most of them to issues or issues with lists in GitHub Issues.
+
 ### GitHub subtasks
 
 Theoretically you can have subtasks in main GitHub issue, but that scales only up to a certain size of the issue.
