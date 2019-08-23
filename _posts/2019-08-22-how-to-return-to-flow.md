@@ -11,7 +11,7 @@ tags:
   - time management
 ---
 
-Hobby projects are very important for me. They give me freedom to do what I want, how I want it and also they help me to develop expertise in various fields. Some smaller, some bigger, they always require unattended focus and precious time to work on them. It's always hard to find that time. During the weekend I try to get outside, my evenings are busy with sports or family and during the night I prefer sleeping to coding. The only time left is 1-2 hours in the early morning before I go to work. I've always struggled to use this time as efficiently as possible. It's hard to open the laptop and continue where you stopped yesterday or before the weekend right away. It takes time to remember how to proceed from the last stop. I tried various ways and in this post I'd like to share the setup I'm using right now that helps me minimize this catch-up time significantly.
+Hobby projects are very important for me. They give me the freedom to do what I want, how I want it and also they help me to develop quite solid expertise in various fields. Some smaller, some bigger, they always require unattended focus and precious time to work on them. It's always hard to find that time. During the weekend I try to get outside, my evenings are busy with sports or family and during the night I prefer sleeping to coding. The only time left is 1-2 hours in the early morning before I go to work. I've always struggled to use this time as efficiently as possible. It's hard to open the laptop and continue where you stopped yesterday or before the weekend right away. It takes time to remember how to proceed from the last stop. I tried various ways and in this post I'd like to share the setup I'm using right now that helps me minimize this catch-up time significantly.
 
 <!--more-->
 
@@ -68,7 +68,7 @@ Of course, you can and should split big issues into smaller ones, but that only 
 There was an [interesting concept](https://www.yegor256.com/2010/03/04/pdd.html) from Yegor Bugaenko. The gist is that all issues in the repository are supposed to be very small (like 30 minutes up to an 1 hour for implementation) and when you cannot achieve that with some huge task, you create a special crafted "@todo" comment in the source code with explanation what should be done next. Then, when you merge your branch to master, GitHub bot will parse your source code, extract all new "@todo"s and create new issues based on that. Then, next person working on tasks will pick it up and either implement it or leave another "@todo" comment and so on while the original issue will not get fixed.
 
 ![pdd example]({{ "/assets/img/todo-pdd.png" | absolute_url }})
-*An example of @todo comment as used in PDD*
+*An example of @todo comment as used in PDD that features issue, estimate and author "role"*
 
 Initially I thought that this would be a perfect process for an indie developer like me that has only very limited chunks of time available. However, the devil is in the ~~implementation~~ detais. Main problem is that PDD (puzzle-driven development) was used in "outsourcing company" / "freelance market" that Yegor runs and used specifically for freelancers to bill the customer atomically. They forced it to work only in _master_ branch and only on "@todo" comments with specific syntax.
 
