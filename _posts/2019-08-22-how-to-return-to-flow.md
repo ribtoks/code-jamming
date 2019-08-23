@@ -61,13 +61,13 @@ Theoretically you can have subtasks in main GitHub issue, but that scales only u
 ![github subtasks]({{ "/assets/img/github-issue-subtasks.png" | absolute_url }})
 *Subtasks grow quite significantly if your issue is a huge feature*
 
-Of course, you can and should split big issues into smaller ones, but that only scales up to some level. Issue is also an incapsulation of a atomical task that at some point cannot be divided further. But list of subtasks can still be huge if you keep track of some imporant implementatino details of your task. It is fully manual work to go and update subtasks each time you have an idea or finish one.
+Of course, you can and should split big issues into smaller ones, but that only scales up to some level. Issue is also an incapsulation of a atomical task that at some point cannot be divided further. But list of subtasks can still be huge if you keep track of some imporant implementation details of your task. It is fully manual work to go and update subtasks each time you have an idea or finish one.
 
 ### Puzzle-driven development
 
 There was an [interesting concept](https://www.yegor256.com/2010/03/04/pdd.html) from Yegor Bugaenko. The gist is that all issues in the repository are supposed to be very small (like 30 minutes up to an 1 hour for implementation) and when you cannot achieve that with some huge task, you create a special crafted "@todo" comment in the source code with explanation what should be done next. Then, when you merge your branch to master, GitHub bot will parse your source code, extract all new "@todo"s and create new issues based on that. Then, next person working on tasks will pick it up and either implement it or leave another "@todo" comment and so on while the original issue will not get fixed.
 
-![pdd example]({{ "/assets/img/pdd-todo.png" | absolute_url }})
+![pdd example]({{ "/assets/img/todo-pdd.png" | absolute_url }})
 *An example of @todo comment as used in PDD*
 
 Initially I thought that this would be a perfect process for an indie developer like me that has only very limited chunks of time available. However, the devil is in the ~~implementation~~ detais. Main problem is that PDD (puzzle-driven development) was used in "outsourcing company" / "freelance market" that Yegor runs and used specifically for freelancers to bill the customer atomically. They forced it to work only in _master_ branch and only on "@todo" comments with specific syntax.
