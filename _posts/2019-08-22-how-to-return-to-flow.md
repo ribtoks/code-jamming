@@ -69,7 +69,7 @@ This was the system I used initially. For everything which was significant to me
 ![OneNote list]({{ "/assets/img/onenote-todo.JPG" | absolute_url }})
 *First primitive but working wolution*
 
-With time I was migrating most of them to issues or issues with lists in GitHub Issues.
+With time I was migrating most of them to GitHub Issues.
 
 ### GitHub subtasks
 
