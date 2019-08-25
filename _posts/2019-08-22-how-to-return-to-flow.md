@@ -47,7 +47,7 @@ What first comes to my mind is of course to use `gitk` - built-in, that provides
 ![gitk UI]({{ "/assets/img/gitk.png" | absolute_url }})
 *gitk run from my project's root*
 
-I wouldn't say that `gitk` is the quintessence of application UI evolution of 21st century, but certainly it solves my problem. However, usually I work from terminal more than from the UI and I was hoping to find a command line tool. 
+I wouldn't say that `gitk` is the quintessence of GUI evolution of 21st century, but it certainly solves my problem. However, usually I work from terminal more than from the UI and I was hoping to find a command line tool. 
 
 I even attempted to write my own tool using [gocui](https://github.com/jroimartin/gocui) library that will be an interactive dashboard, when I found [lazygit](https://github.com/jesseduffield/lazygit). Probably author had totally different vision how this tool should be used, but for me it makes just perfect command line git dashboard!
 
