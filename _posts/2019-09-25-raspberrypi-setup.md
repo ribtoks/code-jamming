@@ -44,6 +44,7 @@ Then, when it will be automounted, create empty file with name "ssh" in `/boot` 
 Now you can insert SD card to Raspberry Pi and turn it ON. I use network cable so I don't need to care about WiFi setup. It's much faster and much easier in my case.
 
 ```
+ssh pi@192.168.1.170
 sudo raspi-config
 ```
 
