@@ -70,7 +70,7 @@ sudo deluser -remove-home pi
 sudo vi /etc/sudoers.d/010_pi-nopasswd
 ```
 
-Now it's time to disallow passwordless `sudo` for all users: just change `NOPASSWD` to `PASSWD` for your new user and save the file.
+Editing sudoers is required to disallow passwordless `sudo` for all users: just change `NOPASSWD` to `PASSWD` for your new user and save the file.
 
 What I also usually do is I configure `fail2ban` in order to restrict ssh attempts with wrong password.
 
