@@ -143,8 +143,8 @@ hr {
   text-align: justify;
 }
 
-.post-container h1 {
-  text-align: left;
+.post-container h1.post-title {
+  margin-bottom: 0rem;
 }
 
 .posts {
@@ -156,11 +156,12 @@ hr {
 .post-date {
   display: block;
   margin-top:3px;
-  margin-bottom: 1rem;
   color: #9a9a9a;
   font-family: 'Quattrocento Sans', sans-serif;
   font-size:0.8rem;
 }
+
+
 
 .posts h1 {
   text-align: left;
