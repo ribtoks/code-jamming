@@ -35,13 +35,13 @@ diskutil unmountDisk /dev/disk2
 sudo dd bs=1m if=~/Downloads/Installs/2019-07-10-raspbian-buster-lite.img of=/dev/rdisk2 conv=sync
 ```
 
-Then, when it will be automounted, create empty file with name "ssh" in `/boot` (that will be the only mounted device).
+Then, when it will be automounted, create empty file with name "ssh" in `/boot` (that will be the only mounted device). If Raspbian will find such file, `sshd` will be automatically started so you can loging with user `pi` over ssh.
 
 ### System setup
 
 #### Initial
 
-Now you can insert SD card to Raspberry Pi and turn it ON. For networking I use network cable so I don't need to care about WiFi setup. It's much easier and probably also faster in my case.
+Now you can insert SD card to Raspberry Pi and turn it ON. For networking I use network cable so I don't need to care about WiFi setup. It's much easier and probably also faster in my case. In order to find the IP of Raspberry Pi I check my router's "Network Map" tab, almost every router has it, but ymmv. As the last resort you can use `nmap`.
 
 ```
 ssh pi@192.168.1.170
