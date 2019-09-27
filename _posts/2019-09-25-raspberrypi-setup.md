@@ -13,9 +13,11 @@ tags:
   - pihole
 ---
 
-Somehow I end up breaking my Raspberry Pi all of the time. Today it was the sudoers file that I modified using `nano` instead of `visudo` and voila - I cannot be root anymore. Another time I simply forgot my user's password and apparently it's impossible to login via ssh anymore (I don't have spare physical screen and keyboard). So somehow it happens all of the time and I need to reimage SD card and setup everything from scratch. That's the reason I'm writing this note - to future myself. Just a step-by-step guide to streamline future setups.
+Somehow I end up breaking my Raspberry Pi all of the time. Today it was the sudoers file that I corrupted editing with `nano` instead of `visudo` and voila - I cannot be root anymore. Another time I simply forgot my user's password and made it impossible to login via ssh anymore (I don't have spare physical screen and keyboard). So somehow it happens all of the time and I find myself reimaging SD card and setting up everything from scratch every now and then. That's the main reason I'm writing this note - to future myself. Here I can find a step-by-step guide to streamline future setups.
 
 <!--more-->
+
+Small disclaimer: the one I'm going to setup today is for Pi-Hole, however 90% of steps are very common for pretty much any setup.
 
 ### Prepare SD card
 
