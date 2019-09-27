@@ -82,7 +82,7 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo vi /etc/fail2ban/jail.local
 ```
 
-As for the last command - modifying the config - it's just enough to find `[ssh]` section and set `enabled = true` and `maxretry = 6`. Now when somebody will try to guess the password by DDoS'ing port 22, `fail2ban` will help.
+As for the last command - modifying the config - it's just enough to find `[ssh]` section and set `enabled = true` and `maxretry = 6`. Now when somebody will try to guess the password by DDoS'ing port 22, `fail2ban` will ban them for a couple of minutes.
 
 #### Update
 
